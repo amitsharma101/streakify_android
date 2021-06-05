@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.streakify.view.home.launcher.SplashFragment"
+        android:name="com.streakify.android.view.home.launcher.SplashFragment"
         android:label=""
         tools:layout="@layout/fragment_splash">
 
@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.streakify.view.home.onboarding.login.LoginFragment"
+        android:name="com.streakify.android.view.home.onboarding.login.LoginFragment"
         android:label="Login"
         tools:layout="@layout/login_layout">
         <action
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/otpFragment"
-        android:name="com.example.streakify.view.home.onboarding.otp.OtpFragment"
+        android:name="com.streakify.android.view.home.onboarding.otp.OtpFragment"
         android:label="Otp"
         tools:layout="@layout/otp_layout">
     </fragment>

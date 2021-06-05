@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.streakify.view.home.onboarding.otp.OtpVM" />
+            type="com.streakify.android.view.home.onboarding.otp.OtpVM" />
     </data>
 
 

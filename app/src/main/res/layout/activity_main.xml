@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.streakify.view.activity.MainActivityViewModel" />
+            type="com.streakify.android.view.activity.MainActivityViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

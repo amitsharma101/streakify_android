@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.streakify.view.home.onboarding.login.LoginVM" />
+            type="com.streakify.android.view.home.onboarding.login.LoginVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
