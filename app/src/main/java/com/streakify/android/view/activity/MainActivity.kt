@@ -3,6 +3,7 @@ package com.streakify.android.view.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -11,6 +12,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
+import androidx.navigation.ui.onNavDestinationSelected
 import com.streakify.android.R
 import com.streakify.android.application.App
 import com.streakify.android.databinding.ActivityMainBinding
@@ -143,5 +145,10 @@ class MainActivity : DaggerAppCompatActivity() {
         when (requestCode) {
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return item.onNavDestinationSelected(navController) ||
+                super.onOptionsItemSelected(item)
     }
 }

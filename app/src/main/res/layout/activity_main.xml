@@ -10,17 +10,13 @@
             type="com.streakify.android.view.activity.MainActivityViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
+                app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="#2C3847"
@@ -59,7 +55,14 @@
 <!--                app:viewLayout="@layout/fragment_dialog"-->
 <!--                tools:ignore="MissingConstraints" />-->
 
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/bottom_menu" />
 
-        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
