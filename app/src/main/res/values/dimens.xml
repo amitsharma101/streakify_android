@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <dimen name="design_fab_image_size" tools:override="true">36dp</dimen>
+    <dimen name="space_10">10dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="space_14">14dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_18">18dp</dimen>
+    <dimen name="space_20">20dp</dimen>
+    <dimen name="space_24">24dp</dimen>
+    <dimen name="space_30">30dp</dimen>
+    <dimen name="space_48">48dp</dimen>
+    <dimen name="space_80">80dp</dimen>
+
+    <dimen name="size_40">40dp</dimen>
+
+    <dimen name="font_size_12">12sp</dimen>
+    <dimen name="font_size_14">14sp</dimen>
+    <dimen name="font_size_16">16sp</dimen>
+
+    <dimen name="corner_stroke">1px</dimen>
+    <dimen name="status_bar_height">24sp</dimen>
+
+    <item name="character_space" format="float" type="dimen">0.1</item>
+    <dimen name="pdf_height">842px</dimen>
+    <dimen name="pdf_margin_vertical">30px</dimen>
+    <dimen name="pdf_width">595px</dimen>
+</resources>

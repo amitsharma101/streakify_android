@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name_release">Streakify</string>
+    <string name="app_name_debug">Debug Streakify</string>
+    <string name="please_wait">Please Wait</string>
+    <string name="error_title">Oops</string>
+    <string name="error_message">We got an error</string>
+    <string name="error_retry">Retry</string>
+    <string name="error_cancel">Cancel</string>
+    <string name="hint_ok">Ok</string>
+
+    <string name="add_goal">Add Goal</string>
+</resources>
