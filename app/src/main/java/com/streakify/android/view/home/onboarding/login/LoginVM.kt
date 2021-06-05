@@ -71,68 +71,21 @@ class LoginVM @Inject constructor(
         return true
     }
 
-    fun doLogin() {
-
-        if (validData())
-
-            /* Check Internet Connection */
-            if (mNetworkErrorData.value?.status != true) {
-                eventListener.let {
-                    it.showMessageDialog(
-                        message = resourceProvider.getString(R.string.check_internet),
-                        positiveClickTitle = resourceProvider.getString(R.string.error_retry),
-                        positiveClick = {
-                            it.dismissMessageDialog()
-                            doLogin()
-                        },
-
-                        )
-                }
-                return
-            } else {
-
-                viewModelScope.launch {
-
-                    /* Show ProgressBar */
-                    eventListener.showLoading()
-
-                    /* Get API Response */
-                    val apiResponse = authRepository.checkLoginData("${phoneField.get()}")
-
-                    /* Perform Task at Background */
-                    withContext(Dispatchers.IO) {
-
-                        /* Notify Loading */
-                        eventListener.dismissLoading()
-
-                        when (apiResponse) {
-
-                            is NetworkResponse.Success -> {
-
-                                /* Pass Data and Move To OTP Screen */
-                                mDestinationForward
-                                    .postValue(Event("${phoneField.get()}"))
-                            }
-
-                            is NetworkResponse.UnknownError -> {
-
-                                /* Show Message */
-                                eventListener.showMessageDialog(message = apiResponse.error.getError())
-                            }
-
-                            is NetworkResponse.ApiError -> {
-
-                                /* Show Message */
-                                eventListener.showMessageDialog(message = apiResponse.getError())
-                            }
-                        }
-
-                    }
-
-
-                }
+    fun checkNetwork(){
+        if (mNetworkErrorData.value?.status != true) {
+            eventListener.let {
+                it.showMessageDialog(
+                    message = resourceProvider.getString(R.string.check_internet),
+                    positiveClickTitle = resourceProvider.getString(R.string.error_retry),
+                    positiveClick = {
+                        it.dismissMessageDialog()
+                    },
+                    )
             }
+            return
+        }
     }
+
 
 
     override fun onCleared() {

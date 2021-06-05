@@ -5,6 +5,7 @@
     package="com.streakify.android">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.streakify.android.application.App"

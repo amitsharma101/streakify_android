@@ -20,6 +20,14 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
 
+        <action
+            android:id="@+id/action_splashFragment_to_testFragment"
+            app:destination="@id/testFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <fragment
@@ -41,6 +49,31 @@
         android:name="com.streakify.android.view.home.onboarding.otp.OtpFragment"
         android:label="Otp"
         tools:layout="@layout/otp_layout">
+
+        <action
+            android:id="@+id/action_otpFragment_to_testFragment"
+            app:destination="@id/testFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.streakify.android.view.home.test.TestFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_test">
+
+        <action
+            android:id="@+id/action_testFragment_to_splashFragment"
+            app:destination="@id/splashFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
 </navigation>

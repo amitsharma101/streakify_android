@@ -1,28 +1,23 @@
-package com.streakify.android.view.home.onboarding.login
+package com.streakify.android.view.home.test
 
 import android.os.Bundle
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.streakify.android.R
 import com.streakify.android.base.BaseFragment
-import com.streakify.android.databinding.LoginLayoutBinding
+import com.streakify.android.databinding.FragmentTestBinding
 import com.streakify.android.di.provider.ResourceProvider
-import com.streakify.android.view.activity.MainActivity
+import com.streakify.android.view.home.onboarding.login.LoginVM
 import com.streakify.android.view.home.onboarding.otp.OtpFragment
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-
-class LoginFragment : BaseFragment<LoginLayoutBinding, LoginVM>() {
+class TestFragment : BaseFragment<FragmentTestBinding, LoginVM>() {
 
     companion object{
-        private const val TAG = "LoginFragment"
+        private const val TAG = "TestFragment"
     }
     @Inject
     lateinit var resourceProvider: ResourceProvider
@@ -31,7 +26,7 @@ class LoginFragment : BaseFragment<LoginLayoutBinding, LoginVM>() {
      * @return Layout Resource Such as R.layout.login_layout
      * */
 
-    override fun setLayout() = R.layout.login_layout
+    override fun setLayout() = R.layout.fragment_test
 
     /**
      * @return Class which extends {@link ViewModel}
@@ -41,14 +36,25 @@ class LoginFragment : BaseFragment<LoginLayoutBinding, LoginVM>() {
 
     /** Bind View with ViewModel */
 
+    // [START declare_auth]
+    private lateinit var auth: FirebaseAuth
+    // [END declare_auth]
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        auth = Firebase.auth
+
+    }
+
     override fun bindViews() {
 
-        binding.viewModel = viewModel
+//        binding.viewModel = viewModel
 
         /* Hide ActionBar */
 //        (activity as MainActivity).hideActionBar()
 
-        binding.ccp.isClickable = false
         /* Set Observers to capture actions */
         bindObservers()
 
@@ -58,9 +64,14 @@ class LoginFragment : BaseFragment<LoginLayoutBinding, LoginVM>() {
     /** Set Observers to capture actions */
     private fun bindObservers() {
 
-        binding.requestOtpBtn.setOnClickListener {
-            if(viewModel.validData()){
-                viewModel.checkNetwork()
+        binding.logout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            findNavController().navigate(R.id.action_testFragment_to_splashFragment)
+        }
+
+        /* Navigate to OTP Screen */
+        viewModel.mDestinationForward.observe(viewLifecycleOwner, { event ->
+            event?.getContentIfNotHandled()?.let {
 
                 val bundle = bundleOf(
                     OtpFragment.PHONE_NUMBER to viewModel.phoneField.get()
@@ -69,6 +80,7 @@ class LoginFragment : BaseFragment<LoginLayoutBinding, LoginVM>() {
                     R.id.action_loginFragment_to_otpFragment,bundle
                 )
             }
-            }
-        }
+        })
+
+    }
 }

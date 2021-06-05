@@ -31,4 +31,8 @@
     <string name="check_internet">Please check your internet connection</string>
     <string name="error_phone_empty">Please enter Mobile number.</string>
     <string name="please_enter_valid_number">Please enter valid Mobile number.</string>
+    <string name="error_invalid_phone_number">Invalid Phone Number</string>
+    <string name="unknown_error">Unknown Error</string>
+    <string name="could_not_connect_to_the_internet_please_check_your_network">Could not connect to the internet</string>
+    <string name="msg_otp_resent">OTP resent</string>
 </resources>

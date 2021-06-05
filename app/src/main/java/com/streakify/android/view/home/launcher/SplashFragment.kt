@@ -1,6 +1,8 @@
 package com.streakify.android.view.home.launcher
 
+import android.content.Intent
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.streakify.android.R
 import com.streakify.android.base.BaseFragment
 import com.streakify.android.databinding.FragmentSplashBinding
@@ -19,11 +21,17 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashVM>() {
         /* Hide ActionBar */
 //        (activity as MainActivity).hideActionBar()
 
-        viewModel.checkUserLoggedIn()
+//        viewModel.checkUserLoggedIn()
 
         /* Set Observers to capture actions */
-        bindObservers()
+//        bindObservers()
 
+
+        if (FirebaseAuth.getInstance().currentUser != null) {
+            findNavController().navigate(R.id.action_splashFragment_to_testFragment)
+        } else {
+            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+        }
     }
 
     private fun bindObservers() {
