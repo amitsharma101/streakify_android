@@ -45,6 +45,9 @@ class MainActivity : DaggerAppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
+                R.id.loginFragment ->{
+                    toolbar?.title = getString(R.string.add_goal)
+                }
                 else -> {
 //                    toolbar?.title = destination.label
 //                    toolbar?.subtitle = ""
@@ -109,7 +112,7 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     override fun onBackPressed() {
-
+        super.onBackPressed()
     }
 
 
@@ -120,7 +123,7 @@ class MainActivity : DaggerAppCompatActivity() {
         appBarConfiguration =
             AppBarConfiguration.Builder(
                 *intArrayOf(
-
+                    R.id.loginFragment
                 )
             ).build()
 

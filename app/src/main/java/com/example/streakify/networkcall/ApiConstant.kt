@@ -3,8 +3,8 @@ package com.example.streakify.networkcall
 
 object ApiConstant {
 
-    const val BASE_URL: String = ""
-    const val BASE_PROD_URL: String = ""
+    const val BASE_URL: String = "https://google.com/"
+    const val BASE_PROD_URL: String = "https://google.com/"
 
     /**
      * API Static Queries

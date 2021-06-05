@@ -18,6 +18,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import com.example.streakify.BuildConfig
+import com.example.streakify.view.home.onboarding.repo.AuthApiServices
 
 @Module
 object NetworkModule {
@@ -81,4 +82,9 @@ object NetworkModule {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return httpLoggingInterceptor
     }
+
+    @Provides
+    @JvmStatic
+    fun authServices(retrofit: Retrofit): AuthApiServices =
+        retrofit.create(AuthApiServices::class.java)
 }

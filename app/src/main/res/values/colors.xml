@@ -18,4 +18,12 @@
 
     <color name="colorBlack">#000000</color>
     <color name="colorLightTextColor">#82878D</color>
+
+    <color name="colorBackground">#E5E5E5</color>
+
+    <color name="colorGrey">#848484</color>
+
+    <color name="colorDarkTextColor">#333333</color>
+    <color name="colorExtraLightGrey">#e0e2e4</color>
+    <color name="settingsText">#212121</color>
 </resources>

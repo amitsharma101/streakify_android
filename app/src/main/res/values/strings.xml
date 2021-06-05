@@ -9,4 +9,26 @@
     <string name="hint_ok">Ok</string>
 
     <string name="add_goal">Add Goal</string>
+
+    <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="code_india">+91</string>
+    <string name="hint_phone_number">9876543210</string>
+    <string name="next">Next</string>
+
+    <string name="otpheading">Enter OTP</string>
+    <string name="otpdidnotreceive">OTP RESENT. Wait 45s to Resend again</string>
+    <string name="otpresend">RESEND OTP</string>
+    <string name="hint_submit">Submit</string>
+    <string name="done">Done</string>
+
+    <string name="please_enter_valid_otp">Please enter valid Otp.</string>
+    <string name="error_otp_empty">Please enter your Otp</string>
+
+    <!-- error Strings-->
+    <string name="share_via">Share via</string>
+    <string name="error_no_network_connection_error_message">Looks like you don\'t have network connection, check internet connection to try again.</string>
+    <string name="error_no_network_connection_error_title">OOPS! NETWORK ERROR</string>
+    <string name="check_internet">Please check your internet connection</string>
+    <string name="error_phone_empty">Please enter Mobile number.</string>
+    <string name="please_enter_valid_number">Please enter valid Mobile number.</string>
 </resources>

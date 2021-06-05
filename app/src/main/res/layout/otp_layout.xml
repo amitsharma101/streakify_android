@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.streakify.view.home.onboarding.otp.OtpVM" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/bg_imageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintDimensionRatio="H,2:2.5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:backgroundTint="@color/colorBackground"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rootlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_sheet_background"
+            android:padding="@dimen/_16sdp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/otpheading"
+                style="@style/TextViewStyle.MEDIUM"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:text="@string/otpheading"
+                android:textAlignment="center"
+                android:textColor="@color/settingsText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.mukesh.OtpView
+                android:id="@+id/otp_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:inputType="number"
+                android:itemBackground="@color/colorWhite"
+                app:itemRadius="@dimen/_6sdp"
+                android:text="@={viewModel.otpField}"
+                android:textColor="@android:color/black"
+                app:error="@{viewModel.otpError}"
+                app:isErrorShown="@{viewModel.isErrorShown}"
+                app:isValid="@{viewModel.otpValid}"
+                app:itemCount="6"
+                app:itemSpacing="@dimen/_8sdp"
+                app:layout_constraintCircleRadius="@dimen/_16sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/otpheading"
+                app:lineColor="@color/colorExtraLightGrey"
+                app:viewType="rectangle" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/resendotp"
+                style="@style/TextViewStyle.MEDIUM"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="?android:selectableItemBackground"
+                android:padding="@dimen/_8sdp"
+                android:text="@string/otpresend"
+                android:textAlignment="center"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/otp_view"
+                app:onClick="@{viewModel::resendOtp}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/otpdidnotreceive"
+                style="@style/TextViewStyle"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/otpdidnotreceive"
+                android:textAlignment="center"
+                android:textSize="@dimen/_12ssp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/otp_view" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit_btn"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:text="@string/done"
+                android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/resendotp"
+                app:onClick="@{viewModel::verifyOtp}" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

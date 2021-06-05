@@ -9,6 +9,9 @@
             name="viewModel"
             type="com.example.streakify.view.activity.MainActivityViewModel" />
     </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@id/container"
@@ -56,5 +59,7 @@
 <!--                app:viewLayout="@layout/fragment_dialog"-->
 <!--                tools:ignore="MissingConstraints" />-->
 
+
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
