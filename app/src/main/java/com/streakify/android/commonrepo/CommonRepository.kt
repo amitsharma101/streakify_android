@@ -1,4 +1,4 @@
-package com.khatabook.billsngst.commonrepo
+package com.streakify.android.commonrepo
 
 import com.streakify.android.application.App
 import com.streakify.android.networkcall.ApiRequest

@@ -1,4 +1,4 @@
-package com.khatabook.billsngst.commonrepo
+package com.streakify.android.commonrepo
 
 @JvmSuppressWildcards
 interface CommonApiServices {

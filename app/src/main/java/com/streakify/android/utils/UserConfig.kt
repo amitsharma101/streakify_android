@@ -21,10 +21,6 @@ object UserConfig {
         return Config.getString(LOCALE, "en_GB")
     }
 
-//    private fun setLocale(language: Int) {
-//        Config.setString(LOCALE, KhatabookLanguage.getLocale(language))
-//    }
-
     fun setCountryCode(code: String) {
         Config.setString(COUNTRY_CODE, code)
     }

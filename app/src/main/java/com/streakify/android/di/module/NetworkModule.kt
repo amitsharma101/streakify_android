@@ -5,7 +5,6 @@ import android.content.Context
 import com.streakify.android.networkcall.ApiConstant
 import com.google.gson.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.khatabook.billsngst.commonrepo.CommonApiServices
 import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
@@ -18,6 +17,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import com.streakify.android.BuildConfig
+import com.streakify.android.commonrepo.CommonApiServices
 import com.streakify.android.view.home.onboarding.repo.AuthApiServices
 
 @Module
