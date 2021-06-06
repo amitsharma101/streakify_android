@@ -35,4 +35,9 @@
     <string name="unknown_error">Unknown Error</string>
     <string name="could_not_connect_to_the_internet_please_check_your_network">Could not connect to the internet</string>
     <string name="msg_otp_resent">OTP resent</string>
+    <string name="punch_in">Punch In</string>
+    <string name="punch_out">Punch Out</string>
+
+    <string name="x_days_streak">%$1s days streal</string>
+    <string name="x_of_ydays_streak">%$1s/%$2s days streak</string>
 </resources>

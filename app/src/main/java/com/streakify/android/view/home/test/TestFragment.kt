@@ -66,7 +66,7 @@ class TestFragment : BaseFragment<FragmentTestBinding, LoginVM>() {
 
         binding.logout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            findNavController().navigate(R.id.action_testFragment_to_splashFragment)
+            findNavController().navigate(R.id.action_streakListFragment_to_splashFragment)
         }
 
         /* Navigate to OTP Screen */

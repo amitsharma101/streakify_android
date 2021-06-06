@@ -9,6 +9,7 @@ import com.streakify.android.view.activity.MainActivityViewModel
 import com.streakify.android.view.home.launcher.SplashVM
 import com.streakify.android.view.home.onboarding.login.LoginVM
 import com.streakify.android.view.home.onboarding.otp.OtpVM
+import com.streakify.android.view.home.streaks.streaklist.StreakListVM
 
 import dagger.Binds
 import dagger.Module
@@ -51,4 +52,10 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(LoginVM::class)
     abstract fun bindLoginViewModel(viewModel: LoginVM): ViewModel
+
+    // StreakList - Home
+    @Binds
+    @IntoMap
+    @ViewModelKey(StreakListVM::class)
+    abstract fun bindStreakListViewModel(viewModel: StreakListVM): ViewModel
 }

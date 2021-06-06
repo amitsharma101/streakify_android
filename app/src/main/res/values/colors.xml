@@ -26,4 +26,8 @@
     <color name="colorDarkTextColor">#333333</color>
     <color name="colorExtraLightGrey">#e0e2e4</color>
     <color name="settingsText">#212121</color>
+
+    <color name="green">#0F814D</color>
+    <color name="red">#DF1837</color>
+
 </resources>

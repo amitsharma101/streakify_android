@@ -28,7 +28,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashVM>() {
 
 
         if (FirebaseAuth.getInstance().currentUser != null) {
-            findNavController().navigate(R.id.action_splashFragment_to_testFragment)
+            findNavController().navigate(R.id.action_splashFragment_to_streakListFragment)
         } else {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }

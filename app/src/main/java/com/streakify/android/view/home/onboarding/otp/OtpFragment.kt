@@ -180,7 +180,7 @@ class OtpFragment : BaseFragment<OtpLayoutBinding, OtpVM>()
                        Log.i("Token",idToken.toString())
 
                         findNavController().navigate(
-                            R.id.action_otpFragment_to_testFragment
+                            R.id.action_otpFragment_to_streakListFragment
                         )
 
                     }

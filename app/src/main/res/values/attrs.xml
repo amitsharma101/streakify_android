@@ -5,4 +5,8 @@
         <attr name="viewLayout" format="reference" />
         <attr name="cancelable" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="TTT">
+        <attr name="progress_value" format="float|reference" />
+    </declare-styleable>
 </resources>

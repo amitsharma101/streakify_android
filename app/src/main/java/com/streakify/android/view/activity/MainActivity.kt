@@ -4,6 +4,7 @@ package com.streakify.android.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
@@ -47,12 +48,23 @@ class MainActivity : DaggerAppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment ->{
-                    toolbar?.title = getString(R.string.add_goal)
+                R.id.loginFragment -> {
+                    hideBottomNavigation()
+                    hideToolbar()
+                }
+                R.id.splashFragment -> {
+                    hideBottomNavigation()
+                    hideToolbar()
+                }
+                R.id.otpFragment -> {
+                    hideBottomNavigation()
+                    hideToolbar()
                 }
                 else -> {
-//                    toolbar?.title = destination.label
-//                    toolbar?.subtitle = ""
+                    showBottomNavigation()
+                    showToolbar()
+                    toolbar?.title = destination.label
+                    toolbar?.subtitle = ""
                 }
             }
         }
@@ -103,6 +115,22 @@ class MainActivity : DaggerAppCompatActivity() {
         })
 
 
+    }
+
+    fun hideBottomNavigation(){
+        binding.bottomNavView.visibility = View.GONE
+    }
+
+    fun hideToolbar(){
+        binding.toolbar.visibility = View.GONE
+    }
+
+    fun showBottomNavigation(){
+        binding.bottomNavView.visibility = View.VISIBLE
+    }
+
+    fun showToolbar(){
+        binding.toolbar.visibility = View.VISIBLE
     }
 
     fun setClickListeners() {

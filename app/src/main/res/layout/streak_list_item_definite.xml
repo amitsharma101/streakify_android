@@ -16,9 +16,9 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
         app:cardCornerRadius="@dimen/_4sdp"
         app:cardElevation="@dimen/_4sdp"
-        android:layout_marginTop="@dimen/_8sdp"
         app:layout_constraintTop_toTopOf="parent" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,14 +29,38 @@
             android:paddingTop="@dimen/_8sdp"
             android:paddingBottom="@dimen/_8sdp">
 
+<!--            <info.abdolahi.CircularMusicProgressBar-->
+<!--                android:id="@+id/image"-->
+<!--                android:layout_width="@dimen/_100sdp"-->
+<!--                android:layout_height="@dimen/_100sdp"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:src="@drawable/ic_alarm_clock"-->
+<!--                app:border_color="@color/colorExtraLightGrey"-->
+<!--                app:border_width="@dimen/_6sdp"-->
+<!--                app:centercircle_diammterer="1"-->
+<!--                app:progress_color="@color/green"-->
+<!--                -->
+<!--                app:draw_anticlockwise="false"-->
+<!--                app:enable_touch="false"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
+
             <com.streakify.android.utils.CircularStreakView
                 android:id="@+id/image"
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_alarm_clock"
+                app:border_color="@color/colorExtraLightGrey"
+                app:border_width="@dimen/_6sdp"
                 app:centercircle_diammterer="1"
-                app:progress_startAngle="0"
+                app:progress_color="@color/green"
+
+                app:progress_value="80.00"
+                app:progress_startAngle="-90.0"
+
+
                 app:draw_anticlockwise="false"
                 app:enable_touch="false"
                 app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +71,8 @@
                 android:id="@+id/streak_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                tools:text="30 days streak"
-                android:text="@{data.indefinite_string}"
+                tools:text="15/30 days streak"
+                android:text="@{data.definite_string}"
                 style="@style/TextViewStyle.MEDIUM"
                 android:layout_marginStart="@dimen/_16sdp"
                 app:layout_constraintTop_toTopOf="@id/image"
@@ -67,8 +91,8 @@
                 app:layout_constraintTop_toBottomOf="@id/streak_count"/>
 
             <com.google.android.material.textview.MaterialTextView
-                style="@style/punch_out_buttom"
-                android:text="@string/punch_out"
+                style="@style/punch_in_buttom"
+                android:text="@string/punch_in"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 

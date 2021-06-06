@@ -19,7 +19,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#2C3847"
+                android:background="@color/colorPrimaryDark"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 app:titleTextColor="@color/colorWhite" />
 
@@ -27,9 +27,11 @@
                 android:id="@+id/mainNavigationFragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 app:defaultNavHost="true"
-                app:navGraph="@navigation/navigation_graph" />
+                app:navGraph="@navigation/navigation_graph"
+                app:layout_constraintTop_toBottomOf="@id/toolbar"
+                app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"/>
 
 <!--            <com.example.streakify.view.dialog.view.LoadingShowingView-->
 <!--                android:id="@+id/loadingShowingView"-->
