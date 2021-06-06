@@ -33,29 +33,29 @@
                 app:layout_constraintTop_toBottomOf="@id/toolbar"
                 app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"/>
 
-<!--            <com.example.streakify.view.dialog.view.LoadingShowingView-->
-<!--                android:id="@+id/loadingShowingView"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                app:dialogStyle="@style/AppTheme.FullScreenDialog"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/mainNavigationFragment"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:viewLayout="@layout/fragment_loading"-->
-<!--                tools:ignore="MissingConstraints" />-->
+            <com.streakify.android.view.dialog.view.LoadingShowingView
+                android:id="@+id/loadingShowingView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:dialogStyle="@style/AppTheme.FullScreenDialog"
+                app:layout_constraintBottom_toBottomOf="@+id/mainNavigationFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:viewLayout="@layout/fragment_loading"
+                tools:ignore="MissingConstraints" />
 
-<!--            <com.example.streakify.view.dialog.view.DialogShowingView-->
-<!--                android:id="@+id/dialogShowingView"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                app:dialogStyle="@style/AppTheme.FullScreenDialog"-->
-<!--                app:layout_constraintBottom_toBottomOf="@+id/mainNavigationFragment"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:viewLayout="@layout/fragment_dialog"-->
-<!--                tools:ignore="MissingConstraints" />-->
+            <com.streakify.android.view.dialog.view.DialogShowingView
+                android:id="@+id/dialogShowingView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:dialogStyle="@style/AppTheme.FullScreenDialog"
+                app:layout_constraintBottom_toBottomOf="@+id/mainNavigationFragment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:viewLayout="@layout/fragment_dialog"
+                tools:ignore="MissingConstraints" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav_view"
