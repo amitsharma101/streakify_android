@@ -82,4 +82,11 @@
 
     </fragment>
 
+    <fragment
+        android:id="@+id/editStreakFragment"
+        android:name="com.streakify.android.view.home.streaks.editstreak.EditStreakFragment"
+        android:label=""
+        tools:layout="@layout/edit_streak_layout">
+    </fragment>
+
 </navigation>

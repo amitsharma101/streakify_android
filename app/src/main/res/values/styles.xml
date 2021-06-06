@@ -91,4 +91,13 @@
         <item name="android:drawableStart">@drawable/ic_cross_24</item>
     </style>
 
+    <!--  Customize theme for TextInputLayout  -->
+    <style name="TextInputStyle" parent="Base.Widget.MaterialComponents.TextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.MaterialComponents.TextInputEditText.OutlinedBox</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="boxBackgroundColor">@android:color/transparent</item>
+    </style>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.streakify.android.view.home.streaks.streaklist
 
+import androidx.navigation.fragment.findNavController
 import com.streakify.android.R
 import com.streakify.android.application.AppConstants
 import com.streakify.android.base.BaseFragment
@@ -51,7 +52,9 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
-
+        binding.addGoal.setOnClickListener {
+            findNavController().navigate(R.id.editStreakFragment)
+        }
     }
 
     fun initData():MutableList<StreakListItemVM>{

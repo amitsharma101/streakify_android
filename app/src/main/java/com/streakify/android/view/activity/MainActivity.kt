@@ -60,6 +60,10 @@ class MainActivity : DaggerAppCompatActivity() {
                     hideBottomNavigation()
                     hideToolbar()
                 }
+                R.id.editStreakFragment -> {
+                    hideToolbar()
+                    hideBottomNavigation()
+                }
                 else -> {
                     showBottomNavigation()
                     showToolbar()

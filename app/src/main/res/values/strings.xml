@@ -40,4 +40,8 @@
 
     <string name="x_days_streak">%$1s days streal</string>
     <string name="x_of_ydays_streak">%$1s/%$2s days streak</string>
+    <string name="streak_name">Streak Name</string>
+    <string name="set_goal">Set Goal</string>
+    <string name="days">days</string>
+    <string name="set_goal_0_for">Set Goal (0 for indefinite streak)</string>
 </resources>

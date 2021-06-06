@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.streakify.android.view.home.streaks.editstreak.EditStreakVM" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cross_24"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/red" />
+
+    <ImageView
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_check_24"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/green" />
+
+    <com.mobstac.circularimageprogress.CircularImageProgressView
+        android:id="@+id/streak_image"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        app:image="@drawable/ic_flash"
+        android:layout_marginTop="@dimen/_50sdp"
+        app:layout_constraintStart_toStartOf="@id/cancel"
+        app:layout_constraintTop_toBottomOf="@id/cancel"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_streakname"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        style="@style/TextInputStyle"
+        android:layout_marginStart="@dimen/_8sdp"
+        app:layout_constraintStart_toEndOf="@id/streak_image"
+        app:layout_constraintTop_toTopOf="@id/streak_image"
+        app:layout_constraintBottom_toBottomOf="@id/streak_image"
+        app:layout_constraintEnd_toEndOf="@id/save"
+        android:hint="@string/streak_name"
+        app:layout_goneMarginTop="@dimen/_8sdp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_streakname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_goaldays"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        style="@style/TextInputStyle"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="@id/cancel"
+        app:layout_constraintTop_toBottomOf="@id/til_streakname"
+        app:layout_constraintEnd_toEndOf="@id/save"
+        android:hint="@string/set_goal_0_for"
+        app:suffixText="@string/days"
+        app:suffixTextColor="@color/colorBlack"
+        app:layout_goneMarginTop="@dimen/_8sdp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_goaldays"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
