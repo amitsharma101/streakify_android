@@ -40,14 +40,54 @@
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/green" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/streaktypelayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/save">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewindefinite"
+            style="@style/TextViewStyle"
+            android:background="@drawable/rounded_rectangle_flat_right"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:onClick="@{()->viewModel.onIndefiniteClicked()}"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/indefinite"
+            android:textAlignment="center"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/textViewdefinite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewdefinite"
+            style="@style/TextViewStyle"
+            android:background="@drawable/rounded_rectangle_flat_left"
+            android:onClick="@{()->viewModel.onDefiniteClicked()}"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/definite"
+            android:textAlignment="center"
+            android:textColor="@color/colorGrey"
+            app:layout_constraintBaseline_toBaselineOf="@id/textViewindefinite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/textViewindefinite"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.mobstac.circularimageprogress.CircularImageProgressView
         android:id="@+id/streak_image"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
         app:image="@drawable/ic_flash"
-        android:layout_marginTop="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintStart_toStartOf="@id/cancel"
-        app:layout_constraintTop_toBottomOf="@id/cancel"/>
+        app:layout_constraintTop_toBottomOf="@id/streaktypelayout"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_streakname"

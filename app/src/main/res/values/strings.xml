@@ -44,4 +44,7 @@
     <string name="set_goal">Set Goal</string>
     <string name="days">days</string>
     <string name="set_goal_0_for">Set Goal (0 for indefinite streak)</string>
+
+    <string name="indefinite">Indefinite</string>
+    <string name="definite">Definite</string>
 </resources>

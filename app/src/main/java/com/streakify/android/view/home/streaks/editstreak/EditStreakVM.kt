@@ -19,4 +19,12 @@ class EditStreakVM @Inject constructor(
 
     }
 
+    fun onIndefiniteClicked() {
+        event.value = AddItemEvent.ProductClickedEvent
+    }
+
+    fun onDefiniteClicked() {
+        event.value = AddItemEvent.ServicesClickedEvent
+    }
+
 }

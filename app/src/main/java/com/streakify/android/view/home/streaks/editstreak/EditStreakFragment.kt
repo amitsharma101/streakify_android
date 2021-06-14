@@ -1,5 +1,7 @@
 package com.streakify.android.view.home.streaks.editstreak
 
+import android.content.res.ColorStateList
+import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.streakify.android.R
 import com.streakify.android.application.AppConstants
@@ -50,6 +52,18 @@ class EditStreakFragment : BaseFragment<EditStreakLayoutBinding, EditStreakVM>()
         binding.cancel.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    private fun select(textView: TextView) {
+        textView.backgroundTintList =
+            ColorStateList.valueOf(resourceProvider.getColor(R.color.colorPrimaryDark))
+        textView.setTextColor(resourceProvider.getColor(R.color.colorWhite))
+    }
+
+    private fun unSelect(textView: TextView) {
+        textView.backgroundTintList =
+            ColorStateList.valueOf(resourceProvider.getColor(R.color.colorWhite))
+        textView.setTextColor(resourceProvider.getColor(R.color.colorGrey))
     }
 
     override fun onItemClick(value: Any) {
