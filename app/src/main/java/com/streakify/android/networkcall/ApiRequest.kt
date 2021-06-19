@@ -16,7 +16,6 @@ abstract class ApiRequest {
             }
             withContext(Dispatchers.Main) {
                 when (response.code()) {
-
                     /* Success */
                     in (200..299) -> NetworkResponse.Success(response.body())
 

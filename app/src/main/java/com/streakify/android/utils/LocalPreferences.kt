@@ -93,6 +93,8 @@ class LocalPreferences @Inject constructor(context: Context) {
     /** Preference Keys For Global Settings */
     companion object StoreConfigPreferenceKeys {
         val AUTH_TOKEN = preferencesKey<String>("AUTH_TOKEN")
+        val REFRESH_TOKEN = preferencesKey<String>("REFRESH_TOKEN")
+        val FIREBASE_TOKEN = preferencesKey<String>("FIREBASE_TOKEN")
     }
 
 

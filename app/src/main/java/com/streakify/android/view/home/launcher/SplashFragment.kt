@@ -6,6 +6,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.streakify.android.R
 import com.streakify.android.base.BaseFragment
 import com.streakify.android.databinding.FragmentSplashBinding
+import com.streakify.android.view.activity.MainActivity
 
 class SplashFragment : BaseFragment<FragmentSplashBinding, SplashVM>() {
 
@@ -19,26 +20,19 @@ class SplashFragment : BaseFragment<FragmentSplashBinding, SplashVM>() {
         binding.viewModel = viewModel
 
         /* Hide ActionBar */
-//        (activity as MainActivity).hideActionBar()
+        (activity as MainActivity).hideActionBar()
 
-//        viewModel.checkUserLoggedIn()
+        viewModel.checkUserLoggedIn()
 
         /* Set Observers to capture actions */
-//        bindObservers()
-
-
-        if (FirebaseAuth.getInstance().currentUser != null) {
-            findNavController().navigate(R.id.action_splashFragment_to_streakListFragment)
-        } else {
-            findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-        }
+        bindObservers()
     }
 
     private fun bindObservers() {
         viewModel.mUserAccountLD.observe(viewLifecycleOwner, { event ->
             event?.getContentIfNotHandled()?.let {
                 if (it) {
-//                    bindSyncLevelObserver()
+                    findNavController().navigate(R.id.action_splashFragment_to_streakListFragment)
                 } else
                     findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
             }

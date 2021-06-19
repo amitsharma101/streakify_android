@@ -20,6 +20,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import com.streakify.android.BR
 import com.streakify.android.networkcall.getError
+import com.streakify.android.view.home.onboarding.data.GetTokenRequest
 
 
 class OtpVM @Inject constructor(
@@ -36,6 +37,9 @@ class OtpVM @Inject constructor(
     val isErrorShown = ObservableBoolean(false)
     var otpError = ObservableField(resourceProvider.getString(R.string.error_otp_empty))
     val signedInSuccess = ObservableBoolean()
+
+    var fireBaseToken = ""
+    var phoneNumber = ""
 
     /* Listener to Detect otpField Changes */
     private var otpFieldOnPropertyChangedCallback: Observable.OnPropertyChangedCallback
@@ -71,6 +75,33 @@ class OtpVM @Inject constructor(
         }
         return true
 
+    }
+
+    fun getToken(fireBaseToken:String){
+        viewModelScope.launch {
+            val apiResponse = authRepository.getToken(GetTokenRequest(
+                countryCode = "+91",
+                mobileNumber = phoneNumber,
+                firebaseToken = fireBaseToken
+            ))
+
+            when(apiResponse){
+                is NetworkResponse.Success -> {
+                    val authToken = apiResponse.body?.body?.accessToken
+                    val refreshToken = apiResponse.body?.body?.refreshToken
+                    val firebaseToken = this@OtpVM.fireBaseToken
+
+                    authRepository.setAuthToken(authToken!!)
+                    authRepository.setRefreshToken(refreshToken!!)
+                    authRepository.setFirebaseToken(firebaseToken)
+
+                    event.value = OtpEvent.LoginSuccessEvent
+                }
+                else -> {
+                    eventListener.showMessageDialog("Failed to Login")
+                }
+            }
+        }
     }
 
     override fun onCleared() {

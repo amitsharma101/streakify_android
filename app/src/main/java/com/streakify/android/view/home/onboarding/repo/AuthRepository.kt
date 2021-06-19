@@ -6,6 +6,8 @@ import com.streakify.android.base.BaseModel
 import com.streakify.android.networkcall.ApiRequest
 import com.streakify.android.networkcall.NetworkResponse
 import com.streakify.android.utils.LocalPreferences
+import com.streakify.android.view.home.onboarding.data.GetTokenRequest
+import com.streakify.android.view.home.onboarding.data.GetTokenResponse
 import com.streakify.android.view.home.onboarding.data.LoginModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -19,20 +21,8 @@ class AuthRepository @Inject constructor(
 ) : ApiRequest() {
 
     /** Check Login Data */
-    suspend fun checkLoginData(phone_number: String): NetworkResponse<BaseModel> {
-        return apiRequest { authApiServices.checkLoginData(phone_number) }
-    }
-
-    /** Check OTP Data */
-    suspend fun verifyOtp(
-        phone_number: String,
-        otp: String,
-        name: String
-    ): NetworkResponse<LoginModel> {
-        return apiRequest { authApiServices.checkVerifyOtpData(
-            phone_number,
-            otp,
-            name) }
+    suspend fun getToken(getTokenRequest: GetTokenRequest): NetworkResponse<GetTokenResponse> {
+        return apiRequest { authApiServices.getToken(getTokenRequest) }
     }
 
     /** Read Auth Token from DataStore */
@@ -42,6 +32,16 @@ class AuthRepository @Inject constructor(
     /** Store Auth Token in DataStore */
     suspend fun setAuthToken(data: String) {
         return localPreferences.storeValue(LocalPreferences.AUTH_TOKEN, data)
+    }
+
+    /** Store Auth Token in DataStore */
+    suspend fun setRefreshToken(data: String) {
+        return localPreferences.storeValue(LocalPreferences.REFRESH_TOKEN, data)
+    }
+
+    /** Store Auth Token in DataStore */
+    suspend fun setFirebaseToken(data: String) {
+        return localPreferences.storeValue(LocalPreferences.FIREBASE_TOKEN, data)
     }
 
     @VisibleForTesting

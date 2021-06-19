@@ -47,4 +47,9 @@
 
     <string name="indefinite">Indefinite</string>
     <string name="definite">Definite</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="save">Save</string>
+    <string name="profile">Profile</string>
 </resources>

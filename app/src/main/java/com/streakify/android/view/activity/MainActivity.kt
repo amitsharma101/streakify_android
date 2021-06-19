@@ -6,10 +6,12 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
@@ -121,6 +123,10 @@ class MainActivity : DaggerAppCompatActivity() {
 
     }
 
+    fun hideActionBar() {
+        supportActionBar?.hide()
+    }
+
     fun hideBottomNavigation(){
         binding.bottomNavView.visibility = View.GONE
     }
@@ -138,7 +144,19 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     fun setClickListeners() {
-
+        binding.bottomNavView.setOnNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.profile_fragment -> {
+                    navController.navigate(R.id.editProfileFragment)
+                    true
+                }
+                R.id.streaks_fragment -> {
+                    navController.navigate(R.id.streakListFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -177,10 +195,5 @@ class MainActivity : DaggerAppCompatActivity() {
         when (requestCode) {
             else -> super.onActivityResult(requestCode, resultCode, data)
         }
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return item.onNavDestinationSelected(navController) ||
-                super.onOptionsItemSelected(item)
     }
 }
