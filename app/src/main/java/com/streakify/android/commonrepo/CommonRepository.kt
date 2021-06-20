@@ -2,10 +2,14 @@ package com.streakify.android.commonrepo
 
 import com.streakify.android.application.App
 import com.streakify.android.networkcall.ApiRequest
+import com.streakify.android.networkcall.NetworkResponse
 import com.streakify.android.utils.LocalPreferences
+import com.streakify.android.view.home.profile.data.GetProfileResponse
+import com.streakify.android.view.home.profile.data.UpdateProfileRequest
+import com.streakify.android.view.home.profile.data.UpdateProfileResponse
 import javax.inject.Inject
 
-const val HEADER_PREFIX = "Token token="
+const val HEADER_PREFIX = "Bearer "
 
 class CommonRepository @Inject constructor(
     val app: App,
@@ -13,16 +17,25 @@ class CommonRepository @Inject constructor(
     private val commonApiServices: CommonApiServices
 ) : ApiRequest() {
 
-//    /** Add Party */
-//    suspend fun addPartyData(
-//        authtoken: String,
-//        addPartyRequestDto: AddPartyRequestDto
-//    ): NetworkResponse<PartyResponseDto> {
-//        return apiRequest {
-//            commonApiServices.addPartyData(
-//                HEADER_PREFIX + authtoken,
-//                addPartyRequestDto
-//            )
-//        }
-//    }
+    suspend fun getProfile(
+        authtoken: String,
+    ): NetworkResponse<GetProfileResponse> {
+        return apiRequest {
+            commonApiServices.getProfile(
+                HEADER_PREFIX + authtoken
+            )
+        }
+    }
+
+    suspend fun updateProfile(
+        authtoken: String,
+        updateProfileRequest: UpdateProfileRequest
+    ): NetworkResponse<UpdateProfileResponse> {
+        return apiRequest {
+            commonApiServices.updateProfile(
+                HEADER_PREFIX + authtoken,
+                updateProfileRequest
+            )
+        }
+    }
 }

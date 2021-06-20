@@ -34,6 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="Amit Sharma"
+                android:text="@={viewModel.name}"
                 android:inputType="text"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -57,6 +58,7 @@
                 android:id="@+id/et_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.email}"
                 tools:text="mitsharmamail101@gmail.com"
                 android:inputType="text"
                 android:singleLine="true" />
@@ -80,6 +82,7 @@
                 android:id="@+id/et_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@={viewModel.phone}"
                 tools:text="+919602087669"
                 android:focusable="false"
                 android:inputType="text"

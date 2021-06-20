@@ -41,11 +41,14 @@ class EditProfileFragment : BaseFragment<EditProfileFragmentBinding, EditProfile
 
         /* Set Observers to capture actions */
         bindObservers()
+        viewModel.onAttach()
     }
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
-
+        binding.saveBtn.setOnClickListener {
+            viewModel.updateProfile()
+        }
     }
 
     override fun onItemClick(value: Any) {

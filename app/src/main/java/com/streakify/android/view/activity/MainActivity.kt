@@ -20,6 +20,9 @@ import com.streakify.android.R
 import com.streakify.android.application.App
 import com.streakify.android.databinding.ActivityMainBinding
 import com.streakify.android.view.binding.snackBarMessage
+import com.streakify.android.view.binding.visibleOrGone
+import com.streakify.android.view.dialog.view.bindTextAndActions
+import com.streakify.android.view.dialog.view.show
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -98,26 +101,26 @@ class MainActivity : DaggerAppCompatActivity() {
         /* Observe for Loading View */
         viewModel.eventListener.loadingDialogConfig.observe(this, { event ->
             event?.getContentIfNotHandled()?.let {
-//                binding.loadingShowingView.bindTextAndActions(it)
-//                binding.loadingShowingView.visibleOrGone(!it.message.isNullOrEmpty())
+                binding.loadingShowingView.bindTextAndActions(it)
+                binding.loadingShowingView.visibleOrGone(!it.message.isNullOrEmpty())
             }
         })
 
         /* Observe for Message Dialog Visibility */
         viewModel.eventListener.isDialogVisible.observe(this, { event ->
             event?.getContentIfNotHandled()?.let {
-//                binding.dialogShowingView.show(it)
+                binding.dialogShowingView.show(it)
             }
         })
 
         /* Observe for Message Dialog Handling */
         viewModel.eventListener.errorDialogViewModel.observe(this, { event ->
-//            event?.getContentIfNotHandled()?.let { it ->
-//                binding.dialogShowingView.bindTextAndActions(
-//                    viewModel.eventListener.errorDialogConfig.value?.peekContent(),
-//                    it
-//                )
-//            }
+            event?.getContentIfNotHandled()?.let { it ->
+                binding.dialogShowingView.bindTextAndActions(
+                    viewModel.eventListener.errorDialogConfig.value?.peekContent(),
+                    it
+                )
+            }
         })
 
 
