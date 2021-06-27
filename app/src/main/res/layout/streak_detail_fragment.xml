@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.streakify.android.view.home.streaks.streakdetail.StreakDetailVM" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorPrimaryLight"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/back"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:src="@drawable/ic__back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/edit"
+        android:layout_width="@dimen/_16sdp"
+        android:layout_height="@dimen/_16sdp"
+        android:src="@drawable/ic_edit"
+        android:visibility="@{viewModel.editButtonVisibility}"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp" />
+
+    <ImageView
+        android:id="@+id/streak_image"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_90sdp"
+        android:background="@color/colorWhite"
+        android:padding="@dimen/_16sdp"
+        android:src="@drawable/ic_alarm_clock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/background"
+        app:layout_constraintBottom_toBottomOf="@id/background"
+        android:layout_marginStart="@dimen/_16sdp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/punch_in_buttom"
+        android:text="@string/punch_in"
+        android:visibility="@{viewModel.punchInVisibility}"
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/streak_image"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/punch_out_buttom"
+        android:text="@string/punch_out"
+        android:visibility="@{viewModel.punchOutVisibility}"
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/streak_image"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/streak_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text ="Wake Up Early"
+        android:text="@{viewModel.streakName}"
+        android:textColor="@color/colorBlack"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="@dimen/_24ssp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/streak_image"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/streak_desc_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/TextViewStyle.MEDIUM"
+        tools:text ="You are on day 20/60 of the streak"
+        android:textColor="@color/colorBlack"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintStart_toStartOf="@id/streak_name"
+        app:layout_constraintTop_toBottomOf="@id/streak_name"/>
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_10sdp"
+        android:progress="50"
+        android:visibility="@{viewModel.progressVisibility}"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@id/streak_desc_count"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

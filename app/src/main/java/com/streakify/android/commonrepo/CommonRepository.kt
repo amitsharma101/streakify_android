@@ -14,6 +14,7 @@ import com.streakify.android.view.home.profile.data.UpdateProfileRequest
 import com.streakify.android.view.home.profile.data.UpdateProfileResponse
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakRequest
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakResponse
+import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailResponse
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
 import javax.inject.Inject
@@ -114,6 +115,18 @@ class CommonRepository @Inject constructor(
             commonApiServices.createStreak(
                 HEADER_PREFIX + authtoken,
                 createStrealRequest
+            )
+        }
+    }
+
+    suspend fun streakDetail(
+        authtoken: String,
+        id : String
+    ): NetworkResponse<StreakDetailResponse> {
+        return apiRequest {
+            commonApiServices.streakDetail(
+                HEADER_PREFIX + authtoken,
+                id
             )
         }
     }

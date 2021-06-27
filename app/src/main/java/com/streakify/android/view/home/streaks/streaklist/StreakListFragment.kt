@@ -1,5 +1,6 @@
 package com.streakify.android.view.home.streaks.streaklist
 
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.streakify.android.R
 import com.streakify.android.application.AppConstants
@@ -10,12 +11,13 @@ import com.streakify.android.databinding.FragmentStreaksBinding
 import com.streakify.android.di.provider.ResourceProvider
 import com.streakify.android.utils.livedata.Event
 import com.streakify.android.view.home.streaks.StreaksEvent
+import com.streakify.android.view.home.streaks.streakdetail.STREAK_ID
 import com.streakify.android.view.home.streaks.streaklist.data.StreaksItem
 import kotlinx.android.synthetic.main.streak_list_item_definite.view.*
 import javax.inject.Inject
 
 class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
-    ItemClickListener<Any>, StreakListInterface {
+    ItemClickListener<StreakListItemVM>, StreakListInterface {
 
     companion object{
         private const val TAG = "StreakListFragment"
@@ -75,15 +77,16 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
         }
     }
 
-    override fun onItemClick(value: Any) {
-
-    }
-
     override fun onPunchedIn(streak: StreaksItem?) {
 
     }
 
     override fun onPunchedOut(streak: StreaksItem?) {
 
+    }
+
+    override fun onItemClick(value: StreakListItemVM) {
+        val bundle = bundleOf(STREAK_ID to value.streak?.streakId)
+        findNavController().navigate(R.id.streakDetailFragment,bundle)
     }
 }

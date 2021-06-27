@@ -7,6 +7,7 @@ import com.streakify.android.view.home.onboarding.login.LoginFragment
 import com.streakify.android.view.home.onboarding.otp.OtpFragment
 import com.streakify.android.view.home.profile.EditProfileFragment
 import com.streakify.android.view.home.streaks.editstreak.EditStreakFragment
+import com.streakify.android.view.home.streaks.streakdetail.StreakDetailFragment
 import com.streakify.android.view.home.streaks.streaklist.StreakListFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -36,4 +37,7 @@ abstract class MainFragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeFriendsListFragment(): FriendsListFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeStreakDetailFragment(): StreakDetailFragment
 }

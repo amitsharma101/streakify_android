@@ -57,4 +57,5 @@
     <string name="country_code">Country Code</string>
     <string name="send_friend_request">Send Friend Request</string>
     <string name="add_friend">Add Friend</string>
+    <string name="streak_detail">Streak Detail</string>
 </resources>

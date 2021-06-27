@@ -10,6 +10,7 @@ import com.streakify.android.view.home.profile.data.UpdateProfileRequest
 import com.streakify.android.view.home.profile.data.UpdateProfileResponse
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakRequest
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakResponse
+import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailResponse
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
 import retrofit2.Response
@@ -63,6 +64,12 @@ interface CommonApiServices {
         @Header("Authorization") authToken: String,
         @Body createStreakRequest: CreateStreakRequest
     ): Response<CreateStreakResponse>
+
+    @GET("api/v1/streaks/streaks/{id}")
+    suspend fun streakDetail(
+        @Header("Authorization") authToken: String,
+        @Path("id") id : String
+    ): Response<StreakDetailResponse>
 
 
 

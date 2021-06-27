@@ -13,6 +13,7 @@ import com.streakify.android.view.home.onboarding.login.LoginVM
 import com.streakify.android.view.home.onboarding.otp.OtpVM
 import com.streakify.android.view.home.profile.EditProfileVM
 import com.streakify.android.view.home.streaks.editstreak.EditStreakVM
+import com.streakify.android.view.home.streaks.streakdetail.StreakDetailVM
 import com.streakify.android.view.home.streaks.streaklist.StreakListVM
 
 import dagger.Binds
@@ -84,4 +85,9 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(FriendsListVM::class)
     abstract fun bindFriendsListViewModel(viewModel: FriendsListVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(StreakDetailVM::class)
+    abstract fun bindStreakDetailVM(viewModel: StreakDetailVM): ViewModel
 }

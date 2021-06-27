@@ -17,8 +17,10 @@
             app:enterAnim="@anim/fade_in"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/fade_out"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph.xml" />
 
         <action
             android:id="@+id/action_splashFragment_to_streakListFragment"
@@ -27,8 +29,10 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph.xml"/>
 
     </fragment>
 
@@ -59,8 +63,10 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/otpFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph.xml"/>
 
     </fragment>
 
@@ -77,8 +83,10 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/streakListFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true"
+
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph.xml"/>
 
     </fragment>
 
@@ -108,6 +116,13 @@
         android:name="com.streakify.android.view.home.friends.firendslist.FriendsListFragment"
         android:label="@string/friends"
         tools:layout="@layout/friends_list_layout">
+    </fragment>
+
+    <fragment
+        android:id="@+id/streakDetailFragment"
+        android:name="com.streakify.android.view.home.streaks.streakdetail.StreakDetailFragment"
+        android:label="@string/streak_detail"
+        tools:layout="@layout/streak_detail_fragment">
     </fragment>
 
 </navigation>

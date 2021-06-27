@@ -95,7 +95,17 @@ class OtpVM @Inject constructor(
                     authRepository.setRefreshToken(refreshToken!!)
                     authRepository.setFirebaseToken(firebaseToken)
 
-                    event.value = OtpEvent.LoginSuccessEvent
+                    val profileApiResponse = authRepository.getProfile(authToken)
+                    when(profileApiResponse){
+                        is NetworkResponse.Success -> {
+                            authRepository.setUserId(profileApiResponse.body?.body?.id!!)
+                            eventListener.dismissLoading()
+                            event.value = OtpEvent.LoginSuccessEvent
+                        }
+                        else -> {
+                            eventListener.dismissLoading()
+                        }
+                    }
                 }
                 else -> {
                     eventListener.dismissLoading()
