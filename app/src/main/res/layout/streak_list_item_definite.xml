@@ -29,23 +29,7 @@
             android:paddingTop="@dimen/_8sdp"
             android:paddingBottom="@dimen/_8sdp">
 
-<!--            <info.abdolahi.CircularMusicProgressBar-->
-<!--                android:id="@+id/image"-->
-<!--                android:layout_width="@dimen/_100sdp"-->
-<!--                android:layout_height="@dimen/_100sdp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:src="@drawable/ic_alarm_clock"-->
-<!--                app:border_color="@color/colorExtraLightGrey"-->
-<!--                app:border_width="@dimen/_6sdp"-->
-<!--                app:centercircle_diammterer="1"-->
-<!--                app:progress_color="@color/green"-->
-<!--                -->
-<!--                app:draw_anticlockwise="false"-->
-<!--                app:enable_touch="false"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"/>-->
-
+<!--            app:progress_value="@{data.streakPercentage}"-->
             <com.streakify.android.utils.CircularStreakView
                 android:id="@+id/image"
                 android:layout_width="@dimen/_100sdp"
@@ -57,7 +41,9 @@
                 app:centercircle_diammterer="1"
                 app:progress_color="@color/green"
 
-                app:progress_value="80.00"
+                progress="@{data.streakPercentage}"
+
+
                 app:progress_startAngle="-90.0"
 
 
@@ -93,6 +79,16 @@
             <com.google.android.material.textview.MaterialTextView
                 style="@style/punch_in_buttom"
                 android:text="@string/punch_in"
+                android:visibility="@{data.punchInVisibility}"
+                android:onClick="@{()->data.punchedIn(data.streak)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/punch_out_buttom"
+                android:text="@string/punch_out"
+                android:visibility="@{data.punchInVisibility}"
+                android:onClick="@{()->data.punchedOut(data.streak)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 

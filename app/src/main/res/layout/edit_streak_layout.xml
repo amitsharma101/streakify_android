@@ -103,6 +103,7 @@
             android:id="@+id/et_streakname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="@={viewModel.streakName}"
             android:inputType="text"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -117,6 +118,7 @@
         app:layout_constraintStart_toStartOf="@id/cancel"
         app:layout_constraintTop_toBottomOf="@id/til_streakname"
         app:layout_constraintEnd_toEndOf="@id/save"
+        android:visibility="@{viewModel.setGoalVisibility}"
         android:hint="@string/set_goal_0_for"
         app:suffixText="@string/days"
         app:suffixTextColor="@color/colorBlack"
@@ -126,9 +128,24 @@
             android:id="@+id/et_goaldays"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:text="@={viewModel.streakMaxDays}"
+            android:inputType="numberDecimal"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_btn"
+        style="@style/ButtonStyle"
+        android:text="@string/save"
+        android:onClick="@{()->viewModel.save()}"
+        android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_16sdp"/>
 
 
 

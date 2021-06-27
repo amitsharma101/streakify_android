@@ -12,6 +12,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.streakify.android.R
 import com.google.android.material.snackbar.Snackbar
+import com.streakify.android.utils.CircularStreakView
 
 
 class CustomBindings {
@@ -34,17 +35,18 @@ class CustomBindings {
         }
 
 
-        @BindingAdapter("imageurl")
-        @JvmStatic
-        fun bindImageView(view: AppCompatImageView, url: String) {
-            Glide.with(view.context)
-                .load(url)
-                .apply(
-                    RequestOptions().placeholder(R.drawable.ic_launcher_background).centerCrop()
-                        .transform(CenterCrop(), RoundedCorners(1000))
-                )
-                .into(view)
-        }
+//        @BindingAdapter("imageurl")
+//        @JvmStatic
+//        fun bindImageView(view: AppCompatImageView, url: String) {
+//            Glide.with(view.context)
+//                .load(url)
+//                .apply(
+//                    RequestOptions().placeholder(R.drawable.ic_launcher_background).centerCrop()
+//                        .transform(CenterCrop(), RoundedCorners(1000))
+//                )
+//                .into(view)
+//        }
+
 
         @JvmStatic
         @BindingAdapter("onClick")
@@ -69,6 +71,11 @@ fun View.visibleOrInvisible(isVisible: Boolean?) {
     if (isVisible != null) {
         visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
+}
+
+@BindingAdapter("progress")
+fun CircularStreakView.progress(progrress : Float) {
+    this.setValue(progrress)
 }
 
 

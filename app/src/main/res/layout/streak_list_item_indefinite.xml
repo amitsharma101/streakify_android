@@ -67,8 +67,18 @@
                 app:layout_constraintTop_toBottomOf="@id/streak_count"/>
 
             <com.google.android.material.textview.MaterialTextView
+                style="@style/punch_in_buttom"
+                android:text="@string/punch_in"
+                android:visibility="@{data.punchInVisibility}"
+                android:onClick="@{()->data.punchedIn(data.streak)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <com.google.android.material.textview.MaterialTextView
                 style="@style/punch_out_buttom"
                 android:text="@string/punch_out"
+                android:visibility="@{data.punchOutVisibility}"
+                android:onClick="@{()->data.punchedOut(data.streak)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>
 

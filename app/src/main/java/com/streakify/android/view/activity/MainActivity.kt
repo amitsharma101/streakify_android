@@ -157,6 +157,10 @@ class MainActivity : DaggerAppCompatActivity() {
                     navController.navigate(R.id.streakListFragment)
                     true
                 }
+                R.id.friends_fragment -> {
+                    navController.navigate(R.id.friendsListFragment)
+                    true
+                }
                 else -> false
             }
         }

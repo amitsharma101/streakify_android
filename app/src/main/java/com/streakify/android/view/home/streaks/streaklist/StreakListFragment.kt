@@ -8,11 +8,14 @@ import com.streakify.android.base.adapter.CommonAdapter
 import com.streakify.android.base.adapter.ItemClickListener
 import com.streakify.android.databinding.FragmentStreaksBinding
 import com.streakify.android.di.provider.ResourceProvider
+import com.streakify.android.utils.livedata.Event
+import com.streakify.android.view.home.streaks.StreaksEvent
+import com.streakify.android.view.home.streaks.streaklist.data.StreaksItem
 import kotlinx.android.synthetic.main.streak_list_item_definite.view.*
 import javax.inject.Inject
 
 class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
-    ItemClickListener<Any> {
+    ItemClickListener<Any>, StreakListInterface {
 
     companion object{
         private const val TAG = "StreakListFragment"
@@ -43,11 +46,13 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
         /* Hide ActionBar */
 //        (activity as MainActivity).hideActionBar()
 
-        adapter = CommonAdapter(initData(), this)
+        adapter = CommonAdapter(emptyList(), this)
         binding.recyclerView.adapter = adapter
 
         /* Set Observers to capture actions */
         bindObservers()
+
+        viewModel.onAttach()
     }
 
     /** Set Observers to capture actions */
@@ -57,22 +62,28 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
         }
     }
 
-    fun initData():MutableList<StreakListItemVM>{
-        val streaks = mutableListOf<StreakListItemVM>()
-
-        val streak1 = Streak(type = AppConstants.STREAK_TYPE_INDEFINITE,name = "Wake Up Early")
-        streaks.add(StreakListItemVM(streak1))
-
-        val streak2 = Streak(type = AppConstants.STREAK_TYPE_DEFINITE,name = "Gym Everyday")
-        streaks.add(StreakListItemVM(streak2))
-
-        val streak3 = Streak(type = AppConstants.STREAK_TYPE_INDEFINITE, name = "Study Everyday")
-        streaks.add(StreakListItemVM(streak3))
-
-        return streaks
+    override fun handleEvent(event: Event) {
+        when(event){
+            is StreaksEvent.StreakListFetchedEvent -> {
+                val streaksList = mutableListOf<StreakListItemVM>()
+                event.streakList?.forEach {
+                    streaksList.add(StreakListItemVM(it,resourceProvider,this))
+                }
+                adapter.items = streaksList
+                adapter.notifyDataSetChanged()
+            }
+        }
     }
 
     override fun onItemClick(value: Any) {
+
+    }
+
+    override fun onPunchedIn(streak: StreaksItem?) {
+
+    }
+
+    override fun onPunchedOut(streak: StreaksItem?) {
 
     }
 }

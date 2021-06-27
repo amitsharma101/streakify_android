@@ -48,12 +48,16 @@ android {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            resValue "string", "app_name", "@string/app_name"
+            resValue "string", "app_name", "@string/app_name_release"
+            resValue "string", "version_code", defaultConfig.versionCode.toString()
+            resValue "string", "version_name", defaultConfig.versionName
         }
         debug {
             applicationIdSuffix = '.debug'
             versionNameSuffix = '-debug'
-            resValue "string", "app_name", "@string/app_name"
+            resValue "string", "app_name", "@string/app_name_debug"
+            resValue "string", "version_code", defaultConfig.versionCode.toString()
+            resValue "string", "version_name", defaultConfig.versionName
         }
     }
 

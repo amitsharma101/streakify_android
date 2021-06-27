@@ -1,5 +1,7 @@
 package com.streakify.android.di.module
 
+import com.streakify.android.view.home.friends.addfriend.AddFriendFragment
+import com.streakify.android.view.home.friends.firendslist.FriendsListFragment
 import com.streakify.android.view.home.launcher.SplashFragment
 import com.streakify.android.view.home.onboarding.login.LoginFragment
 import com.streakify.android.view.home.onboarding.otp.OtpFragment
@@ -28,4 +30,10 @@ abstract class MainFragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeEditProfileFragment(): EditProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeAddFriendFragment(): AddFriendFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFriendsListFragment(): FriendsListFragment
 }

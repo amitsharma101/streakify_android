@@ -96,4 +96,18 @@
         tools:layout="@layout/edit_profile_fragment">
     </fragment>
 
+    <fragment
+        android:id="@+id/addFriendFragment"
+        android:name="com.streakify.android.view.home.friends.addfriend.AddFriendFragment"
+        android:label="@string/add_friend"
+        tools:layout="@layout/add_friend_layout">
+    </fragment>
+
+    <fragment
+        android:id="@+id/friendsListFragment"
+        android:name="com.streakify.android.view.home.friends.firendslist.FriendsListFragment"
+        android:label="@string/friends"
+        tools:layout="@layout/friends_list_layout">
+    </fragment>
+
 </navigation>

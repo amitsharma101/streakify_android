@@ -11,6 +11,6 @@ import retrofit2.http.*
 interface AuthApiServices {
 
     /** Check Token*/
-    @POST("api/v1/users/get-token")
+    @POST("api/v1/auth/get-token")
     suspend fun getToken(@Body getTokenRequest: GetTokenRequest): Response<GetTokenResponse>
 }

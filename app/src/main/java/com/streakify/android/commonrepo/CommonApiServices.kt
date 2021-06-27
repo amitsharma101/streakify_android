@@ -1,14 +1,19 @@
 package com.streakify.android.commonrepo
 
+import com.streakify.android.view.home.friends.addfriend.data.AddFriendRequest
+import com.streakify.android.view.home.friends.addfriend.data.AddFriendResponse
+import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionRequest
+import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionResponse
+import com.streakify.android.view.home.friends.firendslist.data.FriendsListResponse
 import com.streakify.android.view.home.profile.data.GetProfileResponse
 import com.streakify.android.view.home.profile.data.UpdateProfileRequest
 import com.streakify.android.view.home.profile.data.UpdateProfileResponse
+import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakRequest
+import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakResponse
+import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
+import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
 import retrofit2.Response
-import retrofit2.http.Body
-
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.PATCH
+import retrofit2.http.*
 
 @JvmSuppressWildcards
 interface CommonApiServices {
@@ -23,4 +28,43 @@ interface CommonApiServices {
         @Header("Authorization") authToken: String,
         @Body updateProfileRequets: UpdateProfileRequest
     ): Response<UpdateProfileResponse>
+
+    @GET("api/v1/friends/friends")
+    suspend fun getFriends(
+        @Header("Authorization") authToken: String
+    ): Response<FriendsListResponse>
+
+    @POST("api/v1/friends/friends")
+    suspend fun addFriend(
+        @Header("Authorization") authToken: String,
+        @Body addFriendRequest : AddFriendRequest
+    ): Response<AddFriendResponse>
+
+    @PATCH("api/v1/friends/update-request-status/{id}")
+    suspend fun actionFriendRequest(
+        @Header("Authorization") authToken: String,
+        @Body actionFriendRequest : FriendRequestActionRequest,
+        @Path("id") id : String
+    ): Response<FriendRequestActionResponse>
+
+    @GET("api/v1/streaks/streaks")
+    suspend fun getStreaks(
+        @Header("Authorization") authToken: String
+    ): Response<StreakListResponse>
+
+    @PATCH("api/v1/streaks/punch-in/{id}")
+    suspend fun punch(
+        @Header("Authorization") authToken: String,
+        @Path("id") id : String
+    ): Response<PunchResponse>
+
+    @POST("api/v1/streaks/streaks")
+    suspend fun createStreak(
+        @Header("Authorization") authToken: String,
+        @Body createStreakRequest: CreateStreakRequest
+    ): Response<CreateStreakResponse>
+
+
+
+
 }

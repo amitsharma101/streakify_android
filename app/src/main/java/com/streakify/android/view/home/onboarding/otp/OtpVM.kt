@@ -98,6 +98,7 @@ class OtpVM @Inject constructor(
                     event.value = OtpEvent.LoginSuccessEvent
                 }
                 else -> {
+                    eventListener.dismissLoading()
                     eventListener.showMessageDialog("Failed to Login")
                 }
             }

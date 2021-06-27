@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.streakify.android.di.annotation.ViewModelKey
 import com.streakify.android.di.provider.ViewModelProviderFactory
 import com.streakify.android.view.activity.MainActivityViewModel
+import com.streakify.android.view.home.friends.addfriend.AddFriendVM
+import com.streakify.android.view.home.friends.firendslist.FriendsListVM
 import com.streakify.android.view.home.launcher.SplashVM
 import com.streakify.android.view.home.onboarding.login.LoginVM
 import com.streakify.android.view.home.onboarding.otp.OtpVM
@@ -72,4 +74,14 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(EditProfileVM::class)
     abstract fun bindEditProfileViewModel(viewModel: EditProfileVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddFriendVM::class)
+    abstract fun bindAddFriendViewModel(viewModel: AddFriendVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FriendsListVM::class)
+    abstract fun bindFriendsListViewModel(viewModel: FriendsListVM): ViewModel
 }
