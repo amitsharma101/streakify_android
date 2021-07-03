@@ -53,25 +53,22 @@ class MainActivity : DaggerAppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment -> {
+                R.id.loginFragment,R.id.splashFragment,
+                R.id.otpFragment,R.id.editStreakFragment-> {
                     hideBottomNavigation()
                     hideToolbar()
                 }
-                R.id.splashFragment -> {
-                    hideBottomNavigation()
-                    hideToolbar()
-                }
-                R.id.otpFragment -> {
-                    hideBottomNavigation()
-                    hideToolbar()
-                }
-                R.id.editStreakFragment -> {
-                    hideToolbar()
-                    hideBottomNavigation()
+                R.id.streakListFragment,R.id.friendsListFragment,R.id.profileDetailFragment -> {
+                    showBottomNavigation()
+                    showToolbar()
+                    toolbar?.title = destination.label
+                    toolbar?.subtitle = ""
+                    backArrowVisibility(false)
                 }
                 else -> {
                     showBottomNavigation()
                     showToolbar()
+                    backArrowVisibility(true)
                     toolbar?.title = destination.label
                     toolbar?.subtitle = ""
                 }
@@ -126,6 +123,17 @@ class MainActivity : DaggerAppCompatActivity() {
 
     }
 
+    fun backArrowVisibility(isVisible:Boolean){
+        if (supportActionBar != null) {
+            if(isVisible) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            }
+            else{
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
+        }
+    }
+
     fun hideActionBar() {
         supportActionBar?.hide()
     }
@@ -150,7 +158,7 @@ class MainActivity : DaggerAppCompatActivity() {
         binding.bottomNavView.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.profile_fragment -> {
-                    navController.navigate(R.id.editProfileFragment)
+                    navController.navigate(R.id.profileDetailFragment)
                     true
                 }
                 R.id.streaks_fragment -> {

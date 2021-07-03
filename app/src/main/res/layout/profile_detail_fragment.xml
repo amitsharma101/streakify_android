@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.streakify.android.view.home.profile.ProfileDetailVM" />
+    </data>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/top_profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardElevation="@dimen/_2sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/icon_container"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".8">
+
+                        <ImageView
+                            android:id="@+id/contact_image"
+                            android:layout_width="@dimen/_48sdp"
+                            android:layout_height="@dimen/_48sdp"
+                            tools:src="@drawable/ic_alarm_clock"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="3.2"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/customer_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            tools:text="Amit Sharma"
+                            android:text="@{viewModel.name}"
+                            android:letterSpacing="0.03"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_16ssp"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_goneMarginLeft="0dp"
+                            tools:targetApi="lollipop" />
+
+                        <TextView
+                            android:id="@+id/phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            tools:text="+919602087669"
+                            android:text="@{viewModel.phone}"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/colorBlack"
+                            android:textSize="@dimen/_18ssp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/edit_profile"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="@dimen/_60sdp"
+                            android:layout_height="@dimen/_28sdp"
+                            android:background="@drawable/selector_text_view_big"
+                            android:gravity="center"
+                            android:text="@string/edit_"
+                            android:textColor="@color/text_blue" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/invite_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:cardElevation="@dimen/_2sdp"
+                app:layout_constraintTop_toBottomOf="@+id/top_profile_header">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp">
+
+                    <TextView
+                        android:id="@+id/invite_your_friends"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="@dimen/_14sdp"
+                        android:padding="@dimen/_2sdp"
+                        android:text="@string/invite_your_friend_to_streakify"
+                        android:textColor="@color/colorBlack"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textSize="@dimen/_14ssp"
+                        android:padding="@dimen/_2sdp"
+                        android:text="@string/invite_friends"
+                        android:textColor="@color/text_blue"
+                        app:layout_constraintTop_toBottomOf="@+id/invite_your_friends" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                app:cardElevation="@dimen/_2sdp"
+                app:layout_constraintTop_toBottomOf="@+id/invite_header">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textSize="@dimen/_14ssp"
+                        android:padding="@dimen/_2sdp"
+                        android:text="@string/logout"
+                        android:textColor="@color/text_blue"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/app_version"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:textColor="@color/mdtp_light_gray"
+                tools:text="v1.2.1 - 100201"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

@@ -98,9 +98,16 @@
     </fragment>
 
     <fragment
+        android:id="@+id/profileDetailFragment"
+        android:name="com.streakify.android.view.home.profile.ProfileDetailFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/profile_detail_fragment">
+    </fragment>
+
+    <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.streakify.android.view.home.profile.EditProfileFragment"
-        android:label="@string/profile"
+        android:label="@string/edit_profile"
         tools:layout="@layout/edit_profile_fragment">
     </fragment>
 

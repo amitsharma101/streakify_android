@@ -8,7 +8,6 @@ import com.streakify.android.di.module.NetworkModule
 import com.streakify.android.di.provider.ResourceProvider
 import com.streakify.android.networkcall.NetworkResponse
 import com.streakify.android.utils.LocalPreferences
-import com.streakify.android.utils.extensions.Extensions.Companion.addPropertyChangedCallback
 import com.streakify.android.utils.network.NetworkLiveData
 import com.streakify.android.view.dialog.common.EventListener
 import com.streakify.android.view.home.onboarding.repo.AuthRepository
@@ -18,7 +17,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class EditProfileVM @Inject constructor(
+class ProfileDetailVM @Inject constructor(
     networkLiveData: NetworkLiveData,
     val eventListener: EventListener,
     val commonRepository: CommonRepository,
@@ -26,50 +25,39 @@ class EditProfileVM @Inject constructor(
     private val resourceProvider: ResourceProvider
 ) : BaseViewModel(networkLiveData) {
 
-    var profile = ObservableField<MyProfile>().apply {
-        addPropertyChangedCallback {
-            if(get()!=null){
-                val pro = get()
-                name.set(pro?.name)
-                email.set(pro?.email)
-                phone.set(pro?.mobileNumber)
-            }
-        }
-    }
-
 
     val name = ObservableField("")
     val email = ObservableField("")
     val phone = ObservableField("")
+
+    var profile : MyProfile? = null
 
     init {
 
     }
 
     fun onAttach(){
-
+        viewModelScope.launch {
+            refresh()
+        }
     }
 
-
-
-    fun updateProfile(){
-        viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
-                eventListener.showLoading()
-                val req = UpdateProfileRequest(
-                    name = name.get(),
-                    email = email.get()
-                )
-                when(commonRepository.updateProfile(token!!,req)){
-                    is NetworkResponse.Success -> {
-                        event.value = ProfileEvents.ProfileUpdatedEvent
-                    }
-                    else -> {
-                        eventListener.dismissLoading()
-                    }
+    suspend fun refresh(){
+        localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect {token->
+            eventListener.showLoading()
+            val apiResponse = commonRepository.getProfile(token!!)
+            when(apiResponse){
+                is NetworkResponse.Success -> {
+                    eventListener.dismissLoading()
+                    profile = apiResponse.body?.body
+                    name.set(profile?.name)
+                    email.set(profile?.email)
+                    phone.set(profile?.countryCode+profile?.mobileNumber)
+                }
+                else -> {
+                    eventListener.dismissLoading()
                 }
             }
         }
     }
-
 }

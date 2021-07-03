@@ -58,4 +58,9 @@
     <string name="send_friend_request">Send Friend Request</string>
     <string name="add_friend">Add Friend</string>
     <string name="streak_detail">Streak Detail</string>
+    <string name="edit_">Edit</string>
+    <string name="invite_friends">Invite Friends</string>
+    <string name="invite_your_friend_to_streakify">Invite your friends to Streakify</string>
+    <string name="logout">Logout</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

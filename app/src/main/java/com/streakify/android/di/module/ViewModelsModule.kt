@@ -12,6 +12,7 @@ import com.streakify.android.view.home.launcher.SplashVM
 import com.streakify.android.view.home.onboarding.login.LoginVM
 import com.streakify.android.view.home.onboarding.otp.OtpVM
 import com.streakify.android.view.home.profile.EditProfileVM
+import com.streakify.android.view.home.profile.ProfileDetailVM
 import com.streakify.android.view.home.streaks.editstreak.EditStreakVM
 import com.streakify.android.view.home.streaks.streakdetail.StreakDetailVM
 import com.streakify.android.view.home.streaks.streaklist.StreakListVM
@@ -75,6 +76,11 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(EditProfileVM::class)
     abstract fun bindEditProfileViewModel(viewModel: EditProfileVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileDetailVM::class)
+    abstract fun bindProfileDetailViewModel(viewModel: ProfileDetailVM): ViewModel
 
     @Binds
     @IntoMap
