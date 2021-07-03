@@ -1,6 +1,7 @@
 package com.streakify.android.di.module
 
 import com.streakify.android.view.home.friends.addfriend.AddFriendFragment
+import com.streakify.android.view.home.friends.firendrequests.FriendRequestFragment
 import com.streakify.android.view.home.friends.firendslist.FriendsListFragment
 import com.streakify.android.view.home.launcher.SplashFragment
 import com.streakify.android.view.home.onboarding.login.LoginFragment
@@ -8,6 +9,7 @@ import com.streakify.android.view.home.onboarding.otp.OtpFragment
 import com.streakify.android.view.home.profile.EditProfileFragment
 import com.streakify.android.view.home.profile.ProfileDetailFragment
 import com.streakify.android.view.home.streaks.editstreak.EditStreakFragment
+import com.streakify.android.view.home.streaks.editstreak.data.AddFriendBottomSheet
 import com.streakify.android.view.home.streaks.streakdetail.StreakDetailFragment
 import com.streakify.android.view.home.streaks.streaklist.StreakListFragment
 import dagger.Module
@@ -44,4 +46,10 @@ abstract class MainFragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeStreakDetailFragment(): StreakDetailFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFriendRequestFragment(): FriendRequestFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeAddFriendBottomSheet(): AddFriendBottomSheet
 }

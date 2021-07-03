@@ -14,6 +14,7 @@ import com.streakify.android.utils.LocalPreferences
 import com.streakify.android.utils.extensions.Extensions.Companion.addPropertyChangedCallback
 import com.streakify.android.utils.network.NetworkLiveData
 import com.streakify.android.view.dialog.common.EventListener
+import com.streakify.android.view.home.streaks.streakdetail.data.Body
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -40,34 +41,44 @@ class StreakDetailVM @Inject constructor(
 
     val editButtonVisibility = ObservableInt(View.GONE)
 
+    var streakDetails:Body? = null
+
     init {
 
     }
 
     fun onAttach(streakId:Int){
         viewModelScope.launch {
-            val userId = localPreferences.readValue(LocalPreferences.USER_ID).asLiveData().value
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect {token->
+//            val userId = localPreferences.readValue(LocalPreferences.USER_ID).asLiveData().value
+            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
+                localPreferences.readValue(LocalPreferences.USER_ID).collect{userId->
                 eventListener.showLoading()
-                val apiResponse = commonRepository.streakDetail(token!!,streakId.toString())
-                when(apiResponse){
+                val apiResponse = commonRepository.streakDetail(token!!, streakId.toString())
+                when (apiResponse) {
                     is NetworkResponse.Success -> {
                         eventListener.dismissLoading()
 
                         val res = apiResponse.body?.body
+                        streakDetails = res
+
                         streakName.set(res?.name)
-                        if(res?.type == AppConstants.STREAK_TYPE_INDEFINITE){
-                            progressVisibility.set(View.GONE)
+
+                        if (res?.createdBy == userId) {
+                            editButtonVisibility.set(View.VISIBLE)
+                        } else {
+                            editButtonVisibility.set(View.GONE)
                         }
-                        else{
+
+                        if (res?.type == AppConstants.STREAK_TYPE_INDEFINITE) {
+                            progressVisibility.set(View.GONE)
+                        } else {
                             progressVisibility.set(View.VISIBLE)
                         }
                         val meAsPar = res?.participants?.find { it?.userId == userId }
-                        if(meAsPar?.punchIn == true){
+                        if (meAsPar?.punchIn == true) {
                             punchInVisibility.set(View.GONE)
                             punchOutVisibility.set(View.VISIBLE)
-                        }
-                        else{
+                        } else {
                             punchInVisibility.set(View.VISIBLE)
                             punchOutVisibility.set(View.GONE)
                         }
@@ -76,6 +87,7 @@ class StreakDetailVM @Inject constructor(
                         eventListener.dismissLoading()
                     }
                 }
+            }
             }
         }
     }

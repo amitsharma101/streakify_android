@@ -63,4 +63,11 @@
     <string name="invite_your_friend_to_streakify">Invite your friends to Streakify</string>
     <string name="logout">Logout</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="see_all">See All</string>
+    <string name="remove_friend">Remove Friend</string>
+
+    <string name="you_dont_have_any_more_friend_request">You don\'t have any more friend requests</string>
+    <string name="friend">Search Friend</string>
+    <string name="search">Search</string>
+    <string name="select_friends">Select Friends</string>
 </resources>

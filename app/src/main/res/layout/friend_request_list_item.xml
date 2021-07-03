@@ -10,53 +10,98 @@
             type="com.streakify.android.view.home.friends.firendslist.PendingFriendsListItemVM" />
     </data>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="@dimen/_4sdp"
+        android:elevation="@dimen/_4sdp"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:layout_marginStart="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
+        android:paddingStart="@dimen/_8sdp"
+        android:paddingEnd="@dimen/_8sdp">
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/_8sdp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="@dimen/_75sdp"
-        android:layout_height="@dimen/_75sdp"
-        tools:src="@drawable/ic_flash"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:src="@drawable/ic_profile"
+        app:civ_border_width="@dimen/_2sdp"
+        app:civ_border_color="@color/colorBlack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/name"
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_details"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        tools:text="Amit Sharma"
-        android:text="@{data.pendingFriend.mobileNumber}"
-        android:layout_marginStart="@dimen/_8sdp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="@id/profile_image"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
         app:layout_constraintStart_toEndOf="@id/profile_image"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/profile_image"/>
+        android:layout_marginStart="@dimen/_8sdp"
+        app:layout_constraintEnd_toStartOf="@id/reject"
+        android:layout_marginEnd="@dimen/_8sdp">
 
-    <ImageView
-        android:id="@+id/accept"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
-        android:onClick="@{()->data.acceptRequest()}"
-        android:src="@drawable/ic_check_24"
-        android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintStart_toStartOf="@id/name"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Amit Sharma"
+            android:singleLine="true"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_16ssp"
+            android:text="@{data.pendingFriend.name}"
+            android:layout_marginStart="@dimen/_8sdp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:singleLine="true"
+            tools:text="+919876543210"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_12ssp"
+            android:text="@{data.pendingFriend.mobileNumber}"
+            android:layout_marginStart="@dimen/_8sdp" />
 
 
-    <ImageView
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/reject"
-        android:layout_width="@dimen/_20sdp"
-        android:layout_height="@dimen/_20sdp"
+        style="@style/accept_reject_btn"
         android:onClick="@{()->data.rejectRequest()}"
         android:src="@drawable/ic_cross_24"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:layout_marginStart="@dimen/_16sdp"
-        app:layout_constraintTop_toBottomOf="@id/name"
-        app:layout_constraintStart_toEndOf="@id/accept"/>
+        android:layout_marginEnd="@dimen/_16sdp"
+        app:civ_border_width="@dimen/_1sdp"
+        app:civ_border_color="@color/colorBlack"
+        app:layout_constraintTop_toTopOf="@id/profile_image"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintEnd_toStartOf="@id/accept"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/accept"
+        style="@style/accept_reject_btn"
+        app:civ_border_width="@dimen/_1sdp"
+        app:civ_border_color="@color/colorBlack"
+        android:onClick="@{()->data.acceptRequest()}"
+        android:src="@drawable/ic_check_24"
+        app:layout_constraintTop_toTopOf="@id/profile_image"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>

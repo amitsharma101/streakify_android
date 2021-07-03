@@ -46,7 +46,10 @@ data class ActiveFriendsItem(
 	val mobileNumber: String? = null,
 
 	@field:SerializedName("email")
-	val email: String? = null
+	val email: String? = null,
+
+	@Transient
+	var isDeleted:Boolean = false
 ) : Parcelable
 
 @Parcelize

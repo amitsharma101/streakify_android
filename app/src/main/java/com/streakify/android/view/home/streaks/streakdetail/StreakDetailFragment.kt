@@ -33,6 +33,8 @@ class StreakDetailFragment : BaseFragment<StreakDetailFragmentBinding, StreakDet
 
     override fun setViewModel() = StreakDetailVM::class.java
 
+    var streakId = -1
+
 
     /** Bind View with ViewModel */
 
@@ -42,14 +44,17 @@ class StreakDetailFragment : BaseFragment<StreakDetailFragmentBinding, StreakDet
 
         /* Set Observers to capture actions */
         bindObservers()
+        streakId = arguments?.getInt(STREAK_ID)!!
         viewModel.onAttach(
-            arguments?.getInt(STREAK_ID)!!
+            streakId
         )
     }
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
-
+        binding.edit.setOnClickListener {
+            findNavController().navigate(R.id.editStreakFragment, bundleOf(STREAK_ID to streakId))
+        }
     }
 
     override fun onItemClick(value: Any) {

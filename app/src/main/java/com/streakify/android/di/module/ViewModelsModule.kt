@@ -7,6 +7,7 @@ import com.streakify.android.di.annotation.ViewModelKey
 import com.streakify.android.di.provider.ViewModelProviderFactory
 import com.streakify.android.view.activity.MainActivityViewModel
 import com.streakify.android.view.home.friends.addfriend.AddFriendVM
+import com.streakify.android.view.home.friends.firendrequests.FriendRequestsVM
 import com.streakify.android.view.home.friends.firendslist.FriendsListVM
 import com.streakify.android.view.home.launcher.SplashVM
 import com.streakify.android.view.home.onboarding.login.LoginVM
@@ -14,6 +15,7 @@ import com.streakify.android.view.home.onboarding.otp.OtpVM
 import com.streakify.android.view.home.profile.EditProfileVM
 import com.streakify.android.view.home.profile.ProfileDetailVM
 import com.streakify.android.view.home.streaks.editstreak.EditStreakVM
+import com.streakify.android.view.home.streaks.editstreak.data.AddFriendBottomSheetVM
 import com.streakify.android.view.home.streaks.streakdetail.StreakDetailVM
 import com.streakify.android.view.home.streaks.streaklist.StreakListVM
 
@@ -96,4 +98,16 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(StreakDetailVM::class)
     abstract fun bindStreakDetailVM(viewModel: StreakDetailVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FriendRequestsVM::class)
+    abstract fun bindFriendRequestsViewModel(viewModel: FriendRequestsVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddFriendBottomSheetVM::class)
+    abstract fun bindAddFriendBottomSheetVM(viewModel: AddFriendBottomSheetVM): ViewModel
+
+
 }

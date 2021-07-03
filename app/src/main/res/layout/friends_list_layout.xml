@@ -9,45 +9,56 @@
             type="com.streakify.android.view.home.friends.firendslist.FriendsListVM" />
     </data>
 
-<!--    <androidx.core.widget.NestedScrollView-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_width="match_parent">-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/motion_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layoutDescription="@xml/friends_listing_motion_layout_desc"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/cl_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/friend_request_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextViewStyle.MEDIUM"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:text="@string/friend_requests"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_friend_requests"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/friend_request_block"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        tools:listitem="@layout/friend_request_list_item"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:itemCount="1"
-        app:layout_constraintTop_toBottomOf="@id/friend_request_title"/>
+        android:visibility="@{viewModel.friendRequestVisibility}"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/friends_list_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/TextViewStyle.MEDIUM"
-        android:layout_marginTop="@dimen/_16sdp"
-        android:text="@string/friends"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_friend_requests"/>
+        <include
+            android:id="@+id/friend_request"
+            layout="@layout/friend_request_list_item"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/see_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/friend_request"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="@string/see_all"
+            android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/roboto_bold"
+            android:textColor="@color/text_blue"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_friends"
@@ -57,7 +68,7 @@
         tools:listitem="@layout/friends_list_item"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="3"
-        app:layout_constraintTop_toBottomOf="@id/friends_list_title"
+        app:layout_constraintTop_toBottomOf="@id/friend_request_block"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 
@@ -72,5 +83,8 @@
         android:layout_marginEnd="@dimen/_16sdp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-<!--    </androidx.core.widget.NestedScrollView>-->
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

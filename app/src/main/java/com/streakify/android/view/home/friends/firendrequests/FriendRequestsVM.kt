@@ -1,7 +1,5 @@
-package com.streakify.android.view.home.friends.firendslist
+package com.streakify.android.view.home.friends.firendrequests
 
-import android.view.View
-import androidx.databinding.ObservableInt
 import androidx.lifecycle.viewModelScope
 import com.streakify.android.base.BaseViewModel
 import com.streakify.android.commonrepo.CommonRepository
@@ -13,12 +11,11 @@ import com.streakify.android.view.dialog.common.EventListener
 import com.streakify.android.view.home.friends.FriendsEvent
 import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionRequest
 import com.streakify.android.view.home.friends.firendslist.data.PendingFriendsItem
-import com.streakify.android.view.home.onboarding.repo.AuthRepository
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class FriendsListVM
+class FriendRequestsVM
 @Inject constructor(
     networkLiveData: NetworkLiveData,
     val eventListener: EventListener,
@@ -26,8 +23,6 @@ class FriendsListVM
     val localPreferences: LocalPreferences,
     private val resourceProvider: ResourceProvider
 ) : BaseViewModel(networkLiveData) {
-
-    val friendRequestVisibility = ObservableInt(View.GONE)
 
 
     init {
@@ -49,9 +44,7 @@ class FriendsListVM
             is NetworkResponse.Success -> {
                 eventListener.dismissLoading()
                 val friendRequest = apiResponse.body?.body?.pendingFriends
-                val friends = apiResponse.body?.body?.activeFriends
 
-                event.value = FriendsEvent.FriendsListFetchedEvent(friends)
                 event.value = FriendsEvent.PendingFriendsListFetchedEvent(friendRequest)
             }
             else -> {
@@ -60,7 +53,7 @@ class FriendsListVM
         }
     }
 
-    fun friendRequestAction(pendingFriend:PendingFriendsItem, status:Int){
+    fun friendRequestAction(pendingFriend: PendingFriendsItem, status:Int){
         viewModelScope.launch {
             localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
                 eventListener.showLoading()

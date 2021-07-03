@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        android:id="@+id/transition"
+        motion:constraintSetEnd="@+id/end"
+        motion:motionInterpolator="easeInOut"
+        motion:duration="100"
+        motion:constraintSetStart="@+id/start">
+        <OnSwipe
+            motion:onTouchUp="decelerate"
+            motion:dragDirection="dragUp"
+            motion:touchAnchorId="@+id/friend_request_block" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/friend_request_block"
+            app:visibilityMode="normal"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/friend_request_block"
+            app:visibilityMode="normal"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </ConstraintSet>
+</MotionScene>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -10,147 +10,208 @@
             type="com.streakify.android.view.home.streaks.editstreak.EditStreakVM" />
     </data>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cross_24"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/red" />
+
+        <ImageView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check_24"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/green" />
+
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginTop="@dimen/_8sdp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/save"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="0dp"
+    android:layout_marginTop="@dimen/_8sdp"
+    app:layout_constraintTop_toBottomOf="@id/save"
+    app:layout_constraintBottom_toBottomOf="parent">
 
-    <ImageView
-        android:id="@+id/cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_cross_24"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/red" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/streaktypelayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_check_24"
-        android:layout_marginEnd="@dimen/_16sdp"
-        android:layout_marginTop="@dimen/_16sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/green" />
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewindefinite"
+                    style="@style/TextViewStyle"
+                    android:background="@drawable/rounded_rectangle_flat_right"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:onClick="@{()->viewModel.onIndefiniteClicked()}"
+                    android:padding="@dimen/_6sdp"
+                    android:text="@string/indefinite"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorWhite"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/textViewdefinite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/streaktypelayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/save">
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewdefinite"
+                    style="@style/TextViewStyle"
+                    android:background="@drawable/rounded_rectangle_flat_left"
+                    android:onClick="@{()->viewModel.onDefiniteClicked()}"
+                    android:padding="@dimen/_6sdp"
+                    android:text="@string/definite"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorGrey"
+                    app:layout_constraintBaseline_toBaselineOf="@id/textViewindefinite"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/textViewindefinite"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewindefinite"
-            style="@style/TextViewStyle"
-            android:background="@drawable/rounded_rectangle_flat_right"
-            android:backgroundTint="@color/colorPrimaryDark"
-            android:onClick="@{()->viewModel.onIndefiniteClicked()}"
-            android:padding="@dimen/_6sdp"
-            android:text="@string/indefinite"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/textViewdefinite"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/textViewdefinite"
-            style="@style/TextViewStyle"
-            android:background="@drawable/rounded_rectangle_flat_left"
-            android:onClick="@{()->viewModel.onDefiniteClicked()}"
-            android:padding="@dimen/_6sdp"
-            android:text="@string/definite"
-            android:textAlignment="center"
-            android:textColor="@color/colorGrey"
-            app:layout_constraintBaseline_toBaselineOf="@id/textViewindefinite"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textViewindefinite"
-            app:layout_constraintTop_toTopOf="parent" />
+            <com.mobstac.circularimageprogress.CircularImageProgressView
+                android:id="@+id/streak_image"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                app:image="@drawable/ic_flash"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/streaktypelayout"/>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_streakname"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                style="@style/TextInputStyle"
+                android:layout_marginStart="@dimen/_8sdp"
+                app:layout_constraintStart_toEndOf="@id/streak_image"
+                app:layout_constraintTop_toTopOf="@id/streak_image"
+                app:layout_constraintBottom_toBottomOf="@id/streak_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:hint="@string/streak_name"
+                app:layout_goneMarginTop="@dimen/_8sdp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_streakname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.streakName}"
+                    android:inputType="text"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_goaldays"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                style="@style/TextInputStyle"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/til_streakname"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="@{viewModel.setGoalVisibility}"
+                android:hint="@string/set_goal_0_for"
+                app:suffixText="@string/days"
+                app:suffixTextColor="@color/colorBlack"
+                app:layout_goneMarginTop="@dimen/_8sdp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_goaldays"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={viewModel.streakMaxDays}"
+                    android:inputType="number"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/friends"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:text="@string/friends"
+                android:textColor="@color/colorBlack"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:fontFamily="@font/roboto_bold"
+                android:textSize="@dimen/_16ssp"
+                app:layout_constraintTop_toBottomOf="@id/til_goaldays" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/add_friend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_friend"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:textColor="@color/colorWhite"
+                android:background="@drawable/rectangle_circle_corner_green"
+                app:layout_constraintTop_toTopOf="@id/friends"
+                app:layout_constraintBottom_toBottomOf="@id/friends"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="@dimen/_16sdp"/>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_friends"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                tools:listitem="@layout/edit_streak_friend"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                app:layout_constraintTop_toBottomOf="@id/friends"
+                app:layout_constraintBottom_toTopOf="@id/save_btn"/>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_btn"
+                style="@style/ButtonStyle"
+                android:text="@string/save"
+                android:onClick="@{()->viewModel.save()}"
+                android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/_16sdp"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!--    </androidx.core.widget.NestedScrollView>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.mobstac.circularimageprogress.CircularImageProgressView
-        android:id="@+id/streak_image"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        app:image="@drawable/ic_flash"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintStart_toStartOf="@id/cancel"
-        app:layout_constraintTop_toBottomOf="@id/streaktypelayout"/>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_streakname"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        style="@style/TextInputStyle"
-        android:layout_marginStart="@dimen/_8sdp"
-        app:layout_constraintStart_toEndOf="@id/streak_image"
-        app:layout_constraintTop_toTopOf="@id/streak_image"
-        app:layout_constraintBottom_toBottomOf="@id/streak_image"
-        app:layout_constraintEnd_toEndOf="@id/save"
-        android:hint="@string/streak_name"
-        app:layout_goneMarginTop="@dimen/_8sdp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_streakname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@={viewModel.streakName}"
-            android:inputType="text"
-            android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_goaldays"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        style="@style/TextInputStyle"
-        android:layout_marginTop="@dimen/_20sdp"
-        app:layout_constraintStart_toStartOf="@id/cancel"
-        app:layout_constraintTop_toBottomOf="@id/til_streakname"
-        app:layout_constraintEnd_toEndOf="@id/save"
-        android:visibility="@{viewModel.setGoalVisibility}"
-        android:hint="@string/set_goal_0_for"
-        app:suffixText="@string/days"
-        app:suffixTextColor="@color/colorBlack"
-        app:layout_goneMarginTop="@dimen/_8sdp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_goaldays"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@={viewModel.streakMaxDays}"
-            android:inputType="numberDecimal"
-            android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/save_btn"
-        style="@style/ButtonStyle"
-        android:text="@string/save"
-        android:onClick="@{()->viewModel.save()}"
-        android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="@dimen/_16sdp"
-        android:layout_marginEnd="@dimen/_16sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/_16sdp"/>
-
-
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

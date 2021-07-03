@@ -34,5 +34,6 @@
 
     <color name="resend_code">#989898</color>
     <color name="text_blue">#0072ea</color>
+    <color name="colorLightBackground">#F3F3F3</color>
 
 </resources>

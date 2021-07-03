@@ -7,4 +7,5 @@ sealed class StreaksEvent(val sendEvent: Boolean, val name: String) : Event(send
     data class StreakListFetchedEvent(val streakList: List<StreaksItem?>?) : StreaksEvent(true, "StreakListFetchedEvent")
     object DeifiniteClickedEvent : StreaksEvent(false, "DeifiniteClickedEvent")
     object IndeifiniteClickedEvent : StreaksEvent(false, "IndeifiniteClickedEvent")
+    object FriendAddedEvent :StreaksEvent(false,"FriendAddedEvent")
 }

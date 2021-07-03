@@ -1,5 +1,6 @@
 package com.streakify.android.commonrepo
 
+import com.streakify.android.networkcall.SuccessResponse
 import com.streakify.android.view.home.friends.addfriend.data.AddFriendRequest
 import com.streakify.android.view.home.friends.addfriend.data.AddFriendResponse
 import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionRequest
@@ -10,6 +11,7 @@ import com.streakify.android.view.home.profile.data.UpdateProfileRequest
 import com.streakify.android.view.home.profile.data.UpdateProfileResponse
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakRequest
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakResponse
+import com.streakify.android.view.home.streaks.editstreak.data.UpdateStreakRequest
 import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailResponse
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
@@ -71,7 +73,10 @@ interface CommonApiServices {
         @Path("id") id : String
     ): Response<StreakDetailResponse>
 
-
-
-
+    @PATCH("api/v1/streaks/streaks/{id}")
+    suspend fun updateStreak(
+        @Header("Authorization") authToken: String,
+        @Body updateStreakRequest: UpdateStreakRequest,
+        @Path("id") id : String
+    ): Response<SuccessResponse>
 }

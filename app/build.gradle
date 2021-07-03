@@ -221,4 +221,8 @@ dependencies {
 
 
     implementation 'com.github.aliab:circular-music-progressbar:v1.4.0'
+
+    //Circular Image View
+    //https://github.com/hdodenhof/CircleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }

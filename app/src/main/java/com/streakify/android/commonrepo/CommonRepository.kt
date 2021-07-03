@@ -3,6 +3,7 @@ package com.streakify.android.commonrepo
 import com.streakify.android.application.App
 import com.streakify.android.networkcall.ApiRequest
 import com.streakify.android.networkcall.NetworkResponse
+import com.streakify.android.networkcall.SuccessResponse
 import com.streakify.android.utils.LocalPreferences
 import com.streakify.android.view.home.friends.addfriend.data.AddFriendRequest
 import com.streakify.android.view.home.friends.addfriend.data.AddFriendResponse
@@ -14,6 +15,7 @@ import com.streakify.android.view.home.profile.data.UpdateProfileRequest
 import com.streakify.android.view.home.profile.data.UpdateProfileResponse
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakRequest
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakResponse
+import com.streakify.android.view.home.streaks.editstreak.data.UpdateStreakRequest
 import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailResponse
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
@@ -126,6 +128,20 @@ class CommonRepository @Inject constructor(
         return apiRequest {
             commonApiServices.streakDetail(
                 HEADER_PREFIX + authtoken,
+                id
+            )
+        }
+    }
+
+    suspend fun updateStreak(
+        authtoken: String,
+        updateStreakRequest: UpdateStreakRequest,
+        id : String
+    ): NetworkResponse<SuccessResponse> {
+        return apiRequest {
+            commonApiServices.updateStreak(
+                HEADER_PREFIX + authtoken,
+                updateStreakRequest,
                 id
             )
         }
