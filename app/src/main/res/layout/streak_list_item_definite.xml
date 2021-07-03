@@ -87,7 +87,7 @@
             <com.google.android.material.textview.MaterialTextView
                 style="@style/punch_out_buttom"
                 android:text="@string/punch_out"
-                android:visibility="@{data.punchInVisibility}"
+                android:visibility="@{data.punchOutVisibility}"
                 android:onClick="@{()->data.punchedOut(data.streak)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"/>

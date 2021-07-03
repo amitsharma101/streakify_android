@@ -78,11 +78,11 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
     }
 
     override fun onPunchedIn(streak: StreaksItem?) {
-
+        viewModel.punch(streak,true)
     }
 
     override fun onPunchedOut(streak: StreaksItem?) {
-
+        viewModel.punch(streak,false)
     }
 
     override fun onItemClick(value: StreakListItemVM) {

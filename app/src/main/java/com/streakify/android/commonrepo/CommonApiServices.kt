@@ -13,6 +13,7 @@ import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakReque
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakResponse
 import com.streakify.android.view.home.streaks.editstreak.data.UpdateStreakRequest
 import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailResponse
+import com.streakify.android.view.home.streaks.streaklist.data.PunchInRequest
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
 import retrofit2.Response
@@ -55,9 +56,10 @@ interface CommonApiServices {
         @Header("Authorization") authToken: String
     ): Response<StreakListResponse>
 
-    @PATCH("api/v1/streaks/punch-in/{id}")
+    @PATCH("api/v1/streaks/punch/{id}")
     suspend fun punch(
         @Header("Authorization") authToken: String,
+        @Body punchInRequest: PunchInRequest,
         @Path("id") id : String
     ): Response<PunchResponse>
 
@@ -79,4 +81,5 @@ interface CommonApiServices {
         @Body updateStreakRequest: UpdateStreakRequest,
         @Path("id") id : String
     ): Response<SuccessResponse>
+
 }

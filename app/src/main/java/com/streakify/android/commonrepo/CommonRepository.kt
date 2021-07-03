@@ -17,6 +17,7 @@ import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakReque
 import com.streakify.android.view.home.streaks.editstreak.data.CreateStreakResponse
 import com.streakify.android.view.home.streaks.editstreak.data.UpdateStreakRequest
 import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailResponse
+import com.streakify.android.view.home.streaks.streaklist.data.PunchInRequest
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
 import javax.inject.Inject
@@ -99,11 +100,13 @@ class CommonRepository @Inject constructor(
 
     suspend fun punch(
         authtoken: String,
+        punchInRequest: PunchInRequest,
         id : String
     ): NetworkResponse<PunchResponse> {
         return apiRequest {
             commonApiServices.punch(
                 HEADER_PREFIX + authtoken,
+                punchInRequest,
                 id
             )
         }

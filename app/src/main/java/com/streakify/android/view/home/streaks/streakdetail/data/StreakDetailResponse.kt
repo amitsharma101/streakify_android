@@ -27,7 +27,16 @@ data class ParticipantsItem(
 	val name: String? = null,
 
 	@field:SerializedName("start_date")
-	val startDate: String? = null
+	val startDate: String? = null,
+
+	@field:SerializedName("country_code")
+	val countryCode: String? = null,
+
+	@field:SerializedName("mobile_number")
+	val mobileNumber: String? = null,
+
+	@field:SerializedName("profile_pic")
+	val profilePic: String? = null
 ) : Parcelable
 
 @Parcelize

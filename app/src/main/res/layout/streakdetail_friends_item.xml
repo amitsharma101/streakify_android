@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="data"
+            type="com.streakify.android.view.home.streaks.streakdetail.StreakDetailFriendItemVM" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_4sdp">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_friends_details"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@{data.displayName}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/roboto_bold"
+            tools:text="Amit Sharma"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:text="@{data.phone}"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/_12sdp"
+            android:fontFamily="@font/roboto_regular"
+            tools:text="+917777777777"
+            android:layout_height="match_parent" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/_12sdp"
+        android:text="@{data.displayString}"
+        android:fontFamily="@font/roboto_regular"
+        tools:text="15/30 days streak"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ll_friends_details"
+        app:layout_constraintBottom_toBottomOf="@id/ll_friends_details"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
