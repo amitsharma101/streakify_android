@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:text="@={viewModel.phone}"
             tools:text="+919602087669"
-            android:inputType="text"
+            android:inputType="number"
             android:singleLine="true" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -11,11 +11,12 @@ import com.streakify.android.databinding.FriendsListLayoutBinding
 import com.streakify.android.di.provider.ResourceProvider
 import com.streakify.android.utils.livedata.Event
 import com.streakify.android.view.home.friends.FriendsEvent
+import com.streakify.android.view.home.friends.firendslist.data.ActiveFriendsItem
 import com.streakify.android.view.home.friends.firendslist.data.PendingFriendsItem
 import javax.inject.Inject
 
 class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM>(),
-    ItemClickListener<Any>, FriendRequestAction {
+    ItemClickListener<Any>, FriendRequestAction, FriendsListInterface {
 
     companion object{
         private const val TAG = "StreakListFragment"
@@ -35,7 +36,6 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
 
     override fun setViewModel() = FriendsListVM::class.java
 
-    private lateinit var adapterFriendRequests: CommonAdapter<PendingFriendsListItemVM>
     private lateinit var adapterFriends: CommonAdapter<FriendsListItemVM>
 
     /** Bind View with ViewModel */
@@ -46,8 +46,6 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
 
         /* Hide ActionBar */
 //        (activity as MainActivity).hideActionBar()
-
-        adapterFriendRequests = CommonAdapter(emptyList(), this)
         adapterFriends = CommonAdapter(emptyList(), this)
 
         binding.rvFriends.adapter = adapterFriends
@@ -63,6 +61,9 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
         binding.addFriend.setOnClickListener {
             findNavController().navigate(R.id.addFriendFragment)
         }
+        binding.seeAll.setOnClickListener{
+            findNavController().navigate(R.id.friendRequestFragment)
+        }
     }
 
     override fun handleEvent(event: Event) {
@@ -72,7 +73,7 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
                 val friendsListAdapter = mutableListOf<FriendsListItemVM>()
                 friends?.forEach {
                     friendsListAdapter.add(
-                        FriendsListItemVM(it!!)
+                        FriendsListItemVM(it!!,this)
                     )
                 }
                 adapterFriends.items = friendsListAdapter
@@ -103,5 +104,9 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
 
     override fun reject(pendingFriend: PendingFriendsItem) {
         viewModel.friendRequestAction(pendingFriend,AppConstants.REJECT_FRIEND_REQUEST)
+    }
+
+    override fun onFriendRemove(activeFriend: ActiveFriendsItem) {
+        viewModel.removeFriend(activeFriend)
     }
 }

@@ -1,5 +1,6 @@
 package com.streakify.android.view.home.friends.addfriend
 
+import androidx.navigation.fragment.findNavController
 import com.streakify.android.R
 import com.streakify.android.base.BaseFragment
 import com.streakify.android.base.adapter.CommonAdapter
@@ -52,7 +53,13 @@ class AddFriendFragment : BaseFragment<AddFriendLayoutBinding, AddFriendVM>(),
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
-
+        viewModel.eventListener.closeActivity.observe(this, { event ->
+            event?.getContentIfNotHandled()?.let {
+                if (it) {
+                    findNavController().popBackStack()
+                }
+            }
+        })
     }
 
     override fun handleEvent(event: Event) {

@@ -110,13 +110,12 @@ class EditStreakVM @Inject constructor(
                                         val parts = mutableListOf<ActiveFriendsItem>()
                                         participants?.forEach {
                                             parts.add(
-                                                //TODO
                                                 ActiveFriendsItem(
-                                                    countryCode = "+91",
+                                                    countryCode = it?.countryCode,
                                                     userId = it?.userId,
                                                     name = it?.name,
-                                                    profilePic = "",
-                                                    mobileNumber = "7777777777"
+                                                    profilePic = it?.profilePic,
+                                                    mobileNumber = it?.mobileNumber
                                             )
                                             )
                                         }

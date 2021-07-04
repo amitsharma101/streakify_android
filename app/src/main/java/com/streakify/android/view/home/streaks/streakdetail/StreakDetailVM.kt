@@ -11,6 +11,7 @@ import com.streakify.android.base.BaseViewModel
 import com.streakify.android.commonrepo.CommonRepository
 import com.streakify.android.di.provider.ResourceProvider
 import com.streakify.android.networkcall.NetworkResponse
+import com.streakify.android.utils.Calculator
 import com.streakify.android.utils.LocalPreferences
 import com.streakify.android.utils.Util
 import com.streakify.android.utils.extensions.Extensions.Companion.addPropertyChangedCallback
@@ -89,33 +90,9 @@ class StreakDetailVM @Inject constructor(
                             }
 
 
-
-
-
-
-
-                            val days : Int = if(meAsPar?.startDate.isNullOrBlank())0 else{
-                                val userStartDate = sdf.parse(meAsPar?.startDate)
-                                userStartDate.hours = 0
-                                userStartDate.minutes = 0
-                                userStartDate.seconds = 0
-
-
-                                val punchedInToday = meAsPar?.punchIn
-                                val today = Date()
-                                today.hours = 0
-                                today.minutes = 0
-                                today.seconds = 0
-
-                                var diffDays = Util.getDifferenceDays(today,userStartDate).toInt()
-                                diffDays = if(meAsPar?.punchIn!!)(diffDays+1) else diffDays
-                                diffDays
-                            }
-
-                            val streakPercentage : Float = if((streakDetails?.maxDuration)?:0 == 0)0F else{
-                                val nm = (days.toDouble()/ streakDetails?.maxDuration?.toDouble()!!)*100
-                                nm.toFloat()
-                            }
+                            val myStreakData = Calculator.getStreakData(meAsPar?.startDate,streakDetails?.type!!,streakDetails?.maxDuration?:0,meAsPar?.punchIn!!)
+                            val days = myStreakData.daysFinished
+                            val streakPercentage : Float = myStreakData.percentage
 
                             val ds = when(streakDetails?.type){
                                 AppConstants.STREAK_TYPE_DEFINITE -> {

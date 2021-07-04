@@ -51,7 +51,8 @@ class AddFriendVM
                         eventListener.showMessageDialog("Friend Request Sent",
                         "Success",
                         positiveClick = {
-                            eventListener.closeActivity
+                            eventListener.dismissMessageDialog()
+                            eventListener.closeActivity(true)
                         })
                     }
                     else -> {

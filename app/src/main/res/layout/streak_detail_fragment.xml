@@ -92,6 +92,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/TextViewStyle.MEDIUM"
+        android:text="@{viewModel.displayString}"
         tools:text ="You are on day 20/60 of the streak"
         android:textColor="@color/colorBlack"
         android:layout_marginTop="@dimen/_4sdp"

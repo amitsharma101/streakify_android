@@ -132,4 +132,13 @@
         tools:layout="@layout/streak_detail_fragment">
     </fragment>
 
+    <fragment
+        android:id="@+id/friendRequestFragment"
+        android:name="com.streakify.android.view.home.friends.firendrequests.FriendRequestFragment"
+        android:label="@string/friend_requests"
+        tools:layout="@layout/friend_requests_layout">
+    </fragment>
+
+
+
 </navigation>
