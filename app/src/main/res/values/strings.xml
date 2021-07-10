@@ -84,4 +84,5 @@
     <string name="camera_app_not_found">Camera App not Found. Unable to Capture Photo!!!</string>
     <string name="select_proper_file">Please Select Proper File</string>
     <string name="select_lesser_file">Please Select less than 20 MB Image</string>
+    <string name="msg_token_fmt">"FCM Token : %1$s"</string>
 </resources>

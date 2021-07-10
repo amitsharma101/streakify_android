@@ -16,9 +16,12 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.onNavDestinationSelected
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.streakify.android.R
 import com.streakify.android.application.App
 import com.streakify.android.databinding.ActivityMainBinding
+import com.streakify.android.utils.Logger
 import com.streakify.android.view.binding.snackBarMessage
 import com.streakify.android.view.binding.visibleOrGone
 import com.streakify.android.view.dialog.view.bindTextAndActions
@@ -52,6 +55,7 @@ class MainActivity : DaggerAppCompatActivity() {
         setupNavigation()
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
+
             when (destination.id) {
                 R.id.loginFragment,R.id.splashFragment,
                 R.id.otpFragment,R.id.editStreakFragment-> {

@@ -1,7 +1,11 @@
 package com.streakify.android.view.home.streaks.streaklist
 
+import android.util.Log
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.streakify.android.R
 import com.streakify.android.application.AppConstants
 import com.streakify.android.base.BaseFragment
@@ -42,6 +46,21 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
     /** Bind View with ViewModel */
 
     override fun bindViews() {
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w(TAG, "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+
+            // Log and toast
+            val msg = getString(R.string.msg_token_fmt, token)
+            Log.d(TAG, msg)
+        })
+
 
         binding.viewModel = viewModel
 
