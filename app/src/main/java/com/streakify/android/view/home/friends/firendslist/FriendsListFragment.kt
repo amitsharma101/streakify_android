@@ -16,7 +16,7 @@ import com.streakify.android.view.home.friends.firendslist.data.PendingFriendsIt
 import javax.inject.Inject
 
 class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM>(),
-    ItemClickListener<Any>, FriendRequestAction, FriendsListInterface {
+    ItemClickListener<Any>, FriendsListInterface {
 
     companion object{
         private const val TAG = "StreakListFragment"
@@ -58,9 +58,7 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
-        binding.seeAll.setOnClickListener{
-            findNavController().navigate(R.id.friendRequestFragment)
-        }
+
     }
 
     override fun handleEvent(event: Event) {
@@ -76,31 +74,11 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
                 adapterFriends.items = friendsListAdapter
                 adapterFriends.notifyDataSetChanged()
             }
-            is FriendsEvent.PendingFriendsListFetchedEvent -> {
-                val pendingFriends = event.pendingFriendsList
-
-                if(pendingFriends.isNullOrEmpty()){
-                    viewModel.friendRequestVisibility.set(View.GONE)
-                }
-                else{
-                    viewModel.friendRequestVisibility.set(View.VISIBLE)
-                    val friendRequest = pendingFriends[0]
-                    binding.friendRequest.data = PendingFriendsListItemVM(friendRequest!!,this)
-                }
-            }
         }
     }
 
     override fun onItemClick(value: Any) {
 
-    }
-
-    override fun accept(pendingFriend: PendingFriendsItem) {
-        viewModel.friendRequestAction(pendingFriend,AppConstants.ACCEPT_FRIEND_REQUEST)
-    }
-
-    override fun reject(pendingFriend: PendingFriendsItem) {
-        viewModel.friendRequestAction(pendingFriend,AppConstants.REJECT_FRIEND_REQUEST)
     }
 
     override fun onFriendRemove(activeFriend: ActiveFriendsItem) {

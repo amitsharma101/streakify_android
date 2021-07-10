@@ -28,9 +28,6 @@ class FriendsListVM
     private val resourceProvider: ResourceProvider
 ) : BaseViewModel(networkLiveData) {
 
-    val friendRequestVisibility = ObservableInt(View.GONE)
-
-
     init {
 
     }
@@ -47,11 +44,10 @@ class FriendsListVM
         when (apiResponse) {
             is NetworkResponse.Success -> {
                 eventListener.dismissLoading()
-                val friendRequest = apiResponse.body?.body?.pendingFriends
                 val friends = apiResponse.body?.body?.activeFriends
 
                 event.value = FriendsEvent.FriendsListFetchedEvent(friends)
-                event.value = FriendsEvent.PendingFriendsListFetchedEvent(friendRequest)
+
             }
             is NetworkResponse.ApiError -> {
                 eventListener.dismissLoading()
@@ -67,31 +63,6 @@ class FriendsListVM
         }
     }
 
-    fun friendRequestAction(pendingFriend:PendingFriendsItem, status:Int){
-        viewModelScope.launch {
-                eventListener.showLoading()
-                val apiResponse = commonRepository.actionFriendRequest(
-                    FriendRequestActionRequest(status = status),
-                    pendingFriend.id.toString()
-                )
-                when(apiResponse){
-                    is NetworkResponse.Success -> {
-                        refresh()
-                    }
-                    is NetworkResponse.ApiError -> {
-                        eventListener.dismissLoading()
-                        eventListener.showMessageDialog(apiResponse.error?.detail,
-                            "Oops",
-                            positiveClick = {
-                                eventListener.dismissMessageDialog()
-                            })
-                    }
-                    else -> {
-                        eventListener.dismissLoading()
-                    }
-                }
-        }
-    }
 
     fun removeFriend(activeFriend: ActiveFriendsItem) {
 
