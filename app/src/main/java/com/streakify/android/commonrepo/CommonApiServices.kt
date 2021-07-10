@@ -6,6 +6,7 @@ import com.streakify.android.view.home.friends.addfriend.data.AddFriendResponse
 import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionRequest
 import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionResponse
 import com.streakify.android.view.home.friends.firendslist.data.FriendsListResponse
+import com.streakify.android.view.home.image.UploadImageResponse
 import com.streakify.android.view.home.profile.data.GetProfileResponse
 import com.streakify.android.view.home.profile.data.UpdateProfileRequest
 import com.streakify.android.view.home.profile.data.UpdateProfileResponse
@@ -16,11 +17,18 @@ import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailRes
 import com.streakify.android.view.home.streaks.streaklist.data.PunchInRequest
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.*
 
 @JvmSuppressWildcards
 interface CommonApiServices {
+
+    @Multipart
+    @POST("api/v1/core/upload-image")
+    suspend fun pushData(
+        @Part("image\"; filename=\"file.jpg") file: RequestBody
+    ): Response<UploadImageResponse>
 
     @GET("api/v1/users/profile")
     suspend fun getProfile(): Response<GetProfileResponse>

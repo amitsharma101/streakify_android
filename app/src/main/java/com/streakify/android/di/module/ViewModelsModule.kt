@@ -11,6 +11,7 @@ import com.streakify.android.view.home.friends.addfriend.AddFriendVM
 import com.streakify.android.view.home.friends.firendrequests.FriendRequestsVM
 import com.streakify.android.view.home.friends.firendslist.FriendsListVM
 import com.streakify.android.view.home.friends.friendsdashboard.FriendsDashboardVM
+import com.streakify.android.view.home.image.ImageBottomSheetFragmentVM
 import com.streakify.android.view.home.launcher.SplashVM
 import com.streakify.android.view.home.onboarding.login.LoginVM
 import com.streakify.android.view.home.onboarding.otp.OtpVM
@@ -121,5 +122,10 @@ abstract class ViewModelsModule {
     @ViewModelKey(FriendsDashboardVM::class)
     abstract fun bindFriendsDashboardVM(viewModel: FriendsDashboardVM): ViewModel
 
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ImageBottomSheetFragmentVM::class)
+    abstract fun bindImageBottomSheetFragmentVM(viewModel: ImageBottomSheetFragmentVM): ViewModel
 
 }

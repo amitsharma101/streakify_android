@@ -10,6 +10,7 @@ import com.streakify.android.view.home.friends.addfriend.data.AddFriendResponse
 import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionRequest
 import com.streakify.android.view.home.friends.firendslist.data.FriendRequestActionResponse
 import com.streakify.android.view.home.friends.firendslist.data.FriendsListResponse
+import com.streakify.android.view.home.image.UploadImageResponse
 import com.streakify.android.view.home.profile.data.GetProfileResponse
 import com.streakify.android.view.home.profile.data.UpdateProfileRequest
 import com.streakify.android.view.home.profile.data.UpdateProfileResponse
@@ -20,6 +21,7 @@ import com.streakify.android.view.home.streaks.streakdetail.data.StreakDetailRes
 import com.streakify.android.view.home.streaks.streaklist.data.PunchInRequest
 import com.streakify.android.view.home.streaks.streaklist.data.PunchResponse
 import com.streakify.android.view.home.streaks.streaklist.data.StreakListResponse
+import okhttp3.RequestBody
 import javax.inject.Inject
 
 const val HEADER_PREFIX = "Bearer "
@@ -120,6 +122,16 @@ class CommonRepository @Inject constructor(
             commonApiServices.updateStreak(
                 updateStreakRequest,
                 id
+            )
+        }
+    }
+
+    suspend fun pushImagesData(
+        pushDto: RequestBody
+    ): NetworkResponse<UploadImageResponse> {
+        return apiRequest {
+            commonApiServices.pushData(
+                pushDto
             )
         }
     }

@@ -52,6 +52,8 @@ class ProfileDetailVM @Inject constructor(
                     name.set(profile?.name)
                     email.set(profile?.email)
                     phone.set(profile?.countryCode+profile?.mobileNumber)
+
+                    event.value = ProfileEvents.ProfilePicEvent(profile?.profilePic)
                 }
                 is NetworkResponse.ApiError -> {
                     eventListener.dismissLoading()

@@ -11,6 +11,8 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.RadioButton
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.streakify.android.R
 
@@ -24,6 +26,16 @@ object Binder {
             drawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT)
             view.setImageDrawable(drawable)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["app:loadStreakImg"], requireAll = true)
+    fun loadStreakImage(view: CircularStreakView, url: String?) {
+        Glide.with(view.context)
+            .load(url)
+            .apply( RequestOptions().placeholder(R.drawable.ic_alarm_clock)
+                .error(R.drawable.ic_alarm_clock))
+            .into(view)
     }
 
     private fun getBitmap(context: Context, name: String, isSupplier: Boolean): Bitmap {

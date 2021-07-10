@@ -45,6 +45,8 @@
     <color name="blue_5">#04408a</color>
     <color name="blue_6">#C2DEFE</color>
     <color name="blue_7">#2053A7</color>
+    <color name="colorLightGrey">#ADADAD</color>
+    <color name="colorImageBackground">#F8F8F8</color>
 
     <array name="customerMaterialColors">
         <item>@color/blue_2</item>

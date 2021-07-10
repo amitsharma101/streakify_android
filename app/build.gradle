@@ -51,6 +51,8 @@ android {
             resValue "string", "app_name", "@string/app_name_release"
             resValue "string", "version_code", defaultConfig.versionCode.toString()
             resValue "string", "version_name", defaultConfig.versionName
+            manifestPlaceholders.providerName = "com.streakify.android"
+            buildConfigField "String", "PROVIDER_NAME", "\"com.streakify.android.fileprovider\""
         }
         debug {
             applicationIdSuffix = '.debug'
@@ -58,6 +60,8 @@ android {
             resValue "string", "app_name", "@string/app_name_debug"
             resValue "string", "version_code", defaultConfig.versionCode.toString()
             resValue "string", "version_name", defaultConfig.versionName
+            manifestPlaceholders.providerName = "com.streakify.android.debug"
+            buildConfigField "String", "PROVIDER_NAME", "\"com.streakify.android.debug.fileprovider\""
         }
     }
 

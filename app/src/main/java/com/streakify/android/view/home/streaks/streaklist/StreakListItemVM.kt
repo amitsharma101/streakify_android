@@ -1,7 +1,10 @@
 package com.streakify.android.view.home.streaks.streaklist
 
+import android.content.Context
 import android.view.View
 import androidx.databinding.ObservableInt
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.streakify.android.R
 import com.streakify.android.application.AppConstants
 import com.streakify.android.base.adapter.ViewModel
@@ -19,6 +22,7 @@ class StreakListItemVM constructor(
     val resourceProvider: ResourceProvider,
     val listener: StreakListInterface
 ) :ViewModel{
+
     val streakData = Calculator.getStreakData(streak?.userStartDate,streak?.type!!,streak?.maxDuration?:0,streak?.punchIn!!)
 
     val days = streakData.daysFinished

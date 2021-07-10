@@ -42,7 +42,10 @@ data class StreaksItem(
 	val streakStartDate: String? = null,
 
 	@field:SerializedName("user_started_from")
-	val userStartDate: String? = null
+	val userStartDate: String? = null,
+
+	@field:SerializedName("streak_image")
+	val streakImage: String? = null
 ) : Parcelable
 
 @Parcelize
