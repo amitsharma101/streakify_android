@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.streakify.android.view.home.streaks.editstreak.EditStreakVM" />
@@ -18,9 +19,9 @@
             android:id="@+id/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_cross_24"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_16sdp"
+            android:src="@drawable/ic_cross_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/red" />
@@ -29,33 +30,33 @@
             android:id="@+id/save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_check_24"
-            android:layout_marginEnd="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:src="@drawable/ic_check_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/green" />
 
-<!--    <androidx.core.widget.NestedScrollView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginTop="@dimen/_8sdp"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/save"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+        <!--    <androidx.core.widget.NestedScrollView-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="0dp"-->
+        <!--        android:layout_marginTop="@dimen/_8sdp"-->
+        <!--        app:layout_constraintTop_toBottomOf="@id/save"-->
+        <!--        app:layout_constraintBottom_toBottomOf="parent">-->
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_marginTop="@dimen/_8sdp"
-    app:layout_constraintTop_toBottomOf="@id/save"
-    app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/save">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/streaktypelayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_12sdp"
+                android:padding="@dimen/_12sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -90,64 +91,125 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.mobstac.circularimageprogress.CircularImageProgressView
-                android:id="@+id/streak_image"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addimagelayout"
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
-                app:image="@drawable/ic_flash"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/rounded_rectangle_grey_stroke_with_radius"
+                android:backgroundTint="@color/colorImageBackground"
+                android:gravity="center"
+                android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/streaktypelayout"/>
+                app:layout_constraintTop_toBottomOf="@id/streaktypelayout">
+
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/img"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:scaleType="fitCenter"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/btnimageedit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_edit"
+                    android:visibility="gone"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/btnaddimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_addimage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?selectableItemBackgroundBorderless"
+                        android:clickable="false"
+                        android:focusable="true"
+                        android:src="@drawable/ic_add_image" />
+
+                    <!--            <com.google.android.material.textview.MaterialTextView-->
+                    <!--                android:id="@+id/textViewaddimage"-->
+                    <!--                style="@style/TextViewStyle"-->
+                    <!--                android:layout_width="wrap_content"-->
+                    <!--                android:layout_marginStart="8dp"-->
+                    <!--                android:layout_marginEnd="8dp"-->
+                    <!--                android:text="@string/add_photo"-->
+                    <!--                android:textSize="18sp" />-->
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_streakname"
+                style="@style/TextInputStyle"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                style="@style/TextInputStyle"
                 android:layout_marginStart="@dimen/_8sdp"
-                app:layout_constraintStart_toEndOf="@id/streak_image"
-                app:layout_constraintTop_toTopOf="@id/streak_image"
-                app:layout_constraintBottom_toBottomOf="@id/streak_image"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="@dimen/_16sdp"
                 android:hint="@string/streak_name"
+                app:layout_constraintBottom_toBottomOf="@id/addimagelayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/addimagelayout"
+                app:layout_constraintTop_toTopOf="@id/addimagelayout"
                 app:layout_goneMarginTop="@dimen/_8sdp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_streakname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.streakName}"
                     android:inputType="text"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="@={viewModel.streakName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_goaldays"
+                style="@style/TextInputStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                style="@style/TextInputStyle"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_16sdp"
+                android:hint="@string/set_goal_0_for"
+                android:visibility="@{viewModel.setGoalVisibility}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_streakname"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:visibility="@{viewModel.setGoalVisibility}"
-                android:hint="@string/set_goal_0_for"
+                app:layout_goneMarginTop="@dimen/_8sdp"
                 app:suffixText="@string/days"
-                app:suffixTextColor="@color/colorBlack"
-                app:layout_goneMarginTop="@dimen/_8sdp">
+                app:suffixTextColor="@color/colorBlack">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_goaldays"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@={viewModel.streakMaxDays}"
                     android:inputType="number"
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:text="@={viewModel.streakMaxDays}" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -155,59 +217,59 @@
                 android:id="@+id/friends"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="@dimen/_16sdp"
-                android:text="@string/friends"
-                android:textColor="@color/colorBlack"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:fontFamily="@font/roboto_bold"
+                android:text="@string/friends"
+                android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_16ssp"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_goaldays" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/add_friend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/add_friend"
-                android:paddingStart="@dimen/_8sdp"
-                android:paddingEnd="@dimen/_8sdp"
-                android:paddingTop="@dimen/_4sdp"
-                android:paddingBottom="@dimen/_4sdp"
-                android:textColor="@color/colorWhite"
+                android:layout_marginEnd="@dimen/_16sdp"
                 android:background="@drawable/rectangle_circle_corner_green"
-                app:layout_constraintTop_toTopOf="@id/friends"
+                android:paddingStart="@dimen/_8sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:paddingEnd="@dimen/_8sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:text="@string/add_friend"
+                android:textColor="@color/colorWhite"
                 app:layout_constraintBottom_toBottomOf="@id/friends"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="@dimen/_16sdp"/>
+                app:layout_constraintTop_toTopOf="@id/friends" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_friends"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                tools:listitem="@layout/edit_streak_friend"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:itemCount="2"
-                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginEnd="@dimen/_16sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@id/save_btn"
                 app:layout_constraintTop_toBottomOf="@id/friends"
-                app:layout_constraintBottom_toTopOf="@id/save_btn"/>
+                tools:itemCount="2"
+                tools:listitem="@layout/edit_streak_friend" />
 
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/save_btn"
                 style="@style/ButtonStyle"
-                android:text="@string/save"
-                android:onClick="@{()->viewModel.save()}"
-                android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
                 android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
+                android:onClick="@{()->viewModel.save()}"
+                android:text="@string/save"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="@dimen/_16sdp"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

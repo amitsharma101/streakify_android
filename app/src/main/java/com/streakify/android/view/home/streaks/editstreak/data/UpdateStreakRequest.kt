@@ -17,7 +17,10 @@ data class UpdateStreakRequest(
 	val friendsRecord: List<FriendsRecordItem?>? = null,
 
 	@field:SerializedName("max_duration")
-	val maxDuration: Int? = null
+	val maxDuration: Int? = null,
+
+	@field:SerializedName("streak_image")
+	val streakImage: String? = null,
 
 //	@field:SerializedName("start_date")
 //	val startDate: String? = null

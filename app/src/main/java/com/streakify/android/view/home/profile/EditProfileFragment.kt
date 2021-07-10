@@ -119,8 +119,17 @@ class EditProfileFragment : BaseFragment<EditProfileFragmentBinding, EditProfile
         }
 
         viewModel.selectedImageUrl.observe(this,{
-            if(it!=null)
+            if (it != null) {
                 Glide.with(this).load(it).into(binding.img)
+                binding.btnimageedit.visibility = View.VISIBLE
+                binding.ivAddimage.visibility = View.GONE
+                binding.textViewaddimage.visibility = View.GONE
+            } else {
+                binding.img.setImageBitmap(null)
+                binding.btnimageedit.visibility = View.GONE
+                binding.ivAddimage.visibility = View.VISIBLE
+                binding.textViewaddimage.visibility = View.VISIBLE
+            }
         })
     }
 }

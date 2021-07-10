@@ -30,7 +30,17 @@ object Binder {
 
     @JvmStatic
     @BindingAdapter(value = ["app:loadStreakImg"], requireAll = true)
-    fun loadStreakImage(view: CircularStreakView, url: String?) {
+    fun loadStreakImageCSV(view: CircularStreakView, url: String?) {
+        Glide.with(view.context)
+            .load(url)
+            .apply( RequestOptions().placeholder(R.drawable.ic_alarm_clock)
+                .error(R.drawable.ic_alarm_clock))
+            .into(view)
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["app:loadStreakImgIV"], requireAll = true)
+    fun loadStreakImage(view: ImageView, url: String?) {
         Glide.with(view.context)
             .load(url)
             .apply( RequestOptions().placeholder(R.drawable.ic_alarm_clock)

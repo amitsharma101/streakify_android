@@ -60,6 +60,9 @@ data class Body(
 	@field:SerializedName("start_date")
 	val startDate: String? = null,
 
+	@field:SerializedName("streak_image")
+	val streakImage: String? = null,
+
 	@field:SerializedName("participants")
 	val participants: List<ParticipantsItem?>? = null
 ) : Parcelable

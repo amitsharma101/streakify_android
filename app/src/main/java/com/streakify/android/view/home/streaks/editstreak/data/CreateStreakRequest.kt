@@ -19,6 +19,9 @@ data class CreateStreakRequest(
 	@field:SerializedName("start_date")
 	val startDate: String? = null,
 
+	@field:SerializedName("streak_image")
+	val streakImage: String? = null,
+
 	@field:SerializedName("friends")
 	val friends: List<Int>? = null
 ) : Parcelable

@@ -122,9 +122,6 @@ class EditProfileVM @Inject constructor(
                         val imgUrl = apiResponse.body?.body?.image
 
                         imgUrl?.let {
-//                            if (!img.url.startsWith("http")) {
-//                                img.url = "http://" + img.url
-//                            }
                            updateProfileDetails(imgUrl)
                         }
                     }
