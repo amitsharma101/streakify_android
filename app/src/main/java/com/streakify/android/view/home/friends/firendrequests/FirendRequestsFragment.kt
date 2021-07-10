@@ -73,16 +73,6 @@ class FriendRequestFragment : BaseFragment<FriendRequestsLayoutBinding, FriendRe
                 }
                 adapterFriendRequests.items = pendingFriendsListAdapter
                 adapterFriendRequests.notifyDataSetChanged()
-
-                if(pendingFriends.isNullOrEmpty()){
-                    viewModel.eventListener.showMessageDialog(
-                        message = resourceProvider.getString(R.string.you_dont_have_any_more_friend_request),
-                        positiveClick = {
-                            viewModel.eventListener.dismissMessageDialog()
-                            viewModel.eventListener.closeActivity(true)
-                        }
-                    )
-                }
             }
         }
     }

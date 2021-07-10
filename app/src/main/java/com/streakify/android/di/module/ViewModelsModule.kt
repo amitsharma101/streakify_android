@@ -10,6 +10,7 @@ import com.streakify.android.view.home.contactlist.ContactListVM
 import com.streakify.android.view.home.friends.addfriend.AddFriendVM
 import com.streakify.android.view.home.friends.firendrequests.FriendRequestsVM
 import com.streakify.android.view.home.friends.firendslist.FriendsListVM
+import com.streakify.android.view.home.friends.friendsdashboard.FriendsDashboardVM
 import com.streakify.android.view.home.launcher.SplashVM
 import com.streakify.android.view.home.onboarding.login.LoginVM
 import com.streakify.android.view.home.onboarding.otp.OtpVM
@@ -114,6 +115,11 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(ContactListVM::class)
     abstract fun bindContactListVM(viewModel: ContactListVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(FriendsDashboardVM::class)
+    abstract fun bindFriendsDashboardVM(viewModel: FriendsDashboardVM): ViewModel
 
 
 }

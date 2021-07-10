@@ -4,6 +4,7 @@ import com.streakify.android.view.home.contactlist.ContactListFragment
 import com.streakify.android.view.home.friends.addfriend.AddFriendFragment
 import com.streakify.android.view.home.friends.firendrequests.FriendRequestFragment
 import com.streakify.android.view.home.friends.firendslist.FriendsListFragment
+import com.streakify.android.view.home.friends.friendsdashboard.FriendsDashboardFragment
 import com.streakify.android.view.home.launcher.SplashFragment
 import com.streakify.android.view.home.onboarding.login.LoginFragment
 import com.streakify.android.view.home.onboarding.otp.OtpFragment
@@ -56,4 +57,7 @@ abstract class MainFragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeContactListFragment(): ContactListFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributeFriendsDashboardFragment(): FriendsDashboardFragment
 }

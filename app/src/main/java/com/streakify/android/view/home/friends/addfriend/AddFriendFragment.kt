@@ -75,7 +75,7 @@ class AddFriendFragment : BaseFragment<AddFriendLayoutBinding, AddFriendVM>(),
     override fun handleEvent(event: Event) {
         when(event){
             is FriendsEvent.FriendRequestSentEvent -> {
-                findNavController().navigate(R.id.action_addFriendFragment_to_friendListFragment)
+                findNavController().navigate(R.id.action_addFriendFragment_to_friendsDashboardFragment)
             }
         }
     }

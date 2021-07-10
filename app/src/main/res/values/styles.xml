@@ -135,4 +135,8 @@
         <item name="android:editTextColor">@android:color/white</item>
     </style>
 
+    <style name="customTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
 </resources>

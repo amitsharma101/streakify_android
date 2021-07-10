@@ -58,7 +58,7 @@ class MainActivity : DaggerAppCompatActivity() {
                     hideBottomNavigation()
                     hideToolbar()
                 }
-                R.id.streakListFragment,R.id.friendsListFragment,R.id.profileDetailFragment -> {
+                R.id.streakListFragment,R.id.friendsListFragment,R.id.profileDetailFragment,R.id.friendsDashboardFragment -> {
                     showBottomNavigation()
                     showToolbar()
                     toolbar?.title = destination.label
@@ -166,7 +166,8 @@ class MainActivity : DaggerAppCompatActivity() {
                     true
                 }
                 R.id.friends_fragment -> {
-                    navController.navigate(R.id.friendsListFragment)
+                    navController.navigate(R.id.friendsDashboardFragment)
+//                    navController.navigate(R.id.friendsListFragment)
                     true
                 }
                 else -> false
