@@ -45,6 +45,14 @@ class FriendRequestsVM
 
                 event.value = FriendsEvent.PendingFriendsListFetchedEvent(friendRequest)
             }
+            is NetworkResponse.ApiError -> {
+                eventListener.dismissLoading()
+                eventListener.showMessageDialog(apiResponse.error?.detail,
+                    "Oops",
+                    positiveClick = {
+                        eventListener.dismissMessageDialog()
+                    })
+            }
             else -> {
                 eventListener.dismissLoading()
             }
@@ -61,6 +69,14 @@ class FriendRequestsVM
                 when(apiResponse){
                     is NetworkResponse.Success -> {
                         refresh()
+                    }
+                    is NetworkResponse.ApiError -> {
+                        eventListener.dismissLoading()
+                        eventListener.showMessageDialog(apiResponse.error?.detail,
+                            "Oops",
+                            positiveClick = {
+                                eventListener.dismissMessageDialog()
+                            })
                     }
                     else -> {
                         eventListener.dismissLoading()

@@ -124,12 +124,28 @@ class EditStreakVM @Inject constructor(
                                     }
 
                                 }
+                                is NetworkResponse.ApiError -> {
+                                    eventListener.dismissLoading()
+                                    eventListener.showMessageDialog(currentStreakDetail.error?.detail,
+                                        "Oops",
+                                        positiveClick = {
+                                            eventListener.dismissMessageDialog()
+                                        })
+                                }
                                 else -> {
                                     eventListener.dismissLoading()
                                 }
                             }
 
                         }
+                    }
+                    is NetworkResponse.ApiError -> {
+                        eventListener.dismissLoading()
+                        eventListener.showMessageDialog(apiResponse.error?.detail,
+                            "Oops",
+                            positiveClick = {
+                                eventListener.dismissMessageDialog()
+                            })
                     }
                     else -> {
                         eventListener.dismissLoading()
@@ -182,13 +198,23 @@ class EditStreakVM @Inject constructor(
                         startDate = streakStartDate,
                         friends = friendsToAdd
                     )
-                    when(commonRepository.createStreak(saveStreakRequest)){
+
+                    val apiResponse = commonRepository.createStreak(saveStreakRequest)
+                    when(apiResponse){
                         is NetworkResponse.Success -> {
                             eventListener.dismissLoading()
                             eventListener.showMessageDialog("Saved Successfully",
                                 "Success","Ok",positiveClick = {
                                     eventListener.dismissMessageDialog()
                                     eventListener.closeActivity(true)
+                                })
+                        }
+                        is NetworkResponse.ApiError -> {
+                            eventListener.dismissLoading()
+                            eventListener.showMessageDialog(apiResponse.error?.detail,
+                                "Oops",
+                                positiveClick = {
+                                    eventListener.dismissMessageDialog()
                                 })
                         }
                         else -> {
@@ -215,6 +241,14 @@ class EditStreakVM @Inject constructor(
                                 "Success","Ok",positiveClick = {
                                     eventListener.dismissMessageDialog()
                                     eventListener.closeActivity(true)
+                                })
+                        }
+                        is NetworkResponse.ApiError -> {
+                            eventListener.dismissLoading()
+                            eventListener.showMessageDialog(apiResponse.error?.detail,
+                                "Oops",
+                                positiveClick = {
+                                    eventListener.dismissMessageDialog()
                                 })
                         }
                         else -> {

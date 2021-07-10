@@ -109,10 +109,26 @@ class OtpVM @Inject constructor(
                             eventListener.dismissLoading()
                             event.value = OtpEvent.LoginSuccessEvent
                         }
+                        is NetworkResponse.ApiError -> {
+                            eventListener.dismissLoading()
+                            eventListener.showMessageDialog(profileApiResponse.error?.detail,
+                                "Oops",
+                                positiveClick = {
+                                    eventListener.dismissMessageDialog()
+                                })
+                        }
                         else -> {
                             eventListener.dismissLoading()
                         }
                     }
+                }
+                is NetworkResponse.ApiError -> {
+                    eventListener.dismissLoading()
+                    eventListener.showMessageDialog(apiResponse.error?.detail,
+                        "Oops",
+                        positiveClick = {
+                            eventListener.dismissMessageDialog()
+                        })
                 }
                 else -> {
                     eventListener.dismissLoading()

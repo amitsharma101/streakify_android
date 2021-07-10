@@ -53,6 +53,14 @@ class ProfileDetailVM @Inject constructor(
                     email.set(profile?.email)
                     phone.set(profile?.countryCode+profile?.mobileNumber)
                 }
+                is NetworkResponse.ApiError -> {
+                    eventListener.dismissLoading()
+                    eventListener.showMessageDialog(apiResponse.error?.detail,
+                        "Oops",
+                        positiveClick = {
+                            eventListener.dismissMessageDialog()
+                        })
+                }
                 else -> {
                     eventListener.dismissLoading()
                 }

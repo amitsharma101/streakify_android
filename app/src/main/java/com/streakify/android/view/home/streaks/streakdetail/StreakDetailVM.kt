@@ -114,6 +114,14 @@ class StreakDetailVM @Inject constructor(
                             val participants = res?.participants?.filter { it?.userId != userId }
                             event.value = StreaksEvent.StreakDetailParticipantsFetched(participants)
                         }
+                        is NetworkResponse.ApiError -> {
+                            eventListener.dismissLoading()
+                            eventListener.showMessageDialog(apiResponse.error?.detail,
+                                "Oops",
+                                positiveClick = {
+                                    eventListener.dismissMessageDialog()
+                                })
+                        }
                         else -> {
                             eventListener.dismissLoading()
                         }

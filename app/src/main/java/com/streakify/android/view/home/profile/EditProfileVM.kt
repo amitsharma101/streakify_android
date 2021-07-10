@@ -59,9 +59,18 @@ class EditProfileVM @Inject constructor(
                     name = name.get(),
                     email = email.get()
                 )
-                when(commonRepository.updateProfile(req)){
+            val apiResponse = commonRepository.updateProfile(req)
+                when(apiResponse){
                     is NetworkResponse.Success -> {
                         event.value = ProfileEvents.ProfileUpdatedEvent
+                    }
+                    is NetworkResponse.ApiError -> {
+                        eventListener.dismissLoading()
+                        eventListener.showMessageDialog(apiResponse.error?.detail,
+                            "Oops",
+                            positiveClick = {
+                                eventListener.dismissMessageDialog()
+                            })
                     }
                     else -> {
                         eventListener.dismissLoading()

@@ -45,6 +45,14 @@ class StreakListVM @Inject constructor(
                     val streaklist = apiResponse.body?.body?.streaks
                     event.value = StreaksEvent.StreakListFetchedEvent(streaklist)
                 }
+                is NetworkResponse.ApiError -> {
+                    eventListener.dismissLoading()
+                    eventListener.showMessageDialog(apiResponse.error?.detail,
+                        "Oops",
+                        positiveClick = {
+                            eventListener.dismissMessageDialog()
+                        })
+                }
                 else -> {
                     eventListener.dismissLoading()
                 }
@@ -62,6 +70,14 @@ class StreakListVM @Inject constructor(
                     is NetworkResponse.Success -> {
                         eventListener.dismissLoading()
                         refresh()
+                    }
+                    is NetworkResponse.ApiError -> {
+                        eventListener.dismissLoading()
+                        eventListener.showMessageDialog(apiResponse.error?.detail,
+                            "Oops",
+                            positiveClick = {
+                                eventListener.dismissMessageDialog()
+                            })
                     }
                     else -> {
                         eventListener.dismissLoading()
