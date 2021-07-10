@@ -1,5 +1,6 @@
 package com.streakify.android.di.module
 
+import com.streakify.android.view.home.contactlist.ContactListFragment
 import com.streakify.android.view.home.friends.addfriend.AddFriendFragment
 import com.streakify.android.view.home.friends.firendrequests.FriendRequestFragment
 import com.streakify.android.view.home.friends.firendslist.FriendsListFragment
@@ -52,4 +53,7 @@ abstract class MainFragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeAddFriendBottomSheet(): AddFriendBottomSheet
+
+    @ContributesAndroidInjector
+    abstract fun contributeContactListFragment(): ContactListFragment
 }

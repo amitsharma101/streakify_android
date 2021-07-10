@@ -31,15 +31,13 @@ class FriendRequestsVM
 
     fun onAttach() {
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
-                refresh(token!!)
-            }
+            refresh()
         }
     }
 
-    suspend fun refresh(token:String){
+    suspend fun refresh(){
         eventListener.showLoading()
-        val apiResponse = commonRepository.getFriends(token!!)
+        val apiResponse = commonRepository.getFriends()
         when (apiResponse) {
             is NetworkResponse.Success -> {
                 eventListener.dismissLoading()
@@ -55,22 +53,19 @@ class FriendRequestsVM
 
     fun friendRequestAction(pendingFriend: PendingFriendsItem, status:Int){
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
                 eventListener.showLoading()
                 val apiResponse = commonRepository.actionFriendRequest(
-                    token!!,
                     FriendRequestActionRequest(status = status),
                     pendingFriend.id.toString()
                 )
                 when(apiResponse){
                     is NetworkResponse.Success -> {
-                        refresh(token)
+                        refresh()
                     }
                     else -> {
                         eventListener.dismissLoading()
                     }
                 }
-            }
         }
     }
 }

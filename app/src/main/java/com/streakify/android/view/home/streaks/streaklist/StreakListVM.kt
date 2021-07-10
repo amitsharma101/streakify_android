@@ -37,9 +37,8 @@ class StreakListVM @Inject constructor(
     }
 
     suspend fun refresh(){
-        localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token->
             eventListener.showLoading()
-            val apiResponse = commonRepository.getStreaks(token!!)
+            val apiResponse = commonRepository.getStreaks()
             when(apiResponse){
                 is NetworkResponse.Success -> {
                     eventListener.dismissLoading()
@@ -50,15 +49,12 @@ class StreakListVM @Inject constructor(
                     eventListener.dismissLoading()
                 }
             }
-        }
     }
 
     fun punch(streak: StreaksItem?, isPunchIn: Boolean) {
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
                 eventListener.showLoading()
                 val apiResponse = commonRepository.punch(
-                    token!!,
                     PunchInRequest(isPunchIn),
                     streak?.id.toString()
                 )
@@ -71,7 +67,6 @@ class StreakListVM @Inject constructor(
                         eventListener.dismissLoading()
                     }
                 }
-            }
         }
     }
 

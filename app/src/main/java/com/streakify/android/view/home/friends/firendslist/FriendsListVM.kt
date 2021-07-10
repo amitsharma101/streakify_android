@@ -37,15 +37,13 @@ class FriendsListVM
 
     fun onAttach() {
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
-                refresh(token!!)
-            }
+                refresh()
         }
     }
 
-    suspend fun refresh(token:String){
+    suspend fun refresh(){
         eventListener.showLoading()
-        val apiResponse = commonRepository.getFriends(token!!)
+        val apiResponse = commonRepository.getFriends()
         when (apiResponse) {
             is NetworkResponse.Success -> {
                 eventListener.dismissLoading()
@@ -63,22 +61,19 @@ class FriendsListVM
 
     fun friendRequestAction(pendingFriend:PendingFriendsItem, status:Int){
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
                 eventListener.showLoading()
                 val apiResponse = commonRepository.actionFriendRequest(
-                    token!!,
                     FriendRequestActionRequest(status = status),
                     pendingFriend.id.toString()
                 )
                 when(apiResponse){
                     is NetworkResponse.Success -> {
-                        refresh(token)
+                        refresh()
                     }
                     else -> {
                         eventListener.dismissLoading()
                     }
                 }
-            }
         }
     }
 
@@ -97,10 +92,8 @@ class FriendsListVM
                     eventListener.showLoading()
 
                     viewModelScope.launch {
-                        localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
 
                             val apiResponse = commonRepository.actionFriendRequest(
-                                token!!,
                                 FriendRequestActionRequest(status = AppConstants.REJECT_FRIEND_REQUEST),
                                 activeFriend.id.toString()
                             )
@@ -114,7 +107,7 @@ class FriendsListVM
                                         positiveClick = {
                                             eventListener.dismissMessageDialog()
                                             viewModelScope.launch {
-                                                refresh(token)
+                                                refresh()
                                             }
                                         }
                                     )
@@ -123,7 +116,6 @@ class FriendsListVM
                                     eventListener.dismissLoading()
                                 }
                             }
-                        }
                     }
                 })
     }

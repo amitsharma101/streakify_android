@@ -23,61 +23,48 @@ import retrofit2.http.*
 interface CommonApiServices {
 
     @GET("api/v1/users/profile")
-    suspend fun getProfile(
-        @Header("Authorization") authToken: String
-    ): Response<GetProfileResponse>
+    suspend fun getProfile(): Response<GetProfileResponse>
 
     @PATCH("api/v1/users/profile")
     suspend fun updateProfile(
-        @Header("Authorization") authToken: String,
         @Body updateProfileRequets: UpdateProfileRequest
     ): Response<UpdateProfileResponse>
 
     @GET("api/v1/friends/friends")
-    suspend fun getFriends(
-        @Header("Authorization") authToken: String
-    ): Response<FriendsListResponse>
+    suspend fun getFriends(): Response<FriendsListResponse>
 
     @POST("api/v1/friends/friends")
     suspend fun addFriend(
-        @Header("Authorization") authToken: String,
         @Body addFriendRequest : AddFriendRequest
     ): Response<AddFriendResponse>
 
     @PATCH("api/v1/friends/update-request-status/{id}")
     suspend fun actionFriendRequest(
-        @Header("Authorization") authToken: String,
         @Body actionFriendRequest : FriendRequestActionRequest,
         @Path("id") id : String
     ): Response<FriendRequestActionResponse>
 
     @GET("api/v1/streaks/streaks")
-    suspend fun getStreaks(
-        @Header("Authorization") authToken: String
-    ): Response<StreakListResponse>
+    suspend fun getStreaks(): Response<StreakListResponse>
 
     @PATCH("api/v1/streaks/punch/{id}")
     suspend fun punch(
-        @Header("Authorization") authToken: String,
         @Body punchInRequest: PunchInRequest,
         @Path("id") id : String
     ): Response<PunchResponse>
 
     @POST("api/v1/streaks/streaks")
     suspend fun createStreak(
-        @Header("Authorization") authToken: String,
         @Body createStreakRequest: CreateStreakRequest
     ): Response<CreateStreakResponse>
 
     @GET("api/v1/streaks/streaks/{id}")
     suspend fun streakDetail(
-        @Header("Authorization") authToken: String,
         @Path("id") id : String
     ): Response<StreakDetailResponse>
 
     @PATCH("api/v1/streaks/streaks/{id}")
     suspend fun updateStreak(
-        @Header("Authorization") authToken: String,
         @Body updateStreakRequest: UpdateStreakRequest,
         @Path("id") id : String
     ): Response<SuccessResponse>

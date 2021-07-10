@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName
 @Keep
 open class BaseModel(
     @SerializedName("status") val status: Boolean = false,
+    @SerializedName("detail") val detail: String? = "",
     @SerializedName("message") val message: String? = "",
 
     /**

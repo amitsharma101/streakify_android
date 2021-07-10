@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.streakify.android.di.annotation.ViewModelKey
 import com.streakify.android.di.provider.ViewModelProviderFactory
 import com.streakify.android.view.activity.MainActivityViewModel
+import com.streakify.android.view.home.contactlist.ContactListVM
 import com.streakify.android.view.home.friends.addfriend.AddFriendVM
 import com.streakify.android.view.home.friends.firendrequests.FriendRequestsVM
 import com.streakify.android.view.home.friends.firendslist.FriendsListVM
@@ -108,6 +109,11 @@ abstract class ViewModelsModule {
     @IntoMap
     @ViewModelKey(AddFriendBottomSheetVM::class)
     abstract fun bindAddFriendBottomSheetVM(viewModel: AddFriendBottomSheetVM): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ContactListVM::class)
+    abstract fun bindContactListVM(viewModel: ContactListVM): ViewModel
 
 
 }

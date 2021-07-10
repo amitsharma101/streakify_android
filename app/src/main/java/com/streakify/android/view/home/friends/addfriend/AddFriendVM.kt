@@ -7,6 +7,7 @@ import com.streakify.android.commonrepo.CommonRepository
 import com.streakify.android.di.provider.ResourceProvider
 import com.streakify.android.networkcall.NetworkResponse
 import com.streakify.android.utils.LocalPreferences
+import com.streakify.android.utils.Util
 import com.streakify.android.utils.network.NetworkLiveData
 import com.streakify.android.view.dialog.common.EventListener
 import com.streakify.android.view.home.friends.FriendsEvent
@@ -25,7 +26,6 @@ class AddFriendVM
 ) : BaseViewModel(networkLiveData) {
 
     val phone = ObservableField("")
-    val countryCode = "+91"
 
     init {
 
@@ -39,12 +39,11 @@ class AddFriendVM
 //        }
     }
 
-    fun sendFriendRequest() {
+    fun sendFriendRequest(countryCode:String,number:String) {
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
                 eventListener.showLoading()
-                val apiResponse = commonRepository.addFriend(token!!,
-                    AddFriendRequest(countryCode = countryCode,mobileNumber = phone.get()))
+                val apiResponse = commonRepository.addFriend(
+                    AddFriendRequest(countryCode = countryCode,mobileNumber = Util.trim(number)))
                 when(apiResponse){
                     is NetworkResponse.Success -> {
                         eventListener.dismissLoading()
@@ -52,14 +51,21 @@ class AddFriendVM
                         "Success",
                         positiveClick = {
                             eventListener.dismissMessageDialog()
-                            eventListener.closeActivity(true)
+                            event.value = FriendsEvent.FriendRequestSentEvent
                         })
+                    }
+                    is NetworkResponse.ApiError -> {
+                        eventListener.dismissLoading()
+                        eventListener.showMessageDialog(apiResponse.error?.detail,
+                            "Oops",
+                            positiveClick = {
+                                eventListener.dismissMessageDialog()
+                            })
                     }
                     else -> {
                         eventListener.dismissLoading()
                     }
                 }
-            }
         }
     }
 }

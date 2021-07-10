@@ -225,4 +225,8 @@ dependencies {
     //Circular Image View
     //https://github.com/hdodenhof/CircleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Country code picker
+    //https://github.com/hbb20/CountryCodePickerProject
+    implementation 'com.hbb20:ccp:2.4.7'
 }

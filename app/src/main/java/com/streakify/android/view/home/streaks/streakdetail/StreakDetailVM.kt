@@ -55,11 +55,9 @@ class StreakDetailVM @Inject constructor(
 
     fun onAttach(streakId: Int) {
         viewModelScope.launch {
-//            val userId = localPreferences.readValue(LocalPreferences.USER_ID).asLiveData().value
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
                 localPreferences.readValue(LocalPreferences.USER_ID).collect { userId ->
                     eventListener.showLoading()
-                    val apiResponse = commonRepository.streakDetail(token!!, streakId.toString())
+                    val apiResponse = commonRepository.streakDetail(streakId.toString())
                     when (apiResponse) {
                         is NetworkResponse.Success -> {
                             eventListener.dismissLoading()
@@ -121,7 +119,6 @@ class StreakDetailVM @Inject constructor(
                         }
                     }
                 }
-            }
         }
     }
 

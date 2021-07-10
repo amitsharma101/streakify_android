@@ -15,6 +15,7 @@ import com.streakify.android.view.home.friends.firendslist.FriendsListVM
 import com.streakify.android.view.home.friends.firendslist.PendingFriendsListItemVM
 import javax.inject.Inject
 
+const val SELECTED_CONTACT_NUMBER = "selected_contact_number"
 class AddFriendFragment : BaseFragment<AddFriendLayoutBinding, AddFriendVM>(),
     ItemClickListener<Any> {
 
@@ -49,10 +50,19 @@ class AddFriendFragment : BaseFragment<AddFriendLayoutBinding, AddFriendVM>(),
         bindObservers()
 
         viewModel.onAttach()
+
+        val selectedContactNumber = arguments?.getString(SELECTED_CONTACT_NUMBER)
+        if(!selectedContactNumber.isNullOrBlank()){
+            viewModel.phone.set(selectedContactNumber)
+        }
     }
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
+        binding.send.setOnClickListener {
+            viewModel.sendFriendRequest("+"+binding.countryCode.selectedCountryCode,binding.etPhone.text.toString())
+        }
+
         viewModel.eventListener.closeActivity.observe(this, { event ->
             event?.getContentIfNotHandled()?.let {
                 if (it) {
@@ -64,7 +74,9 @@ class AddFriendFragment : BaseFragment<AddFriendLayoutBinding, AddFriendVM>(),
 
     override fun handleEvent(event: Event) {
         when(event){
-
+            is FriendsEvent.FriendRequestSentEvent -> {
+                findNavController().navigate(R.id.action_addFriendFragment_to_friendListFragment)
+            }
         }
     }
 

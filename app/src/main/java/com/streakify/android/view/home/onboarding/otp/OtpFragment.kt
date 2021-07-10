@@ -1,6 +1,7 @@
 package com.streakify.android.view.home.onboarding.otp
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
 import androidx.navigation.fragment.findNavController
@@ -14,11 +15,10 @@ import com.streakify.android.R
 import com.streakify.android.base.BaseFragment
 import com.streakify.android.databinding.OtpLayoutBinding
 import com.streakify.android.di.provider.ResourceProvider
+import com.streakify.android.utils.Logger
 import com.streakify.android.utils.extensions.Extensions.Companion.addPropertyChangedCallback
 import com.streakify.android.utils.livedata.Event
 import com.streakify.android.view.activity.MainActivity
-import org.json.JSONException
-import org.json.JSONObject
 import java.util.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -32,12 +32,17 @@ class OtpFragment : BaseFragment<OtpLayoutBinding, OtpVM>()
     private lateinit var verificationId: String
     private lateinit var mResendToken: ForceResendingToken
 
+    var cTimer: CountDownTimer? = null
+
     /** KEYS */
     companion object {
         val PHONE_NUMBER = "PHONE_NUMBER"
+        val CC = "CC"
     }
 
+    private var countryCode: String? = null
     private var phone: String? = null
+
     @Inject
     lateinit var resourceProvider: ResourceProvider
 
@@ -73,7 +78,7 @@ class OtpFragment : BaseFragment<OtpLayoutBinding, OtpVM>()
                 } else if (e is FirebaseNetworkException) {
                     viewModel.eventListener.showSnackMessage(getString(R.string.could_not_connect_to_the_internet_please_check_your_network))
                 } else {
-                    viewModel.eventListener.showSnackMessage(getString(R.string.unknown_error))
+                    viewModel.eventListener.showSnackMessage(e.message)
                 }
             }
 
@@ -82,6 +87,9 @@ class OtpFragment : BaseFragment<OtpLayoutBinding, OtpVM>()
                 token: ForceResendingToken
             ) {
                 Log.i("CALLBACK","Code Sent")
+
+                startTimer()
+
                 this@OtpFragment.verificationId = verificationId
                 mResendToken = token
             }
@@ -95,20 +103,59 @@ class OtpFragment : BaseFragment<OtpLayoutBinding, OtpVM>()
         /* Hide ActionBar */
 //        (activity as MainActivity).hideActionBar()
         /* Get Arguments */
+        countryCode = arguments?.getString(CC)
         phone = arguments?.getString(PHONE_NUMBER)
+
         viewModel.phoneNumber = arguments?.getString(PHONE_NUMBER)!!
+        viewModel.countryCode = "+"+arguments?.getString(CC)
 
         /* Set Phone value to ViewModel */
         viewModel.phoneField.set(phone)
 
         bindObservers()
 
-        startPhoneNumberVerification("+91"+phone)
+        Logger.log("+$countryCode$phone")
+
+        startPhoneNumberVerification("+$countryCode$phone")
+    }
+
+    fun startTimer() {
+        viewModel.resendVisibility.set(View.GONE)
+        viewModel.timerVisibility.set(View.VISIBLE)
+
+        cTimer = object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                viewModel.timerString.set((millisUntilFinished / 1000).toString())
+            }
+            override fun onFinish() {
+                viewModel.resendVisibility.set(View.VISIBLE)
+                viewModel.timerVisibility.set(View.GONE)
+            }
+        }
+        (cTimer as CountDownTimer).start()
+    }
+
+    //cancel timer
+    fun cancelTimer() {
+        if (cTimer != null) cTimer!!.cancel()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        cancelTimer()
     }
 
     private fun bindObservers() {
         binding.resendotp.setOnClickListener {
-            resendVerificationCode("+91"+phone, mResendToken)
+            if(this::verificationId.isInitialized && verificationId.isNotEmpty()) {
+
+                startTimer()
+
+                resendVerificationCode("+$countryCode$phone", mResendToken)
+            }
+            else{
+                initFirebaseAuth()
+            }
         }
 
         binding.submitBtn.setOnClickListener {
@@ -144,7 +191,7 @@ class OtpFragment : BaseFragment<OtpLayoutBinding, OtpVM>()
             val credential = PhoneAuthProvider.getCredential(verificationId, binding.otpView.text.toString())
             signInWithPhoneAuthCredential(credential)
         } catch (e: Exception) {
-            viewModel.eventListener.showMessageDialog("Error")
+            viewModel.eventListener.showMessageDialog(e.message)
         }
     }
 

@@ -43,9 +43,8 @@ class ProfileDetailVM @Inject constructor(
     }
 
     suspend fun refresh(){
-        localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect {token->
             eventListener.showLoading()
-            val apiResponse = commonRepository.getProfile(token!!)
+            val apiResponse = commonRepository.getProfile()
             when(apiResponse){
                 is NetworkResponse.Success -> {
                     eventListener.dismissLoading()
@@ -58,6 +57,5 @@ class ProfileDetailVM @Inject constructor(
                     eventListener.dismissLoading()
                 }
             }
-        }
     }
 }

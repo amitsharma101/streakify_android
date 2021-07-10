@@ -1,5 +1,6 @@
 package com.streakify.android.view.home.onboarding.otp
 
+import android.view.View
 import androidx.databinding.Observable
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
@@ -38,8 +39,14 @@ class OtpVM @Inject constructor(
     var otpError = ObservableField(resourceProvider.getString(R.string.error_otp_empty))
     val signedInSuccess = ObservableBoolean()
 
+    val resendVisibility = ObservableField(View.GONE)
+    val timerVisibility = ObservableField(View.GONE)
+    val timerString = ObservableField("60")
+
+
     var fireBaseToken = ""
     var phoneNumber = ""
+    var countryCode = ""
 
     /* Listener to Detect otpField Changes */
     private var otpFieldOnPropertyChangedCallback: Observable.OnPropertyChangedCallback
@@ -80,7 +87,7 @@ class OtpVM @Inject constructor(
     fun getToken(fireBaseToken:String){
         viewModelScope.launch {
             val apiResponse = authRepository.getToken(GetTokenRequest(
-                countryCode = "+91",
+                countryCode = countryCode,
                 mobileNumber = phoneNumber,
                 firebaseToken = fireBaseToken
             ))
@@ -95,7 +102,7 @@ class OtpVM @Inject constructor(
                     authRepository.setRefreshToken(refreshToken!!)
                     authRepository.setFirebaseToken(firebaseToken)
 
-                    val profileApiResponse = authRepository.getProfile(authToken)
+                    val profileApiResponse = authRepository.getProfile()
                     when(profileApiResponse){
                         is NetworkResponse.Success -> {
                             authRepository.setUserId(profileApiResponse.body?.body?.id!!)
@@ -109,7 +116,10 @@ class OtpVM @Inject constructor(
                 }
                 else -> {
                     eventListener.dismissLoading()
-                    eventListener.showMessageDialog("Failed to Login")
+                    eventListener.showMessageDialog("Failed to Login",
+                    positiveClick = {
+                        eventListener.dismissMessageDialog()
+                    })
                 }
             }
         }

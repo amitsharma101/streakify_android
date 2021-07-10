@@ -30,82 +30,62 @@ class CommonRepository @Inject constructor(
     private val commonApiServices: CommonApiServices
 ) : ApiRequest() {
 
-    suspend fun getProfile(
-        authtoken: String,
-    ): NetworkResponse<GetProfileResponse> {
+    suspend fun getProfile(): NetworkResponse<GetProfileResponse> {
         return apiRequest {
-            commonApiServices.getProfile(
-                HEADER_PREFIX + authtoken
-            )
+            commonApiServices.getProfile()
         }
     }
 
     suspend fun updateProfile(
-        authtoken: String,
         updateProfileRequest: UpdateProfileRequest
     ): NetworkResponse<UpdateProfileResponse> {
         return apiRequest {
             commonApiServices.updateProfile(
-                HEADER_PREFIX + authtoken,
                 updateProfileRequest
             )
         }
     }
 
-    suspend fun getFriends(
-        authtoken: String
-    ): NetworkResponse<FriendsListResponse> {
+    suspend fun getFriends(): NetworkResponse<FriendsListResponse> {
         return apiRequest {
-            commonApiServices.getFriends(
-                HEADER_PREFIX + authtoken
-            )
+            commonApiServices.getFriends()
         }
     }
 
     suspend fun addFriend(
-        authtoken: String,
         addFriendRequest: AddFriendRequest
     ): NetworkResponse<AddFriendResponse> {
         return apiRequest {
             commonApiServices.addFriend(
-                HEADER_PREFIX + authtoken,
                 addFriendRequest
             )
         }
     }
 
     suspend fun actionFriendRequest(
-        authtoken: String,
         friendRequestActionRequest: FriendRequestActionRequest,
         id : String
     ): NetworkResponse<FriendRequestActionResponse> {
         return apiRequest {
             commonApiServices.actionFriendRequest(
-                HEADER_PREFIX + authtoken,
                 friendRequestActionRequest,
                 id
             )
         }
     }
 
-    suspend fun getStreaks(
-        authtoken: String
-    ): NetworkResponse<StreakListResponse> {
+    suspend fun getStreaks(): NetworkResponse<StreakListResponse> {
         return apiRequest {
-            commonApiServices.getStreaks(
-                HEADER_PREFIX + authtoken
-            )
+            commonApiServices.getStreaks()
         }
     }
 
     suspend fun punch(
-        authtoken: String,
         punchInRequest: PunchInRequest,
         id : String
     ): NetworkResponse<PunchResponse> {
         return apiRequest {
             commonApiServices.punch(
-                HEADER_PREFIX + authtoken,
                 punchInRequest,
                 id
             )
@@ -113,37 +93,31 @@ class CommonRepository @Inject constructor(
     }
 
     suspend fun createStreak(
-        authtoken: String,
         createStrealRequest : CreateStreakRequest
     ): NetworkResponse<CreateStreakResponse> {
         return apiRequest {
             commonApiServices.createStreak(
-                HEADER_PREFIX + authtoken,
                 createStrealRequest
             )
         }
     }
 
     suspend fun streakDetail(
-        authtoken: String,
         id : String
     ): NetworkResponse<StreakDetailResponse> {
         return apiRequest {
             commonApiServices.streakDetail(
-                HEADER_PREFIX + authtoken,
                 id
             )
         }
     }
 
     suspend fun updateStreak(
-        authtoken: String,
         updateStreakRequest: UpdateStreakRequest,
         id : String
     ): NetworkResponse<SuccessResponse> {
         return apiRequest {
             commonApiServices.updateStreak(
-                HEADER_PREFIX + authtoken,
                 updateStreakRequest,
                 id
             )

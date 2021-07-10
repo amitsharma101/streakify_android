@@ -54,13 +54,12 @@ class EditProfileVM @Inject constructor(
 
     fun updateProfile(){
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token ->
                 eventListener.showLoading()
                 val req = UpdateProfileRequest(
                     name = name.get(),
                     email = email.get()
                 )
-                when(commonRepository.updateProfile(token!!,req)){
+                when(commonRepository.updateProfile(req)){
                     is NetworkResponse.Success -> {
                         event.value = ProfileEvents.ProfileUpdatedEvent
                     }
@@ -68,7 +67,6 @@ class EditProfileVM @Inject constructor(
                         eventListener.dismissLoading()
                     }
                 }
-            }
         }
     }
 

@@ -16,7 +16,5 @@ interface AuthApiServices {
     suspend fun getToken(@Body getTokenRequest: GetTokenRequest): Response<GetTokenResponse>
 
     @GET("api/v1/users/profile")
-    suspend fun getProfile(
-        @Header("Authorization") authToken: String
-    ): Response<GetProfileResponse>
+    suspend fun getProfile(): Response<GetProfileResponse>
 }

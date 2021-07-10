@@ -22,13 +22,9 @@ class AuthRepository @Inject constructor(
     private val authApiServices: AuthApiServices
 ) : ApiRequest() {
 
-    suspend fun getProfile(
-        authtoken: String,
-    ): NetworkResponse<GetProfileResponse> {
+    suspend fun getProfile(): NetworkResponse<GetProfileResponse> {
         return apiRequest {
-            authApiServices.getProfile(
-                HEADER_PREFIX + authtoken
-            )
+            authApiServices.getProfile()
         }
     }
 

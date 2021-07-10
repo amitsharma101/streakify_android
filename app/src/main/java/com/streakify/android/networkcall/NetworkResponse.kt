@@ -12,11 +12,16 @@ sealed class NetworkResponse<out T : Any> {
     @Keep
     data class Success<out T : Any>(val body: T?) : NetworkResponse<T>()
 
+    @Keep
+    data class KnownError<out T : Any>(val body: T?) : NetworkResponse<T>()
+
     /**
      * Failure Response with Error Body
      */
     @Keep
     data class ApiError<out U : Any>(val body: U? = null, val error: ErrorModel, val code: Int) : NetworkResponse<U>()
+
+
 
     /**
      * Auth Error Response with Error Body

@@ -18,6 +18,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 import com.streakify.android.BuildConfig
 import com.streakify.android.commonrepo.CommonApiServices
+import com.streakify.android.networkcall.NetworkInterceptor
+import com.streakify.android.utils.LocalPreferences
 import com.streakify.android.view.home.onboarding.repo.AuthApiServices
 
 @Module
@@ -25,7 +27,7 @@ object NetworkModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun okHttpClient(context : Context): OkHttpClient {
+    fun okHttpClient(context : Context, localPreferences: LocalPreferences): OkHttpClient {
 
         val spec = ConnectionSpec.Builder(ConnectionSpec.COMPATIBLE_TLS)
             .tlsVersions(TlsVersion.TLS_1_2, TlsVersion.TLS_1_1, TlsVersion.TLS_1_0)
@@ -39,6 +41,7 @@ object NetworkModule {
         val okHttpClient = OkHttpClient.Builder()
             .connectTimeout(100, TimeUnit.SECONDS)
             .readTimeout(100, TimeUnit.SECONDS)
+            .addInterceptor(NetworkInterceptor(localPreferences))
             .addInterceptor(ChuckInterceptor(context))
             .addInterceptor(getHttpLoggingInterceptor())
             .build()

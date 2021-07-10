@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.streakify.android.view.home.contactlist.ContactListVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_48"
+        android:layout_marginEnd="@dimen/space_48">
+
+        <ImageView
+            android:id="@+id/contact_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_80"
+            android:background="@drawable/background_circle_blue_6"
+            android:padding="@dimen/space_24"
+            android:src="@drawable/ic_contact_phone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/permission_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_14"
+            android:fontFamily="@font/roboto_medium"
+            android:text="@string/contact_permission_string"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contact_image" />
+
+        <TextView
+            android:id="@+id/permission_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_14"
+            android:gravity="center"
+            android:text="@string/permission_setting_string"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/font_size_14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/permission_title" />
+
+        <TextView
+            android:id="@+id/permission_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20"
+            android:gravity="center"
+            android:text="@string/contact_permission_description"
+            android:textColor="@color/black_1"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/permission_setting" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/give_permission_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            android:backgroundTint="@color/blue_7"
+            android:paddingStart="@dimen/space_24"
+            android:paddingTop="@dimen/space_10"
+            android:paddingEnd="@dimen/space_24"
+            android:paddingBottom="@dimen/space_10"
+            android:text="@string/give_permission_string"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/permission_description"
+            android:onClick="@{() -> viewModel.onGivePermissionClick()}"/>
+
+        <TextView
+            android:id="@+id/skip_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_14"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/skip"
+            android:textColor="@color/blue_7"
+            android:textSize="@dimen/font_size_16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/give_permission_button"
+            android:onClick="@{() -> viewModel.onSkipClick()}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

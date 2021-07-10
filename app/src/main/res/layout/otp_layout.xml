@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -71,6 +72,7 @@
                 style="@style/TextViewStyle.MEDIUM"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
+                android:visibility="@{viewModel.resendVisibility}"
                 android:background="?android:selectableItemBackground"
                 android:padding="@dimen/_8sdp"
                 android:text="@string/otpresend"
@@ -82,16 +84,33 @@
                 app:layout_constraintTop_toBottomOf="@id/otp_view" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/otpdidnotreceive"
-                style="@style/TextViewStyle"
+                android:id="@+id/timer"
+                style="@style/TextViewStyle.MEDIUM"
+                android:layout_width="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:text="@string/otpdidnotreceive"
+                android:background="?android:selectableItemBackground"
+                android:padding="@dimen/_8sdp"
+                android:visibility="@{viewModel.timerVisibility}"
+                tools:text="0:30"
+                android:text="@{viewModel.timerString}"
                 android:textAlignment="center"
-                android:textSize="@dimen/_12ssp"
-                android:visibility="gone"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/colorPrimaryDark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/otp_view" />
+
+<!--            <androidx.appcompat.widget.AppCompatTextView-->
+<!--                android:id="@+id/otpdidnotreceive"-->
+<!--                style="@style/TextViewStyle"-->
+<!--                android:layout_marginTop="@dimen/_16sdp"-->
+<!--                android:text="@string/otpdidnotreceive"-->
+<!--                android:textAlignment="center"-->
+<!--                android:textSize="@dimen/_12ssp"-->
+<!--                android:visibility="gone"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@id/otp_view" />-->
 
 
             <com.google.android.material.button.MaterialButton

@@ -72,8 +72,7 @@ class EditStreakVM @Inject constructor(
         this.streakId = streakId
         viewModelScope.launch {
             eventListener.showLoading()
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect{token->
-                val apiResponse = commonRepository.getFriends(authtoken = token!!)
+                val apiResponse = commonRepository.getFriends()
                 when(apiResponse){
                     is NetworkResponse.Success -> {
                         eventListener.dismissLoading()
@@ -85,7 +84,7 @@ class EditStreakVM @Inject constructor(
                         }
                         else{
                             eventListener.showLoading()
-                            val currentStreakDetail = commonRepository.streakDetail(token!!,streakId.toString())
+                            val currentStreakDetail = commonRepository.streakDetail(streakId.toString())
                             when(currentStreakDetail){
                                 is NetworkResponse.Success -> {
                                     eventListener.dismissLoading()
@@ -136,7 +135,6 @@ class EditStreakVM @Inject constructor(
                         eventListener.dismissLoading()
                     }
                 }
-            }
         }
 
     }
@@ -168,7 +166,6 @@ class EditStreakVM @Inject constructor(
 
     fun save(){
         viewModelScope.launch {
-            localPreferences.readValue(LocalPreferences.AUTH_TOKEN).collect { token->
                 eventListener.showLoading()
 
                 if(streakId == null || streakId == -1){
@@ -185,7 +182,7 @@ class EditStreakVM @Inject constructor(
                         startDate = streakStartDate,
                         friends = friendsToAdd
                     )
-                    when(commonRepository.createStreak(token!!,saveStreakRequest)){
+                    when(commonRepository.createStreak(saveStreakRequest)){
                         is NetworkResponse.Success -> {
                             eventListener.dismissLoading()
                             eventListener.showMessageDialog("Saved Successfully",
@@ -210,7 +207,7 @@ class EditStreakVM @Inject constructor(
                         maxDuration = if(streakMaxDays.get().isNullOrBlank())0 else streakMaxDays.get()?.toInt(),
                         friendsRecord = frs
                     )
-                    val apiResponse = commonRepository.updateStreak(token!!,updateStreakRequest,streakId.toString())
+                    val apiResponse = commonRepository.updateStreak(updateStreakRequest,streakId.toString())
                     when(apiResponse){
                         is NetworkResponse.Success -> {
                             eventListener.dismissLoading()
@@ -226,8 +223,6 @@ class EditStreakVM @Inject constructor(
                     }
 
                 }
-
-            }
         }
     }
 

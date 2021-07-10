@@ -54,19 +54,31 @@
                 android:background="@drawable/rounded_rectangle_filled_white_grey_stroke"
                 app:layout_constraintTop_toBottomOf="@id/signinheading">
 
-                <com.google.android.material.textview.MaterialTextView
+                <com.hbb20.CountryCodePicker
                     android:id="@+id/ccp"
-                    style="@style/TextViewStyle.MEDIUM"
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingStart="@dimen/_8sdp"
                     android:paddingEnd="@dimen/_8sdp"
-                    android:text="@string/code_india"
-                    android:textColor="@color/colorDarkTextColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/phone_edit_text"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+<!--                <com.google.android.material.textview.MaterialTextView-->
+<!--                    android:id="@+id/ccp"-->
+<!--                    style="@style/TextViewStyle.MEDIUM"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:gravity="center"-->
+<!--                    android:paddingStart="@dimen/_8sdp"-->
+<!--                    android:paddingEnd="@dimen/_8sdp"-->
+<!--                    android:text="@string/code_india"-->
+<!--                    android:textColor="@color/colorDarkTextColor"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    app:layout_constraintEnd_toStartOf="@id/phone_edit_text"-->
+<!--                    app:layout_constraintStart_toStartOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone_edit_text"

@@ -7,4 +7,5 @@ import com.streakify.android.view.home.friends.firendslist.data.PendingFriendsIt
 sealed class FriendsEvent(val sendEvent: Boolean, val name: String) : Event(sendEvent, name){
     data class FriendsListFetchedEvent(val friendsList:List<ActiveFriendsItem?>?) : FriendsEvent(true, "FriendsListFetchedEvent")
     data class PendingFriendsListFetchedEvent(val pendingFriendsList:List<PendingFriendsItem?>?) : FriendsEvent(true, "PendingFriendsListFetchedEvent")
+    object FriendRequestSentEvent : FriendsEvent(true, "FriendRequestSentEvent")
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.streakify.android.view.home.contactlist.ContactListItemVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_border"
+        android:fillViewport="true"
+        android:padding="@dimen/_8sdp"
+        android:onClick="@{() -> viewModel.onContactSelected()}">
+
+        <ImageView
+            android:id="@+id/iv_title"
+            android:layout_width="40dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            app:shortText="@{viewModel.contact.name}"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title"
+            style="@style/TextViewStyle"
+            android:layout_marginEnd="@dimen/_12sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:textColor="@color/colorDarkTextColor"
+            app:layout_constraintStart_toEndOf="@id/iv_title"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="@{viewModel.contact.name}"
+            tools:text="Amit Sharma" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_phone"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:text="@{viewModel.contact.phone}"
+            tools:text="88890009980" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

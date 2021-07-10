@@ -116,6 +116,18 @@
         android:name="com.streakify.android.view.home.friends.addfriend.AddFriendFragment"
         android:label="@string/add_friend"
         tools:layout="@layout/add_friend_layout">
+
+        <action
+            android:id="@+id/action_addFriendFragment_to_friendListFragment"
+            app:destination="@id/friendsListFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpToInclusive="true"
+
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph.xml" />
+
     </fragment>
 
     <fragment
@@ -137,6 +149,13 @@
         android:name="com.streakify.android.view.home.friends.firendrequests.FriendRequestFragment"
         android:label="@string/friend_requests"
         tools:layout="@layout/friend_requests_layout">
+    </fragment>
+
+    <fragment
+        android:id="@+id/contactListFragment"
+        android:name="com.streakify.android.view.home.contactlist.ContactListFragment"
+        android:label="@string/add_friend"
+        tools:layout="@layout/fragment_contact_list">
     </fragment>
 
 

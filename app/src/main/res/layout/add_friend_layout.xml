@@ -15,29 +15,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_countycode"
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/country_code"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_16sdp"
-        style="@style/TextInputStyle"
+        android:layout_height="0dp"
+        android:gravity="center"
         android:layout_marginStart="@dimen/_16sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/country_code">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_country_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="+91"
-            android:focusable="false"
-            android:inputType="text"
-            android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-
+        app:layout_constraintEnd_toStartOf="@id/til_phone"
+        app:layout_constraintTop_toTopOf="@id/til_phone"
+        app:layout_constraintBottom_toBottomOf="@id/til_phone"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -48,7 +35,7 @@
         style="@style/TextInputStyle"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_16sdp"
-        app:layout_constraintStart_toEndOf="@id/til_countycode"
+        app:layout_constraintStart_toEndOf="@id/country_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:hint="@string/phone">
@@ -70,7 +57,6 @@
         android:text="@string/send_friend_request"
         android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
         app:layout_constraintEnd_toEndOf="parent"
-        android:onClick="@{()->viewModel.sendFriendRequest()}"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="@dimen/_16sdp"
         android:layout_marginEnd="@dimen/_16sdp"

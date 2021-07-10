@@ -35,5 +35,22 @@
     <color name="resend_code">#989898</color>
     <color name="text_blue">#0072ea</color>
     <color name="colorLightBackground">#F3F3F3</color>
+    <color name="colorReportBackground">#434E5B</color>
+    <color name="black_1">#18181C</color>
+
+    <color name="blue_1">#E3F0FF</color>
+    <color name="blue_2">#3788ea</color>
+    <color name="blue_3">#186fd9</color>
+    <color name="blue_4">#0752ad</color>
+    <color name="blue_5">#04408a</color>
+    <color name="blue_6">#C2DEFE</color>
+    <color name="blue_7">#2053A7</color>
+
+    <array name="customerMaterialColors">
+        <item>@color/blue_2</item>
+        <item>@color/blue_3</item>
+        <item>@color/blue_4</item>
+        <item>@color/blue_5</item>
+    </array>
 
 </resources>

@@ -59,7 +59,7 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
     /** Set Observers to capture actions */
     private fun bindObservers() {
         binding.addFriend.setOnClickListener {
-            findNavController().navigate(R.id.addFriendFragment)
+            findNavController().navigate(R.id.contactListFragment)
         }
         binding.seeAll.setOnClickListener{
             findNavController().navigate(R.id.friendRequestFragment)
