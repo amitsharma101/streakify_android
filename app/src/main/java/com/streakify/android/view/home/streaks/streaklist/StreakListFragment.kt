@@ -90,8 +90,24 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
     override fun handleEvent(event: Event) {
         when(event){
             is StreaksEvent.StreakListFetchedEvent -> {
+
+                val (punchesInList,punchedOutList) = event.streakList!!.partition { it?.punchIn == true }
+                val mergedList = mutableListOf<StreaksItem>()
+
+                punchedOutList.forEach {
+                    if (it != null) {
+                        mergedList.add(it)
+                    }
+                }
+                punchesInList.forEach {
+                    if (it != null) {
+                        mergedList.add(it)
+                    }
+                }
+
+
                 val streaksList = mutableListOf<StreakListItemVM>()
-                event.streakList?.forEach {
+                mergedList.forEach {
                     streaksList.add(StreakListItemVM(it,resourceProvider,this))
                 }
                 adapter.items = streaksList
