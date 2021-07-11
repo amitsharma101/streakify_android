@@ -11,4 +11,5 @@ sealed class StreaksEvent(val sendEvent: Boolean, val name: String) : Event(send
     object FriendAddedEvent :StreaksEvent(false,"FriendAddedEvent")
     data class StreakDetailParticipantsFetched(val participants: List<ParticipantsItem?>?): StreaksEvent(false,"StreakDetailParticipantsFetched")
     data class DefinitePercentage(val per: Float): StreaksEvent(false,"DefinitePercentage")
+    object StreakDeleted :StreaksEvent(false,"StreakDeleted")
 }

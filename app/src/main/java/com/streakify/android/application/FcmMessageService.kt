@@ -12,13 +12,24 @@ import androidx.core.app.NotificationCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.streakify.android.R
+import com.streakify.android.utils.LocalPreferences
 import com.streakify.android.utils.Logger
 import com.streakify.android.view.activity.MainActivity
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class FcmMessageService : FirebaseMessagingService() {
 
+    var localPreferences: LocalPreferences = LocalPreferences(App.getApplicationContext()!!)
+
     override fun onNewToken(token: String) {
         Logger.log(TAG, "Refreshed token: $token")
+        CoroutineScope(Dispatchers.IO).launch {
+            localPreferences.storeValue(LocalPreferences.FCM_TOKEN,token)
+        }
+
         // If required send token to your app server.
 //        sendRegistrationToServer(token)
     }

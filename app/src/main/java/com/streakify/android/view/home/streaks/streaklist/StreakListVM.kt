@@ -6,9 +6,11 @@ import com.streakify.android.commonrepo.CommonRepository
 import com.streakify.android.di.provider.ResourceProvider
 import com.streakify.android.networkcall.NetworkResponse
 import com.streakify.android.utils.LocalPreferences
+import com.streakify.android.utils.Logger
 import com.streakify.android.utils.network.NetworkLiveData
 import com.streakify.android.view.dialog.common.EventListener
 import com.streakify.android.view.home.onboarding.repo.AuthRepository
+import com.streakify.android.view.home.profile.data.SendFcmTokenRequest
 import com.streakify.android.view.home.streaks.StreaksEvent
 import com.streakify.android.view.home.streaks.streaklist.data.PunchInRequest
 import com.streakify.android.view.home.streaks.streaklist.data.StreaksItem
@@ -22,7 +24,8 @@ class StreakListVM @Inject constructor(
     val eventListener: EventListener,
     val commonRepository: CommonRepository,
     private val resourceProvider: ResourceProvider,
-    val localPreferences: LocalPreferences
+    val localPreferences: LocalPreferences,
+    val authRepository: AuthRepository
 ) : BaseViewModel(networkLiveData) {
 
 
@@ -83,6 +86,15 @@ class StreakListVM @Inject constructor(
                         eventListener.dismissLoading()
                     }
                 }
+        }
+    }
+
+    fun sendFcmToken(token:String){
+        viewModelScope.launch {
+//            localPreferences.readValue(LocalPreferences.FCM_TOKEN).collect {
+                Logger.log("Sending FCM Token",token)
+                val apiResponse = authRepository.sendFcmToken(SendFcmTokenRequest(token))
+//            }
         }
     }
 

@@ -17,26 +17,26 @@
 
         <ImageView
             android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
             android:layout_marginStart="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_16sdp"
-            android:src="@drawable/ic_cross_24"
+            android:src="@drawable/ic__back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/red" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/delete"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:visibility="@{viewModel.deleteIconVisibility}"
+            android:onClick="@{() -> viewModel.deleteStreak()}"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:onClick="@{()->viewModel.save()}"
-            android:src="@drawable/ic_check_24"
+            android:src="@drawable/chuck_ic_delete_white_24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/green" />
+            app:tint="@color/red" />
 
         <!--    <androidx.core.widget.NestedScrollView-->
         <!--        android:layout_width="match_parent"-->
@@ -50,7 +50,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/save">
+            app:layout_constraintTop_toBottomOf="@id/cancel">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/streaktypelayout"
@@ -256,6 +256,20 @@
                 app:layout_constraintTop_toBottomOf="@id/friends"
                 tools:itemCount="2"
                 tools:listitem="@layout/edit_streak_friend" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save_btn"
+                style="@style/ButtonStyle"
+                android:text="@string/save"
+                android:onClick="@{()->viewModel.save()}"
+                android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/_16sdp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--    </androidx.core.widget.NestedScrollView>-->

@@ -95,6 +95,7 @@ class LocalPreferences @Inject constructor(context: Context) {
         val AUTH_TOKEN = preferencesKey<String>("AUTH_TOKEN")
         val REFRESH_TOKEN = preferencesKey<String>("REFRESH_TOKEN")
         val FIREBASE_TOKEN = preferencesKey<String>("FIREBASE_TOKEN")
+        val FCM_TOKEN = preferencesKey<String>("FCM_TOKEN")
         val USER_ID = preferencesKey<Int>("USER_ID")
     }
 

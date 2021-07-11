@@ -1,27 +1,23 @@
 package com.streakify.android.view.activity
 
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.onNavDestinationSelected
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.FirebaseMessaging
 import com.streakify.android.R
 import com.streakify.android.application.App
 import com.streakify.android.databinding.ActivityMainBinding
-import com.streakify.android.utils.Logger
 import com.streakify.android.view.binding.snackBarMessage
 import com.streakify.android.view.binding.visibleOrGone
 import com.streakify.android.view.dialog.view.bindTextAndActions
@@ -29,6 +25,7 @@ import com.streakify.android.view.dialog.view.show
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
+
 
 class MainActivity : DaggerAppCompatActivity() {
 
@@ -78,6 +75,7 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
             }
         }
+
         bindViews()
     }
 

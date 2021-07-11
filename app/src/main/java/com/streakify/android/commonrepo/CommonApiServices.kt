@@ -77,4 +77,9 @@ interface CommonApiServices {
         @Path("id") id : String
     ): Response<SuccessResponse>
 
+    @DELETE("api/v1/streaks/streaks/{id}")
+    suspend fun deleteStreak(
+        @Path("id") id : String
+    ): Response<SuccessResponse>
+
 }

@@ -95,6 +95,18 @@
         android:name="com.streakify.android.view.home.streaks.editstreak.EditStreakFragment"
         android:label=""
         tools:layout="@layout/edit_streak_layout">
+
+        <action
+            android:id="@+id/action_editStreakFragment_to_streakListFragment"
+            app:destination="@id/streakListFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpToInclusive="true"
+
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph.xml" />
+
     </fragment>
 
     <fragment

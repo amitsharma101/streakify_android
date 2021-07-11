@@ -57,6 +57,7 @@ class EditStreakVM @Inject constructor(
     val sdf = SimpleDateFormat(AppConstants.APP_DATE_FORMAT)
 
 
+
     val streakName = ObservableField("")
     val streakType = ObservableInt(AppConstants.STREAK_TYPE_INDEFINITE).apply {
         addPropertyChangedCallback {
@@ -71,7 +72,9 @@ class EditStreakVM @Inject constructor(
 
     val setGoalVisibility = ObservableInt(View.GONE)
 
-    val streakStartDate = sdf.format(Date())
+    var streakStartDate = sdf.format(Date())
+
+    val deleteIconVisibility = ObservableInt(View.GONE)
 
     init {
 
@@ -84,6 +87,10 @@ class EditStreakVM @Inject constructor(
     var streakId: Int? = null
 
     fun onAttach(streakId: Int?) {
+
+        sdf.timeZone = TimeZone.getTimeZone("IST")
+        streakStartDate = sdf.format(Date())
+
         this.streakId = streakId
         viewModelScope.launch {
             eventListener.showLoading()
@@ -95,8 +102,9 @@ class EditStreakVM @Inject constructor(
 
 
                     if (streakId == null || streakId == -1) {
-
+                        deleteIconVisibility.set(View.GONE)
                     } else {
+                        deleteIconVisibility.set(View.VISIBLE)
                         eventListener.showLoading()
                         val currentStreakDetail = commonRepository.streakDetail(streakId.toString())
                         when (currentStreakDetail) {
@@ -287,6 +295,52 @@ class EditStreakVM @Inject constructor(
                 }
             }
 
+        }
+    }
+
+    fun deleteStreak(){
+        if (streakId != null || streakId != -1) {
+            eventListener.showMessageDialog(
+                title = "Streakify",
+                message = "Are you sure you want to delete the streak",
+                positiveClickTitle = "Yes",
+                negativeClickTitle = "No",
+                positiveClick = {
+                    eventListener.dismissMessageDialog()
+                    eventListener.showLoading()
+                    viewModelScope.launch {
+                        val apiResponse = commonRepository.deleteStreak(streakId.toString())
+                        when(apiResponse){
+                            is NetworkResponse.Success -> {
+                                eventListener.dismissLoading()
+
+                                eventListener.showMessageDialog(
+                                    title = "Streakify",
+                                    message = "Streak deleted successfully",
+                                    positiveClick = {
+                                        eventListener.dismissMessageDialog()
+                                        event.value = StreaksEvent.StreakDeleted
+                                    }
+                                )
+                            }
+                            is NetworkResponse.ApiError -> {
+                                eventListener.dismissLoading()
+                                eventListener.showMessageDialog(apiResponse.error?.detail,
+                                    "Oops",
+                                    positiveClick = {
+                                        eventListener.dismissMessageDialog()
+                                    })
+                            }
+                            else -> {
+                                eventListener.dismissLoading()
+                            }
+                        }
+                    }
+                },
+                negativeClick = {
+                    eventListener.dismissMessageDialog()
+                }
+            )
         }
     }
 

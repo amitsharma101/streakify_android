@@ -6,11 +6,15 @@ import com.streakify.android.base.BaseModel
 import com.streakify.android.commonrepo.HEADER_PREFIX
 import com.streakify.android.networkcall.ApiRequest
 import com.streakify.android.networkcall.NetworkResponse
+import com.streakify.android.networkcall.SuccessResponse
 import com.streakify.android.utils.LocalPreferences
+import com.streakify.android.view.home.launcher.UpdateCheckerRequest
+import com.streakify.android.view.home.launcher.UpdateCheckerResponse
 import com.streakify.android.view.home.onboarding.data.GetTokenRequest
 import com.streakify.android.view.home.onboarding.data.GetTokenResponse
 import com.streakify.android.view.home.onboarding.data.LoginModel
 import com.streakify.android.view.home.profile.data.GetProfileResponse
+import com.streakify.android.view.home.profile.data.SendFcmTokenRequest
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -31,6 +35,14 @@ class AuthRepository @Inject constructor(
     /** Check Login Data */
     suspend fun getToken(getTokenRequest: GetTokenRequest): NetworkResponse<GetTokenResponse> {
         return apiRequest { authApiServices.getToken(getTokenRequest) }
+    }
+
+    suspend fun sendFcmToken(sendFcmTokenRequest: SendFcmTokenRequest): NetworkResponse<SuccessResponse> {
+        return apiRequest { authApiServices.sendFcmToken(sendFcmTokenRequest) }
+    }
+
+    suspend fun checkForUpdates(checkForUpdateRequest : UpdateCheckerRequest): NetworkResponse<UpdateCheckerResponse> {
+        return apiRequest { authApiServices.getToken(checkForUpdateRequest) }
     }
 
     /** Read Auth Token from DataStore */
@@ -69,6 +81,7 @@ class AuthRepository @Inject constructor(
         localPreferences.resetValue(LocalPreferences.AUTH_TOKEN, "")
         localPreferences.resetValue(LocalPreferences.REFRESH_TOKEN, "")
         localPreferences.resetValue(LocalPreferences.FIREBASE_TOKEN, "")
+        localPreferences.resetValue(LocalPreferences.FCM_TOKEN, "")
         localPreferences.resetValue(LocalPreferences.USER_ID, -1)
     }
 }

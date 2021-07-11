@@ -9,5 +9,8 @@ class AppConstants {
         const val REJECT_FRIEND_REQUEST = 2
 
         const val APP_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+
+        const val UPDATE_TYPE_FORCE = 0
+        const val UPDATE_TYPE_FLEXIBLE = 1
     }
 }

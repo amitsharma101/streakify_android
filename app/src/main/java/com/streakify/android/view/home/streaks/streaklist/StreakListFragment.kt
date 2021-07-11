@@ -59,6 +59,7 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
 
             // Log and toast
             val msg = getString(R.string.msg_token_fmt, token)
+            viewModel.sendFcmToken(token)
             Log.d(TAG, msg)
         })
 

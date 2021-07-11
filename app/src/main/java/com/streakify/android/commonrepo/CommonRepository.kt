@@ -135,4 +135,14 @@ class CommonRepository @Inject constructor(
             )
         }
     }
+
+    suspend fun deleteStreak(
+        id: String
+    ): NetworkResponse<SuccessResponse> {
+        return apiRequest {
+            commonApiServices.deleteStreak(
+                id
+            )
+        }
+    }
 }

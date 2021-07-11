@@ -16,3 +16,10 @@ data class UpdateProfileRequest(
 	@field:SerializedName("email")
 	val email: String? = null
 ) : Parcelable
+
+@Parcelize
+data class SendFcmTokenRequest(
+
+	@field:SerializedName("device_token")
+	val fcmToken: String? = null
+) : Parcelable

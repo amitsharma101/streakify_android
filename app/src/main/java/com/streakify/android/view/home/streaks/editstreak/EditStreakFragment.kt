@@ -167,6 +167,9 @@ class EditStreakFragment : BaseFragment<EditStreakLayoutBinding, EditStreakVM>()
                 adapter.items = adapterItems
                 adapter.notifyDataSetChanged()
             }
+            is StreaksEvent.StreakDeleted -> {
+                findNavController().navigate(R.id.action_editStreakFragment_to_streakListFragment)
+            }
         }
     }
 
