@@ -53,6 +53,13 @@
                     android:id="@+id/add_friend"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
+                    android:paddingStart="@dimen/_16sdp"
+                    android:paddingEnd="@dimen/_16sdp"
+
+                    app:backgroundTint="@color/colorPrimary"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:text="@string/add_friend"
