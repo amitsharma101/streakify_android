@@ -9,6 +9,7 @@ plugins {
     /** For Kotlin Annotation Processor */
     id "kotlin-kapt"
     id "com.google.gms.google-services"
+    id 'com.google.firebase.crashlytics'
 }
 
 static def getCurrentDateTime() {
@@ -17,6 +18,14 @@ static def getCurrentDateTime() {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/home/amit/streakify_creds/streakify.jks')
+            storePassword 'streakify69'
+            keyAlias 'streakify'
+            keyPassword 'streakify69'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -84,6 +93,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.firebase:firebase-messaging-ktx:22.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-ktx:18.1.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

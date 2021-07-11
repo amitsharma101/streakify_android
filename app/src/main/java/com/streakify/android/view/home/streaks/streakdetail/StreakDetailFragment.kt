@@ -1,5 +1,6 @@
 package com.streakify.android.view.home.streaks.streakdetail
 
+import android.view.View
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.streakify.android.R
@@ -78,6 +79,14 @@ class StreakDetailFragment : BaseFragment<StreakDetailFragmentBinding, StreakDet
                 }
                 adapter.items = adapterList
                 adapter.notifyDataSetChanged()
+
+
+                if(participants.isNullOrEmpty()){
+                    binding.emptyStateLayout.visibility = View.VISIBLE
+                }
+                else{
+                    binding.emptyStateLayout.visibility = View.GONE
+                }
             }
             is StreaksEvent.DefinitePercentage -> {
                 binding.progress.setProgress(event.per.toInt())
