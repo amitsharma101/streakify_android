@@ -89,4 +89,7 @@
     <string name="share_using">Share using</string>
     <string name="join_me_in_building_grate_habits">Join me in building grate habits</string>
     <string name="join_streakify">Join this  really cool habit building app with me.</string>
+    <string name="no_streaks">You do not have any streaks. Add your first.</string>
+    <string name="no_active_friends">You have no active friends. Add your first friend by sending them a friend request</string>
+    <string name="no_requests">You don\'t have any friend requests</string>
 </resources>

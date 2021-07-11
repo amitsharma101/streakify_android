@@ -1,6 +1,7 @@
 package com.streakify.android.view.home.streaks.streaklist
 
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -95,6 +96,13 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
                 }
                 adapter.items = streaksList
                 adapter.notifyDataSetChanged()
+
+                if(streaksList.isEmpty()){
+                    binding.emptyStateLayout.visibility = View.VISIBLE
+                }
+                else{
+                    binding.emptyStateLayout.visibility = View.GONE
+                }
 
                 binding.swipeLayout.isRefreshing = false
             }

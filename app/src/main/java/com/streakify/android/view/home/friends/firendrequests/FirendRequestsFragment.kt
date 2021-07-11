@@ -1,5 +1,6 @@
 package com.streakify.android.view.home.friends.firendrequests
 
+import android.view.View
 import com.streakify.android.R
 import com.streakify.android.application.AppConstants
 import com.streakify.android.base.BaseFragment
@@ -75,6 +76,13 @@ class FriendRequestFragment : BaseFragment<FriendRequestsLayoutBinding, FriendRe
                 }
                 adapterFriendRequests.items = pendingFriendsListAdapter
                 adapterFriendRequests.notifyDataSetChanged()
+
+                if(pendingFriends.isNullOrEmpty()){
+                    binding.emptyStateLayout.visibility = View.VISIBLE
+                }
+                else{
+                    binding.emptyStateLayout.visibility = View.GONE
+                }
 
                 binding.swipeLayout.isRefreshing = false
             }

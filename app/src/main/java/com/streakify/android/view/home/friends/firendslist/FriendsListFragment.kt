@@ -76,6 +76,13 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
                 adapterFriends.items = friendsListAdapter
                 adapterFriends.notifyDataSetChanged()
 
+                if(friends?.isNullOrEmpty() == true){
+                    binding.emptyStateLayout.visibility = View.VISIBLE
+                }
+                else{
+                    binding.emptyStateLayout.visibility = View.GONE
+                }
+
                 binding.swipeLayout.isRefreshing = false
             }
         }
