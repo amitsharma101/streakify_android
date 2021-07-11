@@ -20,8 +20,8 @@
 
         <ImageView
             android:id="@+id/iv_title"
-            android:layout_width="40dp"
-            android:layout_height="45dp"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             app:shortText="@{viewModel.contact.name}"
             android:gravity="center"
@@ -46,7 +46,6 @@
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_marginBottom="@dimen/_4sdp"
-            android:layout_marginStart="@dimen/_4sdp"
             android:textSize="@dimen/_12ssp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_title"

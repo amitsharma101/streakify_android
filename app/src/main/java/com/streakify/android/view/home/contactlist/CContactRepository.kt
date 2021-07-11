@@ -31,7 +31,6 @@ class CContactRepository @Inject constructor(private val context: Context) : Con
                         null,
                         null,
                         ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC"
-//                        ContactsContract.CommonDataKinds.Phone.CONTACT_LAST_UPDATED_TIMESTAMP + " ASC"
                     )
                 } catch (e: SecurityException) {
                     Logger.log(e.message.toString())

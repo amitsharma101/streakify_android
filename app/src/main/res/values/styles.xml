@@ -127,12 +127,13 @@
         <item name="android:queryHint">Search...</item>
         <item name="android:queryBackground">@android:color/transparent</item>
         <item name="android:background">@drawable/rounded_rectangle_filled_grey_stroke</item>
-        <item name="android:textColorHint">#666666</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+
     </style>
 
     <style name="AddPartySearch" parent="ThemeOverlay.AppCompat.Dark">
-        <item name="android:textColorHint">@android:color/white</item>
-        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:textColorHint">@color/colorPrimary</item>
+        <item name="android:editTextColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="customTabText" parent="TextAppearance.Design.Tab">
