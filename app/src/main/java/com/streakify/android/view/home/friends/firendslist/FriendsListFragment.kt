@@ -58,7 +58,9 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
-
+        binding.swipeLayout.setOnRefreshListener {
+            viewModel.onAttach()
+        }
     }
 
     override fun handleEvent(event: Event) {
@@ -73,6 +75,8 @@ class FriendsListFragment : BaseFragment<FriendsListLayoutBinding, FriendsListVM
                 }
                 adapterFriends.items = friendsListAdapter
                 adapterFriends.notifyDataSetChanged()
+
+                binding.swipeLayout.isRefreshing = false
             }
         }
     }

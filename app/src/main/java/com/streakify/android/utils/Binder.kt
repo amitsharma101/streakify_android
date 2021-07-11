@@ -48,6 +48,16 @@ object Binder {
             .into(view)
     }
 
+    @JvmStatic
+    @BindingAdapter(value = ["app:loadProfileImage"], requireAll = true)
+    fun loadProfileImage(view: ImageView, url: String?) {
+        Glide.with(view.context)
+            .load(url)
+            .apply( RequestOptions().placeholder(R.drawable.ic_robot)
+                .error(R.drawable.ic_robot))
+            .into(view)
+    }
+
     private fun getBitmap(context: Context, name: String, isSupplier: Boolean): Bitmap {
         val textDrawer = ImageHelper.getTextDrawer(name, 2, context, isSupplier)
         val size = context.resources.getDimension(R.dimen.size_40).toInt()

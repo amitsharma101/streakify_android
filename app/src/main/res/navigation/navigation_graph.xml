@@ -102,6 +102,18 @@
         android:name="com.streakify.android.view.home.profile.ProfileDetailFragment"
         android:label="@string/profile"
         tools:layout="@layout/profile_detail_fragment">
+
+        <action
+            android:id="@+id/action_profileDetailFragment_to_splashFragment"
+            app:destination="@id/splashFragment"
+            app:enterAnim="@anim/fade_in"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"
+            app:popUpToInclusive="true"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/navigation_graph.xml" />
+
+
     </fragment>
 
     <fragment

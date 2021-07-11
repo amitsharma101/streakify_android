@@ -85,4 +85,8 @@
     <string name="select_proper_file">Please Select Proper File</string>
     <string name="select_lesser_file">Please Select less than 20 MB Image</string>
     <string name="msg_token_fmt">"FCM Token : %1$s"</string>
+    <string name="share_subject">Share subject</string>
+    <string name="share_using">Share using</string>
+    <string name="join_me_in_building_grate_habits">Join me in building grate habits</string>
+    <string name="join_streakify">Join this  really cool habit building app with me.</string>
 </resources>

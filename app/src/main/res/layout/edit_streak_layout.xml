@@ -32,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_16sdp"
+            android:onClick="@{()->viewModel.save()}"
             android:src="@drawable/ic_check_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -255,22 +256,6 @@
                 app:layout_constraintTop_toBottomOf="@id/friends"
                 tools:itemCount="2"
                 tools:listitem="@layout/edit_streak_friend" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/save_btn"
-                style="@style/ButtonStyle"
-                android:layout_marginStart="@dimen/_16sdp"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:layout_marginEnd="@dimen/_16sdp"
-                android:layout_marginBottom="@dimen/_16sdp"
-                android:background="@drawable/rounded_rectangle_filled_blue_darkblue_stroke"
-                android:onClick="@{()->viewModel.save()}"
-                android:text="@string/save"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <!--    </androidx.core.widget.NestedScrollView>-->

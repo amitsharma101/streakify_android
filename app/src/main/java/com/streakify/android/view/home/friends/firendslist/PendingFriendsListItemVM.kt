@@ -10,6 +10,9 @@ class PendingFriendsListItemVM constructor(
     val listener : FriendRequestAction
 ) : ViewModel {
 
+    val displayNumber = pendingFriend.countryCode + pendingFriend.mobileNumber
+    val displayName = if(pendingFriend.name.isNullOrEmpty())displayNumber else pendingFriend.name
+
     fun acceptRequest(){
         listener.accept(pendingFriend)
     }

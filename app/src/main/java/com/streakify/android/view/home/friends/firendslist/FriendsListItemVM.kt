@@ -9,6 +9,9 @@ class FriendsListItemVM constructor(
     val listener:FriendsListInterface
 ) : ViewModel {
 
+    val displayNumber = activeFriend.countryCode + activeFriend.mobileNumber
+    val displyName = if(activeFriend.name.isNullOrBlank())displayNumber else activeFriend.name
+
     fun removeFriend(activeFriend : ActiveFriendsItem){
         listener.onFriendRemove(activeFriend)
     }

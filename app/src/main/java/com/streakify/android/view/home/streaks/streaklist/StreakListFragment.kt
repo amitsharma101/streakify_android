@@ -78,6 +78,9 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
 
     /** Set Observers to capture actions */
     private fun bindObservers() {
+        binding.swipeLayout.setOnRefreshListener {
+            viewModel.onAttach()
+        }
         binding.addGoal.setOnClickListener {
             findNavController().navigate(R.id.editStreakFragment)
         }
@@ -92,6 +95,8 @@ class StreakListFragment : BaseFragment<FragmentStreaksBinding, StreakListVM>(),
                 }
                 adapter.items = streaksList
                 adapter.notifyDataSetChanged()
+
+                binding.swipeLayout.isRefreshing = false
             }
         }
     }

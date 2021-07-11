@@ -4,5 +4,6 @@ import com.streakify.android.utils.livedata.Event
 
 sealed class ProfileEvents(val sendEvent: Boolean, val name: String) : Event(sendEvent, name){
     object ProfileUpdatedEvent : ProfileEvents(false, "ProfileUpdatedEvent")
+    object LogoutEvent : ProfileEvents(false, "LogoutEvent")
     data class ProfilePicEvent(val imgUrl:String?) : ProfileEvents(false, "ProfilePicEvent")
 }

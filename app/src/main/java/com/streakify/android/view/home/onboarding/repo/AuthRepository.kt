@@ -64,4 +64,11 @@ class AuthRepository @Inject constructor(
     suspend fun resetAuthToken() {
         return localPreferences.resetValue(LocalPreferences.AUTH_TOKEN, "")
     }
+
+    suspend fun logout(){
+        localPreferences.resetValue(LocalPreferences.AUTH_TOKEN, "")
+        localPreferences.resetValue(LocalPreferences.REFRESH_TOKEN, "")
+        localPreferences.resetValue(LocalPreferences.FIREBASE_TOKEN, "")
+        localPreferences.resetValue(LocalPreferences.USER_ID, -1)
+    }
 }

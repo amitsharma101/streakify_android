@@ -38,6 +38,7 @@ class FcmMessageService : FirebaseMessagingService() {
         if (remoteMessage.data.isNotEmpty()){
             val extras = Bundle()
             for ((key, value) in remoteMessage.data) {
+                Logger.log(TAG,"Key : "+key+"Value : "+value)
                 extras.putString(key, value)
             }
             if(extras.containsKey("message") && !extras.getString("message").isNullOrBlank()) {

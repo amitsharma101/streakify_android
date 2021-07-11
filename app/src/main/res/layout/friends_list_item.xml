@@ -28,25 +28,34 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_height="wrap_content"
         android:padding="@dimen/_8sdp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="@dimen/_65sdp"
-            android:layout_height="@dimen/_65sdp"
-            android:src="@drawable/ic_profile"
-            app:civ_border_width="@dimen/_2sdp"
-            app:civ_border_color="@color/colorBlack"
+        <FrameLayout
+            android:id="@+id/fl_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="4dp"
+            android:background="@drawable/circle_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_image"
+            app:loadProfileImage="@{data.activeFriend.profilePic}"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_robot" />
+
+
+        </FrameLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/ll_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="@id/profile_image"
-            app:layout_constraintBottom_toBottomOf="@id/profile_image"
-            app:layout_constraintStart_toEndOf="@id/profile_image"
+            app:layout_constraintTop_toTopOf="@id/fl_image"
+            app:layout_constraintBottom_toBottomOf="@id/fl_image"
+            app:layout_constraintStart_toEndOf="@id/fl_image"
             android:layout_marginStart="@dimen/_8sdp"
             app:layout_constraintEnd_toStartOf="@id/remove_friend"
             android:layout_marginEnd="@dimen/_8sdp">
@@ -60,8 +69,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 android:singleLine="true"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_16ssp"
-                android:text="@{data.activeFriend.name}"
-                android:layout_marginStart="@dimen/_8sdp" />
+                android:text="@{data.displyName}" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/number"
@@ -72,8 +80,7 @@ xmlns:tools="http://schemas.android.com/tools">
                 tools:text="+919876543210"
                 android:textColor="@color/colorBlack"
                 android:textSize="@dimen/_12ssp"
-                android:text="@{data.activeFriend.mobileNumber}"
-                android:layout_marginStart="@dimen/_8sdp" />
+                android:text="@{data.displayNumber}" />
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -92,12 +99,9 @@ xmlns:tools="http://schemas.android.com/tools">
             android:paddingBottom="@dimen/_4sdp"
             android:id="@+id/remove_friend"
             android:text="@string/remove_friend"
-            app:layout_constraintTop_toTopOf="@id/profile_image"
-            app:layout_constraintBottom_toBottomOf="@id/profile_image"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="@dimen/_8sdp"
-
-            />
+            app:layout_constraintTop_toTopOf="@id/fl_image"
+            app:layout_constraintBottom_toBottomOf="@id/fl_image"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
 
