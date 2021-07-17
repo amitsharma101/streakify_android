@@ -38,7 +38,8 @@
         app:layout_constraintStart_toEndOf="@id/country_code"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/phone">
+        android:hint="@string/phone"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_phone"

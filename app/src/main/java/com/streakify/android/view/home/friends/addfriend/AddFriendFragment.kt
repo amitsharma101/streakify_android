@@ -8,6 +8,7 @@ import com.streakify.android.base.adapter.ItemClickListener
 import com.streakify.android.databinding.AddFriendLayoutBinding
 import com.streakify.android.databinding.FriendsListLayoutBinding
 import com.streakify.android.di.provider.ResourceProvider
+import com.streakify.android.utils.Util
 import com.streakify.android.utils.livedata.Event
 import com.streakify.android.view.home.friends.FriendsEvent
 import com.streakify.android.view.home.friends.firendslist.FriendsListItemVM
@@ -60,6 +61,7 @@ class AddFriendFragment : BaseFragment<AddFriendLayoutBinding, AddFriendVM>(),
     /** Set Observers to capture actions */
     private fun bindObservers() {
         binding.send.setOnClickListener {
+            if(validateNumber())
             viewModel.sendFriendRequest("+"+binding.countryCode.selectedCountryCode,binding.etPhone.text.toString())
         }
 
@@ -70,6 +72,22 @@ class AddFriendFragment : BaseFragment<AddFriendLayoutBinding, AddFriendVM>(),
                 }
             }
         })
+    }
+
+    private fun validateNumber(): Boolean {
+        val text = viewModel.phone.get()
+
+        if(text.isNullOrEmpty()){
+            binding.tilPhone.error = resourceProvider.getString(R.string.phone_number_cannot_be_empty)
+            return false
+        }
+
+        if(Util.trim(text).contains(Regex("[^0-9]"))){
+            binding.tilPhone.error = resourceProvider.getString(R.string.error_invalid_phone_number)
+            return false
+        }
+
+        return true
     }
 
     override fun handleEvent(event: Event) {
