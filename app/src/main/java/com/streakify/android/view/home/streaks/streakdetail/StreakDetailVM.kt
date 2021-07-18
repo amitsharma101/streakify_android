@@ -47,7 +47,7 @@ class StreakDetailVM @Inject constructor(
 
     val editButtonVisibility = ObservableInt(View.GONE)
 
-    var streakDetails: Body? = null
+    var streakDetails = ObservableField<Body>()
 
     init {
 
@@ -63,7 +63,7 @@ class StreakDetailVM @Inject constructor(
                             eventListener.dismissLoading()
 
                             val res = apiResponse.body?.body
-                            streakDetails = res
+                            streakDetails.set(res)
 
                             streakName.set(res?.name)
 
@@ -88,14 +88,14 @@ class StreakDetailVM @Inject constructor(
                             }
 
 
-                            val myStreakData = Calculator.getStreakData(meAsPar?.startDate,streakDetails?.type!!,streakDetails?.maxDuration?:0,meAsPar?.punchIn!!)
+                            val myStreakData = Calculator.getStreakData(meAsPar?.startDate,streakDetails.get()?.type!!,streakDetails.get()?.maxDuration?:0,meAsPar?.punchIn!!)
                             val days = myStreakData.daysFinished
                             val streakPercentage : Float = myStreakData.percentage
 
-                            val ds = when(streakDetails?.type){
+                            val ds = when(streakDetails.get()?.type){
                                 AppConstants.STREAK_TYPE_DEFINITE -> {
                                     resourceProvider.getString(R.string.x_of_ydays_streak,days.toString(),
-                                        streakDetails!!.maxDuration.toString())
+                                        streakDetails.get()!!.maxDuration.toString())
                                 }
                                 AppConstants.STREAK_TYPE_INDEFINITE -> {
                                     resourceProvider.getString(R.string.x_days_streak,days.toString())

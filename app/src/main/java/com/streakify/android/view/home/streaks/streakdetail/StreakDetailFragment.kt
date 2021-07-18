@@ -72,8 +72,8 @@ class StreakDetailFragment : BaseFragment<StreakDetailFragmentBinding, StreakDet
                 val adapterList = mutableListOf<StreakDetailFriendItemVM>()
                 participants?.forEach {
                     adapterList.add(StreakDetailFriendItemVM(it!!,
-                        viewModel.streakDetails?.type!!,
-                        viewModel.streakDetails?.maxDuration?:0,
+                        viewModel.streakDetails.get()?.type!!,
+                        viewModel.streakDetails.get()?.maxDuration?:0,
                     resourceProvider),
                     )
                 }

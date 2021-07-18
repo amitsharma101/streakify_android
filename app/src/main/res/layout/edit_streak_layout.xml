@@ -183,6 +183,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:text="@={viewModel.streakName}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -210,6 +211,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:singleLine="true"
+                    android:imeOptions="actionDone"
                     android:text="@={viewModel.streakMaxDays}" />
             </com.google.android.material.textfield.TextInputLayout>
 

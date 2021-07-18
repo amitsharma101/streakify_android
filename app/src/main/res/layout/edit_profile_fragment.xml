@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:text="@={viewModel.phone}"
                 tools:text="+919602087669"
-                android:focusable="false"
+                android:enabled="false"
                 android:inputType="text"
                 android:singleLine="true" />
         </com.google.android.material.textfield.TextInputLayout>
