@@ -12,6 +12,7 @@ import java.io.FileOutputStream
 import java.util.*
 import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
+import kotlin.collections.HashMap
 
 class Util {
     companion object{
@@ -205,6 +206,33 @@ class Util {
             return null
         }
 
+        fun phoneNumberToAlphabetsForAvatar(phone:String?):String{
+            if(phone.isNullOrBlank())return ""
+
+            val map = HashMap<Char,String>()
+            map['0'] = "a"
+            map['1'] = "b"
+            map['2'] = "c"
+            map['3'] = "d"
+            map['4'] = "e"
+            map['5'] = "f"
+            map['6'] = "g"
+            map['7'] = "h"
+            map['8'] = "i"
+            map['9'] = "j"
+
+            var output = ""
+            phone.forEach {
+                output += map[it]
+            }
+            return output
+        }
+
+        fun getAvatarUrl(phone:String?):String{
+            val code = phoneNumberToAlphabetsForAvatar(phone)
+            val url = "https://avatars.dicebear.com/api/bottts/$code.svg"
+            return url
+        }
 
 
 

@@ -42,6 +42,7 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             app:loadProfileImage="@{data.pendingFriend.profilePic}"
+            app:loadProfileImageNumber="@{data.pendingFriend.mobileNumber}"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:src="@drawable/ic_robot" />

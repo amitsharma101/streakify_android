@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Shader
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.text.InputFilter
 import android.text.TextUtils
 import android.view.View
@@ -14,8 +15,10 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.google.android.material.textfield.TextInputEditText
 import com.streakify.android.R
+
 
 object Binder {
     @JvmStatic
@@ -50,18 +53,26 @@ object Binder {
     }
 
     @JvmStatic
-    @BindingAdapter(value = ["app:loadProfileImage"], requireAll = true)
-    fun loadProfileImage(view: ImageView, url: String?) {
-        Glide.with(view.context)
-            .load(url)
-            .apply( RequestOptions().placeholder(R.drawable.ic_robot)
-                .error(R.drawable.ic_robot))
-            .into(view)
+    @BindingAdapter(value = ["app:loadProfileImage","app:loadProfileImageNumber"], requireAll = false)
+    fun loadProfileImage(view: ImageView, url: String?,phone:String?) {
+        if(url.isNullOrBlank()){
+            GlideToVectorYou
+                .init()
+                .with(view.context)
+                .load(Uri.parse( Util.getAvatarUrl(phone)), view)
+        }
+        else{
+            Glide.with(view.context)
+                .load(url)
+                .apply( RequestOptions().placeholder(com.streakify.android.R.drawable.ic_robot)
+                    .error(com.streakify.android.R.drawable.ic_robot))
+                .into(view)
+        }
     }
 
     private fun getBitmap(context: Context, name: String, isSupplier: Boolean): Bitmap {
         val textDrawer = ImageHelper.getTextDrawer(name, 2, context, isSupplier)
-        val size = context.resources.getDimension(R.dimen.size_40).toInt()
+        val size = context.resources.getDimension(com.streakify.android.R.dimen.size_40).toInt()
         return ImageHelper.createCircleImageFromText(context, size, size, textDrawer)
     }
 

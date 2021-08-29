@@ -41,6 +41,7 @@ xmlns:tools="http://schemas.android.com/tools">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
             app:loadProfileImage="@{data.activeFriend.profilePic}"
+            app:loadProfileImageNumber="@{data.activeFriend.mobileNumber}"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
             android:src="@drawable/ic_robot" />
