@@ -1,67 +1,53 @@
-# Contributing to Quiz
-First off, thanks for taking the time to contribute. 
-The following is a set of guidelines for contributing to Quiz and its packages, which are hosted in the (https://github.com/purvansh/quiz.git) on GitHub. 
-These are mostly guidelines, not rules. Use your best judgment, and feel free to propose changes to this document in a pull request.
+# Contributing to Streakify
 
-## CODE OF CONDUCT
-This project and everyone participating in it is governed by the [CODE OF CONDUCT](CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. 
-Please report unacceptable behavior to [hbhatewada2000@gmail.com](mailto:hbhatewada2000@gmail.com).
+A big welcome and thank you for considering contributing to Streakify open source project! It’s people like you that make it a reality for users in our community.
 
-## LET'S GET STARTED
+Reading and following these guidelines will help us make the contribution process easy and effective for everyone involved. It also communicates that you agree to respect the time of the developers managing and developing these open source projects. In return, we will reciprocate that respect by addressing your issue, assessing changes, and helping you finalize your pull requests.
 
-To get an overview of the project, read the [README](README.md). Here are some resources to help you get started with open source contributions:
+## Quicklinks
 
-- [Finding ways to contribute to open source on GitHub](https://docs.github.com/en/get-started/exploring-projects-on-github/finding-ways-to-contribute-to-open-source-on-github)
-- [Set up Git](https://docs.github.com/en/get-started/quickstart/set-up-git)
-- [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow)
-- [Collaborating with pull requests](https://docs.github.com/en/github/collaborating-with-pull-requests)
+* [Code of Conduct](#code-of-conduct)
+* [Getting Started](#getting-started)
+    * [Issues](#issues)
+    * [Pull Requests](#pull-requests)
+* [Getting Help](#getting-help)
 
+## Code of Conduct
 
-## How Can I Contribute?
+We take our open source community seriously and hold ourselves and other contributors to high standards of communication. By participating and contributing to this project, you agree to uphold our [Code of Conduct](https://github.com/amitsharma101/streakify_android/blob/master/CODE_OF_CONDUCT.md).
+
+## Getting Started
+
+Contributions are made to this repo via Issues and Pull Requests (PRs). A few general guidelines that cover both:
+
+- To report security vulnerabilities, please use our [EMAIL](mailto:amitsharmamail101@gmail.com) which is monitored by our security team.
+- Search for existing Issues and PRs before creating your own.
+- We work hard to makes sure issues are handled in a timely manner but, depending on the impact, it could take a while to investigate the root cause. A friendly ping in the comment thread to the submitter or a contributor can help draw attention if your issue is blocking.
+- If you've never contributed before, see [the first timer's guide on our blog](https://auth0.com/blog/a-first-timers-guide-to-an-open-source-project/) for resources and tips on how to get started.
 
 ### Issues
 
-#### Create a new issue
+Issues should be used to report problems with the library, request a new feature, or to discuss potential changes before a PR is created. When you create a new Issue, a template will be loaded that will guide you through collecting and providing the information we need to investigate.
 
-If you spot a problem with the docs, [search if an issue already exists](https://docs.github.com/en/github/searching-for-information-on-github/searching-on-github/searching-issues-and-pull-requests#search-by-the-title-body-or-comments). If a related issue doesn't exist, you can open a new issue using a relevant [issue form](https://github.com/github/docs/issues/new/choose). 
+If you find an Issue that addresses the problem you're having, please add your own reproduction information to the existing issue rather than creating a new one. Adding a [reaction](https://github.blog/2016-03-10-add-reactions-to-pull-requests-issues-and-comments/) can also help be indicating to our maintainers that a particular problem is affecting more than just the reporter.
 
-#### Solve an issue
+### Pull Requests
 
-Scan through our [existing issues](https://github.com/github/docs/issues) to find one that interests you. You can narrow down the search using `labels` as filters. See [Labels](/contributing/how-to-use-labels.md) for more information.
+PRs to our libraries are always welcome and can be a quick way to get your fix or improvement slated for the next release. In general, PRs should:
 
-#### Make changes in the UI
+- Only fix/add the functionality in question **OR** address wide-spread whitespace/style issues, not both.
+- Add unit or integration tests for fixed or changed functionality (if a test suite already exists).
+- Address a single concern in the least number of changed lines as possible.
+- Be accompanied by a complete Pull Request template (loaded automatically when a PR is created).
 
-Click **Make a contribution** at the bottom of any docs page to make small changes such as a typo, sentence fix, or a broken link. 
-This takes you to the `.md` file where you can make your changes and [create a pull request](#pull-request) for a review. 
+For changes that address core functionality or would require breaking changes (e.g. a major release), it's best to open an Issue to discuss your proposal first. This is not required but can save time creating and reviewing changes.
 
+In general, we follow the ["fork-and-pull" Git workflow](https://github.com/susam/gitpr)
 
-#### Make changes in the CODE
-
-The best way to contribute is to "clone" your fork of quiz to your development area. That sounds like some jargon, but "forking" on GitHub means 
-"making a copy of that repo to your account" and "cloning" means "copying that code to your environment so you can work on it".
-
-1. [Set up Git](https://help.github.com/en/articles/set-up-git) (Windows, Mac & Linux)
-2. Go to the [quiz repo](purvansh/quiz)
-3. [Fork it](https://help.github.com/en/articles/fork-a-repo)
-4. [Clone](https://github.com/purvansh/quiz.git) your forked quiz repo: git@github.com:<your-name>/quiz.git.
-5. Checkout the "develop" branch. At this point you are ready to start making changes.
-6. Fix existing bugs on the Issue tracker after taking a look to see nobody else is working on them.
-7. [Commit](https://help.github.com/en/articles/adding-a-file-to-a-repository-using-the-command-line) the files
-8. [Push](https://help.github.com/en/articles/pushing-to-a-remote) your develop branch to your fork
-9. [Send a pull request](https://help.github.com/en/articles/creating-a-pull-request)
-
-We will now be alerted about the change and at least one of the team will respond. If your change fails to meet the guidelines it will be bounced, 
-  or feedback will be provided to help you improve it.
-Once we handle your pull request, we will merge it into develop and your patch will be part of the next release.
-  
-### Keeping your fork up-to-date
-
-Unlike systems like Subversion, Git can have multiple remotes. A remote is the name for a URL of a Git repository. By default your fork will have a remote named "origin" which points to your fork, but you can add another remote named "quiz" which points to `git://github.com/purvansh/quiz.git`. This is a read-only remote but you can pull from this develop branch to update your own.
-
-If you are using command-line you can do the following:
-
-1. `git remote add  quiz git://github.com/purvansh/quiz.git`
-2. `git pull quiz develop`
-3. `git push origin develop`
-
-Now your fork is up to date. This should be done regularly, or before you send a pull request at least.
+1. Fork the repository to your own Github account
+2. Clone the project to your machine
+3. Create a branch locally with a succinct but descriptive name
+4. Commit changes to the branch
+5. Following any formatting and testing guidelines specific to this repo
+6. Push changes to your fork
+7. Open a PR in our repository and follow the PR template so that we can efficiently review the changes.
